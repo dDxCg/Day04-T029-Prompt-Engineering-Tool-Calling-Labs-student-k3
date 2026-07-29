@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -43,17 +44,21 @@ def trim_history(history: list[dict[str, str]], window: int) -> list[dict[str, s
 
 def execute_tool_call(call: ToolCall) -> dict[str, Any]:
     func = TOOL_FUNCTIONS.get(call.name)
+    started = time.perf_counter()
     if not func:
-        return {
-            "tool": call.name,
-            "args": call.args,
-            "result": {"error": "unknown_tool", "message": f"No local implementation for {call.name}"},
-        }
-    try:
-        result = func(**call.args)
-    except Exception as exc:
-        result = {"error": type(exc).__name__, "message": str(exc)}
-    return {"tool": call.name, "args": call.args, "result": result}
+        result: Any = {"error": "unknown_tool", "message": f"No local implementation for {call.name}"}
+    else:
+        try:
+            result = func(**call.args)
+        except Exception as exc:
+            result = {"error": type(exc).__name__, "message": str(exc)}
+    return {
+        "tool": call.name,
+        "args": call.args,
+        "result": result,
+        "ok": not (isinstance(result, dict) and result.get("error")),
+        "ms": round((time.perf_counter() - started) * 1000),
+    }
 
 
 def tool_results_message(events: list[dict[str, Any]]) -> dict[str, str]:
@@ -90,11 +95,14 @@ def run_model_tool_loop(
     all_tool_events: list[dict[str, Any]] = []
 
     for round_index in range(1, max_tool_rounds + 1):
+        model_started = time.perf_counter()
         response = provider.complete(working_messages, tools, model=model, temperature=0.0)
+        model_ms = round((time.perf_counter() - model_started) * 1000)
         calls = response.tool_calls
         round_record: dict[str, Any] = {
             "round": round_index,
             "assistant_text": response.text,
+            "model_ms": model_ms,
             "tool_calls": [{"name": call.name, "args": call.args} for call in calls],
             "tool_results": [],
         }
@@ -114,6 +122,7 @@ def run_model_tool_loop(
         for call in calls:
             print(f"🔧 {call.name}({json.dumps(call.args, ensure_ascii=False, sort_keys=True)})")
             event = execute_tool_call(call)
+            event["round"] = round_index
             round_record["tool_results"].append(event)
             all_tool_events.append(event)
 

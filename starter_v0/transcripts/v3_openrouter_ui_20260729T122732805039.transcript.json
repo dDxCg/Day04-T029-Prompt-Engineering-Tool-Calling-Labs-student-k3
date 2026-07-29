@@ -1,0 +1,1122 @@
+{
+  "transcript_id": "v3_openrouter_ui_20260729T122732805039",
+  "version": "v3",
+  "artifact_version": "v3+pa13149aa456d+t2a4ffeb7ceda",
+  "prompt_hash": "a13149aa456d33e20002d6abc5b8e9992b5d187f6a8a7aeb4a48c124194fc45d",
+  "tools_hash": "2a4ffeb7cedabf11d0ff9834c30e25513278788e1f3f93f00c4bce929a83deb7",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "surface": "web_ui",
+  "created_at": "2026-07-29T12:27:32",
+  "updated_at": "2026-07-29T12:32:43",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T12:27:41",
+      "user": "Tim mot paper arXiv ve AI agent evaluation, doc paper phu hop nhat roi tom tat kem link.",
+      "status": "answered",
+      "assistant_text": "I found a relevant paper on arXiv titled **\"AI Agents: Evolution, Architecture, and Real-World Applications\"** by Naveen Krishnan. Here are the details:\n\n- **Summary**: This paper examines the evolution, architecture, and practical applications of AI agents, discussing their transition from early rule-based systems to modern sophisticated architectures that integrate large language models. It emphasizes the need for a holistic evaluation framework that balances task effectiveness, efficiency, robustness, and safety, while analyzing applications across various domains.\n- **Published**: March 16, 2025\n- **Link**: [Read the paper here](https://arxiv.org/abs/2503.12687v1)\n- **PDF**: [Download PDF](https://arxiv.org/pdf/2503.12687v1.pdf)\n\nThis paper provides a comprehensive analysis of AI agents, their theoretical foundations, architectural components, evaluation methodologies, and real-world applications.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "model_ms": 9406,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "query": "AI agent evaluation",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "query": "AI agent evaluation",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "AI agent evaluation",
+                "api_query": "all:AI AND all:agent AND all:evaluation",
+                "total_results": 4724,
+                "items": [
+                  {
+                    "arxiv_id": "2503.12687v1",
+                    "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+                    "summary": "This paper examines the evolution, architecture, and practical applications of AI agents from their early, rule-based incarnations to modern sophisticated systems that integrate large language models with dedicated modules for perception, planning, and tool use. Emphasizing both theoretical foundations and real-world deployments, the paper reviews key agent paradigms, discusses limitations of current evaluation benchmarks, and proposes a holistic evaluation framework that balances task effectiveness, efficiency, robustness, and safety. Applications across enterprise, personal assistance, and specialized domains are analyzed, with insights into future research directions for more resilient and adaptive AI agent systems.",
+                    "authors": [
+                      "Naveen Krishnan"
+                    ],
+                    "published": "2025-03-16T23:07:48Z",
+                    "updated": "2025-03-16T23:07:48Z",
+                    "url": "http://arxiv.org/abs/2503.12687v1",
+                    "pdf_url": "https://arxiv.org/pdf/2503.12687v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.23989v1",
+                    "title": "Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security",
+                    "summary": "Agentic AI systems -- Large Language Models (LLMs) augmented with planning, tool use, memory, and long-horizon interactions -- can execute complex tasks autonomously, but their multi-step trajectories introduce new failure modes that challenge trustworthiness. This survey provides a focused examination of trustworthy agentic AI through two core dimensions that are critical for high-risk deployments: Safety and Robustness, and Privacy and System Security. For each dimension, we clarify key concepts, identify where risks emerge along the agent workflow, and summarize stage-targeted mitigation strategies. Other trustworthiness aspects (value alignment, transparency, fairness, and accountability) are discussed as relevant context rather than parallel chapters. To support consistent comparison and deployment decisions, we consolidate evaluation into a unified metrics-and-benchmarks hub, emphasizing both outcome and process signals (e.g., constraint violations, trace completeness, and adversarial success rates) and offering scenario-to-metric guidance for release gating. We conclude by outlining open challenges such as self-evolving agents, runtime monitoring and verification, privacy-preserving personalization, and the trust-utility trade-off, and present a case study of real-world security failures in open-source agentic systems. Our goal is to serve as a practical reference for researchers and practitioners building trustworthy agentic systems in high-stakes environments.",
+                    "authors": [
+                      "Jinhu Qi",
+                      "Muzhi Li",
+                      "Jiahong Liu",
+                      "Yuqin Shu",
+                      "Dianzhi Yu",
+                      "Shicheng Ma",
+                      "Wenqian Cui",
+                      "Yiyang Zhao",
+                      "Yiyi Chen",
+                      "Ruoxi Jiang",
+                      "Irwin King",
+                      "Zenglin Xu"
+                    ],
+                    "published": "2026-05-17T10:26:37Z",
+                    "updated": "2026-05-17T10:26:37Z",
+                    "url": "http://arxiv.org/abs/2605.23989v1",
+                    "pdf_url": "https://arxiv.org/pdf/2605.23989v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI",
+                      "cs.CL",
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.21825v1",
+                    "title": "Toward AI VIS Co-Scientists: A General and End-to-End Agent Harness for Solving Complex Data Visualization Tasks",
+                    "summary": "The ability to inspect, interpret, and communicate complex data is crucial for virtually any scientific endeavor, but often requires significant expertise outside the core domain ranging from data management and analysis to visualization design and implementation. We present an end-to-end agentic harness that, based on only the data and a high level description of the tasks, independently designs custom visual analysis applications (VIS apps). This represents an important step towards a general AI co-scientist envisioned by many as an autonomous system that can autonomously execute long horizon tasks based on high-level directions. Our proposed VIS co-scientist is an essential component of this broader AI co-scientist vision: a harness that can autonomously analyze data and design visualization solutions using a collection of agents and specialized skills that coordinate exploratory analysis, plan, configure the environment, implement, validate the interface, and most importantly evaluate the overall task completion. Each stage produces document and instruction artifacts that guide downstream work and enable iterative refinement. We validate this approach on IEEE SciVis Contests spanning multiple science and engineering fields. These contests serve as ideal proving grounds because they encode real-world complexity: ambiguous requirements, diverse data modalities, design trade-offs, and task-driven validation. Given only the data and target tasks, our system autonomously produces functional single-page VIS Apps with verified linked-view behavior, highly customized to domain experts' specified tasks and needs.",
+                    "authors": [
+                      "Haichao Miao",
+                      "Zhimin Li",
+                      "Kuangshi Ai",
+                      "Kaiyuan Tang",
+                      "Chaoli Wang",
+                      "Peer-Timo Bremer",
+                      "Shusen Liu"
+                    ],
+                    "published": "2026-05-20T23:49:28Z",
+                    "updated": "2026-05-20T23:49:28Z",
+                    "url": "http://arxiv.org/abs/2605.21825v1",
+                    "pdf_url": "https://arxiv.org/pdf/2605.21825v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI",
+                      "cs.HC"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.18747v1",
+                    "title": "Code as Agent Harness",
+                    "summary": "Recent large language models (LLMs) have demonstrated strong capabilities in understanding and generating code, from competitive programming to repository-level software engineering. In emerging agentic systems, code is no longer only a target output. It increasingly serves as an operational substrate for agent reasoning, acting, environment modeling, and execution-based verification. We frame this shift through the lens of agent harnesses and introduce code as agent harness: a unified view that centers code as the basis for agent infrastructure. To systematically study this perspective, we organize the survey around three connected layers. First, we study the harness interface, where code connects agents to reasoning, action, and environment modeling. Second, we examine harness mechanisms: planning, memory, and tool use for long-horizon execution, together with feedback-driven control and optimization that make harness reliable and adaptive. Third, we discuss scaling the harness from single-agent systems to multi-agent settings, where shared code artifacts support multi-agent coordination, review, and verification. Across these layers, we summarize representative methods and practical applications of code as agent harness, spanning coding assistants, GUI/OS automation, embodied agents, scientific discovery, personalization and recommendation, DevOps, and enterprise workflows. We further outline open challenges for harness engineering, including evaluation beyond final task success, verification under incomplete feedback, regression-free harness improvement, consistent shared state across multiple agents, human oversight for safety-critical actions, and extensions to multimodal environments. By centering code as the harness of agentic AI, this survey provides a unified roadmap toward executable, verifiable, and stateful AI agent systems.",
+                    "authors": [
+                      "Xuying Ning",
+                      "Katherine Tieu",
+                      "Dongqi Fu",
+                      "Tianxin Wei",
+                      "Zihao Li",
+                      "Yuanchen Bei",
+                      "Jiaru Zou",
+                      "Mengting Ai",
+                      "Zhining Liu",
+                      "Ting-Wei Li",
+                      "Lingjie Chen",
+                      "Yanjun Zhao",
+                      "Ke Yang",
+                      "Bingxuan Li",
+                      "Cheng Qian",
+                      "Gaotang Li",
+                      "Xiao Lin",
+                      "Zhichen Zeng",
+                      "Ruizhong Qiu",
+                      "Sirui Chen",
+                      "Yifan Sun",
+                      "Xiyuan Yang",
+                      "Ruida Wang",
+                      "Rui Pan",
+                      "Chenyuan Yang",
+                      "Dylan Zhang",
+                      "Liri Fang",
+                      "Zikun Cui",
+                      "Yang Cao",
+                      "Pan Chen",
+                      "Dorothy Sun",
+                      "Ren Chen",
+                      "Mahesh Srinivasan",
+                      "Nipun Mathur",
+                      "Yinglong Xia",
+                      "Hong Li",
+                      "Hong Yan",
+                      "Pan Lu",
+                      "Lingming Zhang",
+                      "Tong Zhang",
+                      "Hanghang Tong",
+                      "Jingrui He"
+                    ],
+                    "published": "2026-05-18T17:59:03Z",
+                    "updated": "2026-05-18T17:59:03Z",
+                    "url": "http://arxiv.org/abs/2605.18747v1",
+                    "pdf_url": "https://arxiv.org/pdf/2605.18747v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL",
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2603.05980v1",
+                    "title": "An Interactive Multi-Agent System for Evaluation of New Product Concepts",
+                    "summary": "Product concept evaluation is a critical stage that determines strategic resource allocation and project success in enterprises. However, traditional expert-led approaches face limitations such as subjective bias and high time and cost requirements. To support this process, this study proposes an automated approach utilizing a large language model (LLM)-based multi-agent system (MAS). Through a systematic analysis of previous research on product development and team collaboration, this study established two primary evaluation dimensions, namely technical feasibility and market feasibility. The proposed system consists of a team of eight virtual agents representing specialized domains such as R&D and marketing. These agents use retrieval-augmented generation (RAG) and real-time search tools to gather objective evidence and validate concepts through structured deliberations based on the established criteria. The agents were further fine-tuned using professional product review data to enhance their judgment accuracy. A case study involving professional display monitor concepts demonstrated that the system's evaluation rankings were consistent with those of senior industry experts. These results confirm the usability of the proposed multi-agent-based evaluation approach for supporting product development decisions.",
+                    "authors": [
+                      "Bin Xuan",
+                      "Ruo Ai",
+                      "Hakyeon Lee"
+                    ],
+                    "published": "2026-03-06T07:22:52Z",
+                    "updated": "2026-03-06T07:22:52Z",
+                    "url": "http://arxiv.org/abs/2603.05980v1",
+                    "pdf_url": "https://arxiv.org/pdf/2603.05980v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              },
+              "ok": true,
+              "ms": 676,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "model_ms": 1765,
+          "tool_calls": [
+            {
+              "name": "paper_text",
+              "args": {
+                "arxiv_url": "2503.12687v1"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "paper_text",
+              "args": {
+                "arxiv_url": "2503.12687v1"
+              },
+              "result": {
+                "tool": "get_arxiv_paper_text",
+                "arxiv_id": "2503.12687v1",
+                "url": "https://arxiv.org/abs/2503.12687v1",
+                "pdf_url": "https://arxiv.org/pdf/2503.12687v1.pdf",
+                "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.pdf",
+                "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.txt",
+                "page_count": 52,
+                "pages_read": 5,
+                "chars_returned": 8000,
+                "items": [
+                  {
+                    "title": "arXiv paper 2503.12687v1",
+                    "url": "https://arxiv.org/abs/2503.12687v1",
+                    "source": "arxiv.org",
+                    "summary": "AI Agents: Evolution, Architecture, and\nReal-World Applications\nNaveen Krishnan\nMarch 2025\n1 Introduction\nArtificial Intelligence (AI) has evolved dramatically over the past decade, tran-\nsitioning from specialized systems designed for narrow tasks to increasingly so-\nphisticated architectures capable of autonomous operation across diverse do-\nmains. Among these advancements, AI agents represent a particularly signifi-\ncant development, embodying a paradigm shift in how intelligent systems inter-\nact with their environments, make decisions, and achieve complex goals. Unlike\ntraditional AI systems that execute predefined algorithms within constraints,\nAI agents possess the capacity to autonomously perceive, reason, and act, of-\nten adapting their behavior based on environmental feedback and accumulated\nexperience.\nThe concept of an AI agent refers to a system or program that is capable of\nautonomously performing tasks on behalf of a user or another system by design-\ning its workflow and utilizing available tools. These agents can encompass a wide\nrange of functionalities beyond natural language processing, including decision\nmaking, problem solving, interacting with external environments, and executing\nactions. As Kapoor et al. (2024) note in their analysis of agent benchmarks,\nthe development of AI agents represents an exciting new research direction with\nsignificant implications for real-world applications across numerous industries.\nThe evolution of AI agents has been accelerated by recent breakthroughs\nin large language models (LLMs), which have provided a foundation for more\nsophisticated reasoning capabilities. Modern AI agents leverage these advanced\nlanguage models as core components, augmenting them with specialized modules\nfor memory, planning, tool use, and environmental interaction. This integration\nenables agents to perform complex tasks that would be challenging or impossible\nfor traditional AI systems, from reconciling financial statements to providing\nstep-by-step instructions for field technicians based on contextual understanding\nof product information.\n1\narXiv:2503.12687v1  [cs.AI]  16 Mar 2025\n\nThe distinction between AI agents and other AI systems lies primarily in\ntheir architecture and operational capabilities. While conventional AI systems\ntypically operate within predefined parameters and require explicit instructions\nfor each task, AI agents demonstrate greater autonomy in goal-directed behav-\nior. As described by Microsoft’s chief marketing officer for AI at Work, Jared\nSpataro, Agents are like layers on top of the language models that observe and\ncollect information, provide input to the model and together generate an ac-\ntion plan (Ray, 2024). This architectural approach allows agents to decompose\ncomplex problems into manageable subtasks, reason over available information,\nutilize appropriate tools, and learn from feedback while maintaining context\nacross interactions.\nThe taxonomy of AI agents has evolved to include various categories based\non their cognitive capabilities and operational mechanisms. A WS (2024) identi-\nfies several distinct types, including simple reflex agents that operate based on\npredefined rules, model-based agents that evaluate probable outcomes before de-\nciding, goal-based agents that compare different approaches to achieve desired\noutcomes, utility-based agents that maximize specific value metrics, learning\nagents that continuously adapt based on experience, and hierarchical agents\nthat coordinate across multiple levels of abstraction. Each type represents a\ndifferent approach to agent design, with corresponding strengths and limita-\ntions for particular use cases.\nThe current landscape of research and development of AI Agents is charac-\nterized by rapid innovation across academic institutions and industry leaders.\nOrganizations like IBM, Microsoft, A WS, and Anthropic are developing increas-\ningly sophisticated agent architectures, while research teams at institutions such\nas Princeton University are establishing new benchmarks and evaluation frame-\nworks. This convergence of academic and commercial interest has accelerated\nprogress in the field, although challenges remain in areas such as reasoning ca-\npabilities, tool integration, and evaluation methodologies.\nDespite significant advances, the development of AI agents faces several crit-\nical challenges. As highlighted by Kapoor et al. (2024), current agent bench-\nmarks often focus narrowly on accuracy without sufficient attention to other\nimportant metrics such as cost-effectiveness, reproducibility, and real-world ap-\nplicability. Additionally, the conflation of benchmarking needs between model\ndevelopers and downstream application developers has complicated efforts to\nidentify which agent architectures are best suited for particular use cases. These\nchallenges underscore the need for more sophisticated evaluation frameworks\nthat can capture the multidimensional nature of agent performance in diverse\ncontexts.\nThis paper aims to provide a comprehensive analysis of AI agents, examining\ntheir theoretical foundations, architectural components, evaluation methodolo-\ngies, and real-world applications. We begin by reviewing the literature on agent\n2\n\nsystems, tracing the evolution of key concepts and frameworks that have shaped\ncurrent approaches. We then explore the core components of modern agent\narchitectures, including perception mechanisms, knowledge representation, rea-\nsoning modules, and action selection. Next, we examine current evaluation prac-\ntices and propose a more holistic framework for assessing agent performance.\nWe then analyze real-world applications across enterprise contexts, personal as-\nsistance, and specialized domains, highlighting both successes and limitations.\nFinally, we discuss ongoing challenges in the field and identify promising direc-\ntions for future research.\nBy synthesizing insights from both academic research and industry imple-\nmentations, this paper contributes to the growing literature on AI agents in sev-\neral ways. First, it provides a unified conceptual framework for understanding\ndiverse agent architectures and their capabilities. Second, it critically examines\ncurrent evaluation methodologies and proposes improvements that better align\nwith real-world requirements. Third, it offers a detailed analysis of successful\nagent applications across multiple domains, extracting generalizable principles\nfor effective deployment. Finally, it identifies key research challenges and oppor-\ntunities that will shape the future development of agent systems. Through these\ncontributions, our aim is to advance both theoretical understanding and prac-\ntical implementation of AI agents as they continue to transform how intelligent\nsystems operate in the world.\n2 Literature Review\n2.1 Theoretical Foundations of AI Agents\nThe concept of artificial intelligence agents has deep roots in computer sci-\nence, philosophy, and cognitive science. The theoretical underpinnings of agent-\nbased systems can be traced back to early work on distributed artificial intel-\nligence in the 1970s and 1980s. However, the modern conceptualization of AI\nagents emerged more distinctly in the 1990s, with seminal contributions from\nresearchers like Russell and Norvig (1995), who defined an agent as anything\nthat can be viewed as perceiving its environment through sensors and acting\nupon that environment through actuators. This definition established the fun-\ndamental perception-action loop that characterizes agent systems.\nWooldridge and Jennings (1995) further refined the concept by proposing\nthat intelligent agents should possess several key properties: autonomy (oper-\nating without direct human intervention), social ability (interacting with other\nagents and humans), reactivity (responding to environmental changes), and\nproactivity (exhibiting goal-directed behavior). These properties have remained\n3\n\ncentral to agent theory, though their impleme"
+                  }
+                ]
+              },
+              "ok": true,
+              "ms": 1463,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": "I found a relevant paper on arXiv titled **\"AI Agents: Evolution, Architecture, and Real-World Applications\"** by Naveen Krishnan. Here are the details:\n\n- **Summary**: This paper examines the evolution, architecture, and practical applications of AI agents, discussing their transition from early rule-based systems to modern sophisticated architectures that integrate large language models. It emphasizes the need for a holistic evaluation framework that balances task effectiveness, efficiency, robustness, and safety, while analyzing applications across various domains.\n- **Published**: March 16, 2025\n- **Link**: [Read the paper here](https://arxiv.org/abs/2503.12687v1)\n- **PDF**: [Download PDF](https://arxiv.org/pdf/2503.12687v1.pdf)\n\nThis paper provides a comprehensive analysis of AI agents, their theoretical foundations, architectural components, evaluation methodologies, and real-world applications.",
+          "model_ms": 4434,
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "AI agent evaluation",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "AI agent evaluation",
+            "api_query": "all:AI AND all:agent AND all:evaluation",
+            "total_results": 4724,
+            "items": [
+              {
+                "arxiv_id": "2503.12687v1",
+                "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+                "summary": "This paper examines the evolution, architecture, and practical applications of AI agents from their early, rule-based incarnations to modern sophisticated systems that integrate large language models with dedicated modules for perception, planning, and tool use. Emphasizing both theoretical foundations and real-world deployments, the paper reviews key agent paradigms, discusses limitations of current evaluation benchmarks, and proposes a holistic evaluation framework that balances task effectiveness, efficiency, robustness, and safety. Applications across enterprise, personal assistance, and specialized domains are analyzed, with insights into future research directions for more resilient and adaptive AI agent systems.",
+                "authors": [
+                  "Naveen Krishnan"
+                ],
+                "published": "2025-03-16T23:07:48Z",
+                "updated": "2025-03-16T23:07:48Z",
+                "url": "http://arxiv.org/abs/2503.12687v1",
+                "pdf_url": "https://arxiv.org/pdf/2503.12687v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2605.23989v1",
+                "title": "Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security",
+                "summary": "Agentic AI systems -- Large Language Models (LLMs) augmented with planning, tool use, memory, and long-horizon interactions -- can execute complex tasks autonomously, but their multi-step trajectories introduce new failure modes that challenge trustworthiness. This survey provides a focused examination of trustworthy agentic AI through two core dimensions that are critical for high-risk deployments: Safety and Robustness, and Privacy and System Security. For each dimension, we clarify key concepts, identify where risks emerge along the agent workflow, and summarize stage-targeted mitigation strategies. Other trustworthiness aspects (value alignment, transparency, fairness, and accountability) are discussed as relevant context rather than parallel chapters. To support consistent comparison and deployment decisions, we consolidate evaluation into a unified metrics-and-benchmarks hub, emphasizing both outcome and process signals (e.g., constraint violations, trace completeness, and adversarial success rates) and offering scenario-to-metric guidance for release gating. We conclude by outlining open challenges such as self-evolving agents, runtime monitoring and verification, privacy-preserving personalization, and the trust-utility trade-off, and present a case study of real-world security failures in open-source agentic systems. Our goal is to serve as a practical reference for researchers and practitioners building trustworthy agentic systems in high-stakes environments.",
+                "authors": [
+                  "Jinhu Qi",
+                  "Muzhi Li",
+                  "Jiahong Liu",
+                  "Yuqin Shu",
+                  "Dianzhi Yu",
+                  "Shicheng Ma",
+                  "Wenqian Cui",
+                  "Yiyang Zhao",
+                  "Yiyi Chen",
+                  "Ruoxi Jiang",
+                  "Irwin King",
+                  "Zenglin Xu"
+                ],
+                "published": "2026-05-17T10:26:37Z",
+                "updated": "2026-05-17T10:26:37Z",
+                "url": "http://arxiv.org/abs/2605.23989v1",
+                "pdf_url": "https://arxiv.org/pdf/2605.23989v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.CL",
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2605.21825v1",
+                "title": "Toward AI VIS Co-Scientists: A General and End-to-End Agent Harness for Solving Complex Data Visualization Tasks",
+                "summary": "The ability to inspect, interpret, and communicate complex data is crucial for virtually any scientific endeavor, but often requires significant expertise outside the core domain ranging from data management and analysis to visualization design and implementation. We present an end-to-end agentic harness that, based on only the data and a high level description of the tasks, independently designs custom visual analysis applications (VIS apps). This represents an important step towards a general AI co-scientist envisioned by many as an autonomous system that can autonomously execute long horizon tasks based on high-level directions. Our proposed VIS co-scientist is an essential component of this broader AI co-scientist vision: a harness that can autonomously analyze data and design visualization solutions using a collection of agents and specialized skills that coordinate exploratory analysis, plan, configure the environment, implement, validate the interface, and most importantly evaluate the overall task completion. Each stage produces document and instruction artifacts that guide downstream work and enable iterative refinement. We validate this approach on IEEE SciVis Contests spanning multiple science and engineering fields. These contests serve as ideal proving grounds because they encode real-world complexity: ambiguous requirements, diverse data modalities, design trade-offs, and task-driven validation. Given only the data and target tasks, our system autonomously produces functional single-page VIS Apps with verified linked-view behavior, highly customized to domain experts' specified tasks and needs.",
+                "authors": [
+                  "Haichao Miao",
+                  "Zhimin Li",
+                  "Kuangshi Ai",
+                  "Kaiyuan Tang",
+                  "Chaoli Wang",
+                  "Peer-Timo Bremer",
+                  "Shusen Liu"
+                ],
+                "published": "2026-05-20T23:49:28Z",
+                "updated": "2026-05-20T23:49:28Z",
+                "url": "http://arxiv.org/abs/2605.21825v1",
+                "pdf_url": "https://arxiv.org/pdf/2605.21825v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.HC"
+                ]
+              },
+              {
+                "arxiv_id": "2605.18747v1",
+                "title": "Code as Agent Harness",
+                "summary": "Recent large language models (LLMs) have demonstrated strong capabilities in understanding and generating code, from competitive programming to repository-level software engineering. In emerging agentic systems, code is no longer only a target output. It increasingly serves as an operational substrate for agent reasoning, acting, environment modeling, and execution-based verification. We frame this shift through the lens of agent harnesses and introduce code as agent harness: a unified view that centers code as the basis for agent infrastructure. To systematically study this perspective, we organize the survey around three connected layers. First, we study the harness interface, where code connects agents to reasoning, action, and environment modeling. Second, we examine harness mechanisms: planning, memory, and tool use for long-horizon execution, together with feedback-driven control and optimization that make harness reliable and adaptive. Third, we discuss scaling the harness from single-agent systems to multi-agent settings, where shared code artifacts support multi-agent coordination, review, and verification. Across these layers, we summarize representative methods and practical applications of code as agent harness, spanning coding assistants, GUI/OS automation, embodied agents, scientific discovery, personalization and recommendation, DevOps, and enterprise workflows. We further outline open challenges for harness engineering, including evaluation beyond final task success, verification under incomplete feedback, regression-free harness improvement, consistent shared state across multiple agents, human oversight for safety-critical actions, and extensions to multimodal environments. By centering code as the harness of agentic AI, this survey provides a unified roadmap toward executable, verifiable, and stateful AI agent systems.",
+                "authors": [
+                  "Xuying Ning",
+                  "Katherine Tieu",
+                  "Dongqi Fu",
+                  "Tianxin Wei",
+                  "Zihao Li",
+                  "Yuanchen Bei",
+                  "Jiaru Zou",
+                  "Mengting Ai",
+                  "Zhining Liu",
+                  "Ting-Wei Li",
+                  "Lingjie Chen",
+                  "Yanjun Zhao",
+                  "Ke Yang",
+                  "Bingxuan Li",
+                  "Cheng Qian",
+                  "Gaotang Li",
+                  "Xiao Lin",
+                  "Zhichen Zeng",
+                  "Ruizhong Qiu",
+                  "Sirui Chen",
+                  "Yifan Sun",
+                  "Xiyuan Yang",
+                  "Ruida Wang",
+                  "Rui Pan",
+                  "Chenyuan Yang",
+                  "Dylan Zhang",
+                  "Liri Fang",
+                  "Zikun Cui",
+                  "Yang Cao",
+                  "Pan Chen",
+                  "Dorothy Sun",
+                  "Ren Chen",
+                  "Mahesh Srinivasan",
+                  "Nipun Mathur",
+                  "Yinglong Xia",
+                  "Hong Li",
+                  "Hong Yan",
+                  "Pan Lu",
+                  "Lingming Zhang",
+                  "Tong Zhang",
+                  "Hanghang Tong",
+                  "Jingrui He"
+                ],
+                "published": "2026-05-18T17:59:03Z",
+                "updated": "2026-05-18T17:59:03Z",
+                "url": "http://arxiv.org/abs/2605.18747v1",
+                "pdf_url": "https://arxiv.org/pdf/2605.18747v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2603.05980v1",
+                "title": "An Interactive Multi-Agent System for Evaluation of New Product Concepts",
+                "summary": "Product concept evaluation is a critical stage that determines strategic resource allocation and project success in enterprises. However, traditional expert-led approaches face limitations such as subjective bias and high time and cost requirements. To support this process, this study proposes an automated approach utilizing a large language model (LLM)-based multi-agent system (MAS). Through a systematic analysis of previous research on product development and team collaboration, this study established two primary evaluation dimensions, namely technical feasibility and market feasibility. The proposed system consists of a team of eight virtual agents representing specialized domains such as R&D and marketing. These agents use retrieval-augmented generation (RAG) and real-time search tools to gather objective evidence and validate concepts through structured deliberations based on the established criteria. The agents were further fine-tuned using professional product review data to enhance their judgment accuracy. A case study involving professional display monitor concepts demonstrated that the system's evaluation rankings were consistent with those of senior industry experts. These results confirm the usability of the proposed multi-agent-based evaluation approach for supporting product development decisions.",
+                "authors": [
+                  "Bin Xuan",
+                  "Ruo Ai",
+                  "Hakyeon Lee"
+                ],
+                "published": "2026-03-06T07:22:52Z",
+                "updated": "2026-03-06T07:22:52Z",
+                "url": "http://arxiv.org/abs/2603.05980v1",
+                "pdf_url": "https://arxiv.org/pdf/2603.05980v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          },
+          "ok": true,
+          "ms": 676,
+          "round": 1
+        },
+        {
+          "tool": "paper_text",
+          "args": {
+            "arxiv_url": "2503.12687v1"
+          },
+          "result": {
+            "tool": "get_arxiv_paper_text",
+            "arxiv_id": "2503.12687v1",
+            "url": "https://arxiv.org/abs/2503.12687v1",
+            "pdf_url": "https://arxiv.org/pdf/2503.12687v1.pdf",
+            "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.pdf",
+            "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.txt",
+            "page_count": 52,
+            "pages_read": 5,
+            "chars_returned": 8000,
+            "items": [
+              {
+                "title": "arXiv paper 2503.12687v1",
+                "url": "https://arxiv.org/abs/2503.12687v1",
+                "source": "arxiv.org",
+                "summary": "AI Agents: Evolution, Architecture, and\nReal-World Applications\nNaveen Krishnan\nMarch 2025\n1 Introduction\nArtificial Intelligence (AI) has evolved dramatically over the past decade, tran-\nsitioning from specialized systems designed for narrow tasks to increasingly so-\nphisticated architectures capable of autonomous operation across diverse do-\nmains. Among these advancements, AI agents represent a particularly signifi-\ncant development, embodying a paradigm shift in how intelligent systems inter-\nact with their environments, make decisions, and achieve complex goals. Unlike\ntraditional AI systems that execute predefined algorithms within constraints,\nAI agents possess the capacity to autonomously perceive, reason, and act, of-\nten adapting their behavior based on environmental feedback and accumulated\nexperience.\nThe concept of an AI agent refers to a system or program that is capable of\nautonomously performing tasks on behalf of a user or another system by design-\ning its workflow and utilizing available tools. These agents can encompass a wide\nrange of functionalities beyond natural language processing, including decision\nmaking, problem solving, interacting with external environments, and executing\nactions. As Kapoor et al. (2024) note in their analysis of agent benchmarks,\nthe development of AI agents represents an exciting new research direction with\nsignificant implications for real-world applications across numerous industries.\nThe evolution of AI agents has been accelerated by recent breakthroughs\nin large language models (LLMs), which have provided a foundation for more\nsophisticated reasoning capabilities. Modern AI agents leverage these advanced\nlanguage models as core components, augmenting them with specialized modules\nfor memory, planning, tool use, and environmental interaction. This integration\nenables agents to perform complex tasks that would be challenging or impossible\nfor traditional AI systems, from reconciling financial statements to providing\nstep-by-step instructions for field technicians based on contextual understanding\nof product information.\n1\narXiv:2503.12687v1  [cs.AI]  16 Mar 2025\n\nThe distinction between AI agents and other AI systems lies primarily in\ntheir architecture and operational capabilities. While conventional AI systems\ntypically operate within predefined parameters and require explicit instructions\nfor each task, AI agents demonstrate greater autonomy in goal-directed behav-\nior. As described by Microsoft’s chief marketing officer for AI at Work, Jared\nSpataro, Agents are like layers on top of the language models that observe and\ncollect information, provide input to the model and together generate an ac-\ntion plan (Ray, 2024). This architectural approach allows agents to decompose\ncomplex problems into manageable subtasks, reason over available information,\nutilize appropriate tools, and learn from feedback while maintaining context\nacross interactions.\nThe taxonomy of AI agents has evolved to include various categories based\non their cognitive capabilities and operational mechanisms. A WS (2024) identi-\nfies several distinct types, including simple reflex agents that operate based on\npredefined rules, model-based agents that evaluate probable outcomes before de-\nciding, goal-based agents that compare different approaches to achieve desired\noutcomes, utility-based agents that maximize specific value metrics, learning\nagents that continuously adapt based on experience, and hierarchical agents\nthat coordinate across multiple levels of abstraction. Each type represents a\ndifferent approach to agent design, with corresponding strengths and limita-\ntions for particular use cases.\nThe current landscape of research and development of AI Agents is charac-\nterized by rapid innovation across academic institutions and industry leaders.\nOrganizations like IBM, Microsoft, A WS, and Anthropic are developing increas-\ningly sophisticated agent architectures, while research teams at institutions such\nas Princeton University are establishing new benchmarks and evaluation frame-\nworks. This convergence of academic and commercial interest has accelerated\nprogress in the field, although challenges remain in areas such as reasoning ca-\npabilities, tool integration, and evaluation methodologies.\nDespite significant advances, the development of AI agents faces several crit-\nical challenges. As highlighted by Kapoor et al. (2024), current agent bench-\nmarks often focus narrowly on accuracy without sufficient attention to other\nimportant metrics such as cost-effectiveness, reproducibility, and real-world ap-\nplicability. Additionally, the conflation of benchmarking needs between model\ndevelopers and downstream application developers has complicated efforts to\nidentify which agent architectures are best suited for particular use cases. These\nchallenges underscore the need for more sophisticated evaluation frameworks\nthat can capture the multidimensional nature of agent performance in diverse\ncontexts.\nThis paper aims to provide a comprehensive analysis of AI agents, examining\ntheir theoretical foundations, architectural components, evaluation methodolo-\ngies, and real-world applications. We begin by reviewing the literature on agent\n2\n\nsystems, tracing the evolution of key concepts and frameworks that have shaped\ncurrent approaches. We then explore the core components of modern agent\narchitectures, including perception mechanisms, knowledge representation, rea-\nsoning modules, and action selection. Next, we examine current evaluation prac-\ntices and propose a more holistic framework for assessing agent performance.\nWe then analyze real-world applications across enterprise contexts, personal as-\nsistance, and specialized domains, highlighting both successes and limitations.\nFinally, we discuss ongoing challenges in the field and identify promising direc-\ntions for future research.\nBy synthesizing insights from both academic research and industry imple-\nmentations, this paper contributes to the growing literature on AI agents in sev-\neral ways. First, it provides a unified conceptual framework for understanding\ndiverse agent architectures and their capabilities. Second, it critically examines\ncurrent evaluation methodologies and proposes improvements that better align\nwith real-world requirements. Third, it offers a detailed analysis of successful\nagent applications across multiple domains, extracting generalizable principles\nfor effective deployment. Finally, it identifies key research challenges and oppor-\ntunities that will shape the future development of agent systems. Through these\ncontributions, our aim is to advance both theoretical understanding and prac-\ntical implementation of AI agents as they continue to transform how intelligent\nsystems operate in the world.\n2 Literature Review\n2.1 Theoretical Foundations of AI Agents\nThe concept of artificial intelligence agents has deep roots in computer sci-\nence, philosophy, and cognitive science. The theoretical underpinnings of agent-\nbased systems can be traced back to early work on distributed artificial intel-\nligence in the 1970s and 1980s. However, the modern conceptualization of AI\nagents emerged more distinctly in the 1990s, with seminal contributions from\nresearchers like Russell and Norvig (1995), who defined an agent as anything\nthat can be viewed as perceiving its environment through sensors and acting\nupon that environment through actuators. This definition established the fun-\ndamental perception-action loop that characterizes agent systems.\nWooldridge and Jennings (1995) further refined the concept by proposing\nthat intelligent agents should possess several key properties: autonomy (oper-\nating without direct human intervention), social ability (interacting with other\nagents and humans), reactivity (responding to environmental changes), and\nproactivity (exhibiting goal-directed behavior). These properties have remained\n3\n\ncentral to agent theory, though their impleme"
+              }
+            ]
+          },
+          "ok": true,
+          "ms": 1463,
+          "round": 2
+        }
+      ],
+      "ended_at": "2026-07-29T12:27:59",
+      "total_ms": 17744
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-07-29T12:31:05",
+      "user": "Tìm tin AI hôm nay, đọc bài phù hợp nhất rồi tóm tắt ngắn gọn kèm link.",
+      "status": "answered",
+      "assistant_text": "Hôm nay, một nhóm nhân viên từ các công ty AI lớn nhất đã kêu gọi chính phủ Mỹ làm chậm lại tốc độ phát triển AI để các biện pháp an toàn và bảo mật có thể theo kịp. Họ đã gửi một bức thư mở, trong đó nhấn mạnh rằng cần có một nỗ lực quốc tế để phát triển các công cụ nhằm \"cố ý điều chỉnh tốc độ phát triển AI\".\n\nBức thư này được ký bởi hơn 1.000 nhân viên từ các công ty AI hàng đầu, bao gồm cả các nhà khoa học hàng đầu của OpenAI và các đồng sáng lập của Anthropic. Họ cảnh báo rằng sự phát triển nhanh chóng của AI có thể vượt quá khả năng hiểu và kiểm soát của con người, và nhấn mạnh tầm quan trọng của việc phát triển các biện pháp an toàn và giám sát.\n\nĐể biết thêm chi tiết, bạn có thể đọc bài viết tại đây: [CNN Business](https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter).",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "model_ms": 1987,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "AI",
+                "topic": "news",
+                "timeframe": "day"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "AI",
+                "topic": "news",
+                "timeframe": "day"
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "AI",
+                "topic": "news",
+                "timeframe": "day",
+                "items": [
+                  {
+                    "title": "Employees at the world’s biggest AI companies are calling for a slowdown in AI development | CNN Business",
+                    "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter",
+                    "source": "cnn.com",
+                    "summary": "OpenAI said in a statement to CNN they agree with potentially pacing the development of AI, adding they “hope to contribute to work led by the U.S. government, alongside other labs” on the topic.\n\nOpenAI CEO Sam Altman suggested it may be time to slow down AI development in a podcast interview Tuesday. The OpenAI models that broke out of their test environment are fueling “long term questions” about how AI companies should address this new rate of progress. [...] The letter comes on the heels of major advancements and burgeoning threats from rapidly developing AI systems. OpenAI disclosed last week that two of its test models escaped a lab environment, bypassed its systems to gain access to the open internet and hacked a different company’s internal system. [...] “[T]here is a real risk that capability development rapidly accelerates beyond our ability to understand or control the resulting systems,” the signees said. “To realize AI’s potential, industry, government, and society at large may need the option to buy time to address emerging risks, develop security measures, and strengthen oversight.”",
+                    "score": 0.2721175
+                  },
+                  {
+                    "title": "OpenAI's Rogue AI Agent Hacked More Than Just Hugging ...",
+                    "url": "https://www.wired.com/story/openais-rogue-ai-agent-hacked-more-than-just-hugging-face",
+                    "source": "wired.com",
+                    "summary": "“Context bombing” tricks malicious AI agents into shutting down before they can do harm.\n\nDan Goodin, Ars Technica\n\nAI Found a Root Bug in Linux That Everyone Missed for 15 Years\n\nPlus: The Pentagon is training amateurs to become part of its hacker army, a Flock license plate reader error led to cops surrounding a car reviewer, and more.\n\nDell Cameron\n\nA Sneaky Hacking Tool Targeting AI Infrastructure Is Lurking in Victims’ Blind Spots [...] Maxwell Zeff is a senior writer at WIRED covering the business of artificial intelligence. He was previously a senior reporter with TechCrunch, where he broke news on startups and leaders driving the AI boom. Before that, Zeff covered AI policy and content moderation for Gizmodo and wrote some of Bloomberg’s ... Read More\n\nSenior Writer\n\nTopicsOpenAIagentic AIartificial intelligencecyberattackscybersecuritygenerative AI\n\nRead More\n\nOpenAI Models Escaped Containment and Hacked Hugging Face [...] The breach happened when OpenAI was testing one its latest AI models against ExploitGym, a benchmarking framework that scores AI systems on their ability to find and exploit software vulnerabilities. ExploitGym grades an agent on how quickly and effectively it can retrieve secret files from hundreds of different target systems, using prompts that essentially egg the models on to find solutions.",
+                    "score": 0.24089554
+                  },
+                  {
+                    "title": "Accenture wins $821M Pentagon AI data platform contract",
+                    "url": "https://federalnewsnetwork.com/defense-news/2026/07/accenture-wins-821m-pentagon-ai-data-platform-contract",
+                    "source": "federalnewsnetwork.com",
+                    "summary": "Discover how federal agencies are applying AI to strengthen cybersecurity, improve operational efficiency and deliver measurable mission outcomes while balancing innovation, governance and human expertise.\n\nThe department said its initial order under the contract is focused on “high-impact, measurable mission outcomes that maximize the benefits of commercial pricing.” An Accenture spokesperson did not respond Tuesday to emailed questions about what that work entails. [...] The platform aims to combine more than 1,500 data sources, both commercial and military, to securely provide intelligence, targeting data and more to frontline troops and their commands, the AI office said, calling it “one of [DoD]’s most vital data platforms for AI exploitation and mission advantage.” [...] “The evolution of Advana’s data platform and application ecosystem over the last six years has led to a complex technical and programmatic architecture that we now must rationalize in order to capitalize on the full potential of AI and support warfighting, intelligence, and enterprise needs with the speed, security, and auditability required,” Deputy Defense Secretary Steve Feinberg said in a January memo.",
+                    "score": 0.23064281
+                  },
+                  {
+                    "title": "Mark Zuckerberg Blasts Centralization of A.I. Power",
+                    "url": "https://www.nytimes.com/2026/07/28/technology/mark-zuckerberg-meta-ai.html",
+                    "source": "nytimes.com",
+                    "summary": "Technologists like Dario Amodei, the chief executive of Anthropic, and Sam Altman, the chief executive of OpenAI, have said some of today’s leading A.I. models are too dangerous to be shared and developed without tight controls. But Microsoft, Nvidia, Google and Meta have disagreed, contending that many A.I. models must be developed largely in the open for people to advance the technology and build new businesses.",
+                    "score": 0.2281569
+                  },
+                  {
+                    "title": "Tech employees call for US-backed global effort to manage ...",
+                    "url": "https://www.reuters.com/legal/litigation/tech-employees-call-us-backed-global-effort-manage-risks-advanced-ai-2026-07-28",
+                    "source": "reuters.com",
+                    "summary": "Skip to main content\n\nExclusive news, data and analytics for financial market professionals Learn more about Refinitiv\n\n - More than 1,100 employees from leading tech firms on Tuesday urged the U.S. government to support ​an international effort to develop tools for managing the pace ‌of advanced AI development.\n\nThe statement comes as AI companies pursue increasingly powerful systems, raising concerns that developments could outpace existing safety, governance and oversight mechanisms.",
+                    "score": 0.22576675
+                  }
+                ]
+              },
+              "ok": true,
+              "ms": 1008,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "model_ms": 1864,
+          "tool_calls": [
+            {
+              "name": "fetch",
+              "args": {
+                "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "fetch",
+              "args": {
+                "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter"
+              },
+              "result": {
+                "tool": "read_url",
+                "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter",
+                "items": [
+                  {
+                    "title": "Employees at the world’s biggest AI companies are calling for a slowdown in AI development  | CNN Business",
+                    "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter",
+                    "source": "cnn.com",
+                    "summary": "Markets\n\nDOW52,747.32+537.241.03%\n\nS&P 5007,428.78+15.600.21%\n\nNASDAQ24,876.91-55.170.22%\n\nHot Stocks\n\n[INTC](https://www.cnn.com/markets/stocks/INTC)\n\nIntel Corporation\n\n86.30\n\n\\- 5.37\n\n5.86%\n\n[NVDA](https://www.cnn.com/markets/stocks/NVDA)\n\nNVIDIA Corporation\n\n197.01\n\n\\+ 0.50\n\n0.25%\n\n[NOK](https://www.cnn.com/markets/stocks/NOK)\n\nNokia Oyj Sponsored ADR\n\n8.93\n\n\\- 0.30\n\n3.30%\n\nFear & Greed Index\n\n38\n\n[fear is driving the US market](https://www.cnn.com/markets/fear-and-greed?utm_source=business_ribbon)\n\nLatest Market News\n\n- [Employees at the world’s biggest AI companies are calling for a slowdown in AI development](https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter?utm_source=business_ribbon)\n- [Ross Douthat joins ‘60 Minutes’ as CBS races to rebuild the show](https://www.cnn.com/2026/07/28/media/ross-douthat-60-minutes-cbs-news-norah-odonnell?utm_source=business_ribbon)\n- [Seats on hundreds of Boeing 737 MAX jets may need inspections, FAA says](https://www.cnn.com/2026/07/27/business/boeing-737-max-seats-incorrectsly-installed-intl-hnk?utm_source=business_ribbon)\n\n38\n\n[fear is driving the US market](https://www.cnn.com/markets/fear-and-greed?utm_source=business_ribbon)\n\nSomething isn't loading properly. Please check back later.\n\n[Business](https://www.cnn.com/business) [Tech](https://www.cnn.com/business/tech) 3 min read\n\n# Employees at the world’s biggest AI companies are calling for a slowdown in AI development\n\nBy [![Hadas Gold](https://media.cnn.com/api/v1/images/stellar/prod/171009111709-hadas-gold.jpg?c=16x9&q=h_270,w_480,c_fill/c_thumb,g_face,w_50,h_50)](https://www.cnn.com/profiles/hadas-gold)[Hadas Gold](https://www.cnn.com/profiles/hadas-gold)\n\n3 hr ago\n\nPUBLISHED Jul 28, 2026, 6:53 PM ET\n\nAI\n\n[See all topics](https://www.cnn.com/follow)\n\nFacebookTweet[Email](mailto:?subject=CNN%20content%20share&body=Check%20out%20this%20article%3A%0Ahttps%3A%2F%2Fwww.cnn.com%2F2026%2F07%2F28%2Ftech%2Fai-development-tech-employees-open-letter \"Share with email\")LinkThreads\n\nLink Copied!\n\n\n[3](https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter/index.html#openweb-convo)\n\n![GettyImages-1460688324.jpg](https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1460688324-20260728210550546.jpg?c=original&q=w_860,c_fill)\n\nMaria Korneeva/Moment RF/Getty Images\n\nTop staffers from the biggest AI and technology companies urged the US government to slow the pace of artificial intelligence development so that safety and security measures can catch up in an open letter.\n\n\nThe US government should support an international effort to develop tools that can “deliberately pace the frontier of automated AI development,” according to the letter.\n\n\nMore than 1,000 employees from frontier AI companies signed the letter, including the chief scientist of OpenAI, one of the ChatGPT developer’s original cofounders, some of Anthropic’s cofoundersand vice presidents at Meta, Google and others.\n\n\nAd Feedback\n\nThe letter comes on the heels of major advancements and burgeoning threats from rapidly developing AI systems. OpenAI [disclosed](https://www.cnn.com/2026/07/22/tech/openai-hugging-face-ai-cybersecurity) last week that two of its test models escaped a lab environment, bypassed its systems to gain access to the open internet and hacked a different company’s internal system.\n\n\n“\\[T\\]here is a real risk that capability development rapidly accelerates beyond our ability to understand or control the resulting systems,” the signees said. “To realize AI’s potential, industry, government, and society at large may need the option to buy time to address emerging risks, develop security measures, and strengthen oversight.”\n\n\nOpenAI said in a statement to CNN they agree with potentially pacing the development of AI, adding they “hope to contribute to work led by the U.S. government, alongside other labs” on the topic.\n\n\nOpenAI CEO Sam Altman suggested it may be time to slow down AI development in a podcast inte"
+                  }
+                ]
+              },
+              "ok": true,
+              "ms": 1317,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": "Hôm nay, một nhóm nhân viên từ các công ty AI lớn nhất đã kêu gọi chính phủ Mỹ làm chậm lại tốc độ phát triển AI để các biện pháp an toàn và bảo mật có thể theo kịp. Họ đã gửi một bức thư mở, trong đó nhấn mạnh rằng cần có một nỗ lực quốc tế để phát triển các công cụ nhằm \"cố ý điều chỉnh tốc độ phát triển AI\".\n\nBức thư này được ký bởi hơn 1.000 nhân viên từ các công ty AI hàng đầu, bao gồm cả các nhà khoa học hàng đầu của OpenAI và các đồng sáng lập của Anthropic. Họ cảnh báo rằng sự phát triển nhanh chóng của AI có thể vượt quá khả năng hiểu và kiểm soát của con người, và nhấn mạnh tầm quan trọng của việc phát triển các biện pháp an toàn và giám sát.\n\nĐể biết thêm chi tiết, bạn có thể đọc bài viết tại đây: [CNN Business](https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter).",
+          "model_ms": 3879,
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "Employees at the world’s biggest AI companies are calling for a slowdown in AI development | CNN Business",
+                "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter",
+                "source": "cnn.com",
+                "summary": "OpenAI said in a statement to CNN they agree with potentially pacing the development of AI, adding they “hope to contribute to work led by the U.S. government, alongside other labs” on the topic.\n\nOpenAI CEO Sam Altman suggested it may be time to slow down AI development in a podcast interview Tuesday. The OpenAI models that broke out of their test environment are fueling “long term questions” about how AI companies should address this new rate of progress. [...] The letter comes on the heels of major advancements and burgeoning threats from rapidly developing AI systems. OpenAI disclosed last week that two of its test models escaped a lab environment, bypassed its systems to gain access to the open internet and hacked a different company’s internal system. [...] “[T]here is a real risk that capability development rapidly accelerates beyond our ability to understand or control the resulting systems,” the signees said. “To realize AI’s potential, industry, government, and society at large may need the option to buy time to address emerging risks, develop security measures, and strengthen oversight.”",
+                "score": 0.2721175
+              },
+              {
+                "title": "OpenAI's Rogue AI Agent Hacked More Than Just Hugging ...",
+                "url": "https://www.wired.com/story/openais-rogue-ai-agent-hacked-more-than-just-hugging-face",
+                "source": "wired.com",
+                "summary": "“Context bombing” tricks malicious AI agents into shutting down before they can do harm.\n\nDan Goodin, Ars Technica\n\nAI Found a Root Bug in Linux That Everyone Missed for 15 Years\n\nPlus: The Pentagon is training amateurs to become part of its hacker army, a Flock license plate reader error led to cops surrounding a car reviewer, and more.\n\nDell Cameron\n\nA Sneaky Hacking Tool Targeting AI Infrastructure Is Lurking in Victims’ Blind Spots [...] Maxwell Zeff is a senior writer at WIRED covering the business of artificial intelligence. He was previously a senior reporter with TechCrunch, where he broke news on startups and leaders driving the AI boom. Before that, Zeff covered AI policy and content moderation for Gizmodo and wrote some of Bloomberg’s ... Read More\n\nSenior Writer\n\nTopicsOpenAIagentic AIartificial intelligencecyberattackscybersecuritygenerative AI\n\nRead More\n\nOpenAI Models Escaped Containment and Hacked Hugging Face [...] The breach happened when OpenAI was testing one its latest AI models against ExploitGym, a benchmarking framework that scores AI systems on their ability to find and exploit software vulnerabilities. ExploitGym grades an agent on how quickly and effectively it can retrieve secret files from hundreds of different target systems, using prompts that essentially egg the models on to find solutions.",
+                "score": 0.24089554
+              },
+              {
+                "title": "Accenture wins $821M Pentagon AI data platform contract",
+                "url": "https://federalnewsnetwork.com/defense-news/2026/07/accenture-wins-821m-pentagon-ai-data-platform-contract",
+                "source": "federalnewsnetwork.com",
+                "summary": "Discover how federal agencies are applying AI to strengthen cybersecurity, improve operational efficiency and deliver measurable mission outcomes while balancing innovation, governance and human expertise.\n\nThe department said its initial order under the contract is focused on “high-impact, measurable mission outcomes that maximize the benefits of commercial pricing.” An Accenture spokesperson did not respond Tuesday to emailed questions about what that work entails. [...] The platform aims to combine more than 1,500 data sources, both commercial and military, to securely provide intelligence, targeting data and more to frontline troops and their commands, the AI office said, calling it “one of [DoD]’s most vital data platforms for AI exploitation and mission advantage.” [...] “The evolution of Advana’s data platform and application ecosystem over the last six years has led to a complex technical and programmatic architecture that we now must rationalize in order to capitalize on the full potential of AI and support warfighting, intelligence, and enterprise needs with the speed, security, and auditability required,” Deputy Defense Secretary Steve Feinberg said in a January memo.",
+                "score": 0.23064281
+              },
+              {
+                "title": "Mark Zuckerberg Blasts Centralization of A.I. Power",
+                "url": "https://www.nytimes.com/2026/07/28/technology/mark-zuckerberg-meta-ai.html",
+                "source": "nytimes.com",
+                "summary": "Technologists like Dario Amodei, the chief executive of Anthropic, and Sam Altman, the chief executive of OpenAI, have said some of today’s leading A.I. models are too dangerous to be shared and developed without tight controls. But Microsoft, Nvidia, Google and Meta have disagreed, contending that many A.I. models must be developed largely in the open for people to advance the technology and build new businesses.",
+                "score": 0.2281569
+              },
+              {
+                "title": "Tech employees call for US-backed global effort to manage ...",
+                "url": "https://www.reuters.com/legal/litigation/tech-employees-call-us-backed-global-effort-manage-risks-advanced-ai-2026-07-28",
+                "source": "reuters.com",
+                "summary": "Skip to main content\n\nExclusive news, data and analytics for financial market professionals Learn more about Refinitiv\n\n - More than 1,100 employees from leading tech firms on Tuesday urged the U.S. government to support ​an international effort to develop tools for managing the pace ‌of advanced AI development.\n\nThe statement comes as AI companies pursue increasingly powerful systems, raising concerns that developments could outpace existing safety, governance and oversight mechanisms.",
+                "score": 0.22576675
+              }
+            ]
+          },
+          "ok": true,
+          "ms": 1008,
+          "round": 1
+        },
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter",
+            "items": [
+              {
+                "title": "Employees at the world’s biggest AI companies are calling for a slowdown in AI development  | CNN Business",
+                "url": "https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter",
+                "source": "cnn.com",
+                "summary": "Markets\n\nDOW52,747.32+537.241.03%\n\nS&P 5007,428.78+15.600.21%\n\nNASDAQ24,876.91-55.170.22%\n\nHot Stocks\n\n[INTC](https://www.cnn.com/markets/stocks/INTC)\n\nIntel Corporation\n\n86.30\n\n\\- 5.37\n\n5.86%\n\n[NVDA](https://www.cnn.com/markets/stocks/NVDA)\n\nNVIDIA Corporation\n\n197.01\n\n\\+ 0.50\n\n0.25%\n\n[NOK](https://www.cnn.com/markets/stocks/NOK)\n\nNokia Oyj Sponsored ADR\n\n8.93\n\n\\- 0.30\n\n3.30%\n\nFear & Greed Index\n\n38\n\n[fear is driving the US market](https://www.cnn.com/markets/fear-and-greed?utm_source=business_ribbon)\n\nLatest Market News\n\n- [Employees at the world’s biggest AI companies are calling for a slowdown in AI development](https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter?utm_source=business_ribbon)\n- [Ross Douthat joins ‘60 Minutes’ as CBS races to rebuild the show](https://www.cnn.com/2026/07/28/media/ross-douthat-60-minutes-cbs-news-norah-odonnell?utm_source=business_ribbon)\n- [Seats on hundreds of Boeing 737 MAX jets may need inspections, FAA says](https://www.cnn.com/2026/07/27/business/boeing-737-max-seats-incorrectsly-installed-intl-hnk?utm_source=business_ribbon)\n\n38\n\n[fear is driving the US market](https://www.cnn.com/markets/fear-and-greed?utm_source=business_ribbon)\n\nSomething isn't loading properly. Please check back later.\n\n[Business](https://www.cnn.com/business) [Tech](https://www.cnn.com/business/tech) 3 min read\n\n# Employees at the world’s biggest AI companies are calling for a slowdown in AI development\n\nBy [![Hadas Gold](https://media.cnn.com/api/v1/images/stellar/prod/171009111709-hadas-gold.jpg?c=16x9&q=h_270,w_480,c_fill/c_thumb,g_face,w_50,h_50)](https://www.cnn.com/profiles/hadas-gold)[Hadas Gold](https://www.cnn.com/profiles/hadas-gold)\n\n3 hr ago\n\nPUBLISHED Jul 28, 2026, 6:53 PM ET\n\nAI\n\n[See all topics](https://www.cnn.com/follow)\n\nFacebookTweet[Email](mailto:?subject=CNN%20content%20share&body=Check%20out%20this%20article%3A%0Ahttps%3A%2F%2Fwww.cnn.com%2F2026%2F07%2F28%2Ftech%2Fai-development-tech-employees-open-letter \"Share with email\")LinkThreads\n\nLink Copied!\n\n\n[3](https://www.cnn.com/2026/07/28/tech/ai-development-tech-employees-open-letter/index.html#openweb-convo)\n\n![GettyImages-1460688324.jpg](https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1460688324-20260728210550546.jpg?c=original&q=w_860,c_fill)\n\nMaria Korneeva/Moment RF/Getty Images\n\nTop staffers from the biggest AI and technology companies urged the US government to slow the pace of artificial intelligence development so that safety and security measures can catch up in an open letter.\n\n\nThe US government should support an international effort to develop tools that can “deliberately pace the frontier of automated AI development,” according to the letter.\n\n\nMore than 1,000 employees from frontier AI companies signed the letter, including the chief scientist of OpenAI, one of the ChatGPT developer’s original cofounders, some of Anthropic’s cofoundersand vice presidents at Meta, Google and others.\n\n\nAd Feedback\n\nThe letter comes on the heels of major advancements and burgeoning threats from rapidly developing AI systems. OpenAI [disclosed](https://www.cnn.com/2026/07/22/tech/openai-hugging-face-ai-cybersecurity) last week that two of its test models escaped a lab environment, bypassed its systems to gain access to the open internet and hacked a different company’s internal system.\n\n\n“\\[T\\]here is a real risk that capability development rapidly accelerates beyond our ability to understand or control the resulting systems,” the signees said. “To realize AI’s potential, industry, government, and society at large may need the option to buy time to address emerging risks, develop security measures, and strengthen oversight.”\n\n\nOpenAI said in a statement to CNN they agree with potentially pacing the development of AI, adding they “hope to contribute to work led by the U.S. government, alongside other labs” on the topic.\n\n\nOpenAI CEO Sam Altman suggested it may be time to slow down AI development in a podcast inte"
+              }
+            ]
+          },
+          "ok": true,
+          "ms": 1317,
+          "round": 2
+        }
+      ],
+      "ended_at": "2026-07-29T12:31:15",
+      "total_ms": 10055
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-07-29T12:32:06",
+      "user": "Tìm một paper arXiv về AI agent evaluation, đọc paper phù hợp nhất rồi tóm tắt kèm link.",
+      "status": "answered",
+      "assistant_text": "The selected paper is titled **\"AI Agents: Evolution, Architecture, and Real-World Applications\"** by Naveen Krishnan. It provides a comprehensive analysis of AI agents, discussing their evolution, architecture, and practical applications. The paper emphasizes the transition of AI from specialized systems to sophisticated agents capable of autonomous operation across various domains.\n\n### Key Points:\n- **Evolution of AI Agents**: The paper traces the development of AI agents from early rule-based systems to modern architectures that integrate large language models with modules for perception, planning, and tool use.\n- **Architectural Components**: It reviews the core components of AI agents, including perception mechanisms, knowledge representation, reasoning modules, and action selection.\n- **Evaluation Framework**: The author critiques current evaluation methodologies and proposes a holistic framework that considers task effectiveness, efficiency, robustness, and safety.\n- **Real-World Applications**: The paper analyzes applications in enterprise contexts, personal assistance, and specialized domains, highlighting both successes and limitations.\n\nFor more details, you can access the paper [here](https://arxiv.org/abs/2503.12687v1) or download the PDF [here](https://arxiv.org/pdf/2503.12687v1.pdf).",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "model_ms": 2822,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "query": "AI agent evaluation"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "query": "AI agent evaluation"
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "AI agent evaluation",
+                "api_query": "all:AI AND all:agent AND all:evaluation",
+                "total_results": 4724,
+                "items": [
+                  {
+                    "arxiv_id": "2503.12687v1",
+                    "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+                    "summary": "This paper examines the evolution, architecture, and practical applications of AI agents from their early, rule-based incarnations to modern sophisticated systems that integrate large language models with dedicated modules for perception, planning, and tool use. Emphasizing both theoretical foundations and real-world deployments, the paper reviews key agent paradigms, discusses limitations of current evaluation benchmarks, and proposes a holistic evaluation framework that balances task effectiveness, efficiency, robustness, and safety. Applications across enterprise, personal assistance, and specialized domains are analyzed, with insights into future research directions for more resilient and adaptive AI agent systems.",
+                    "authors": [
+                      "Naveen Krishnan"
+                    ],
+                    "published": "2025-03-16T23:07:48Z",
+                    "updated": "2025-03-16T23:07:48Z",
+                    "url": "http://arxiv.org/abs/2503.12687v1",
+                    "pdf_url": "https://arxiv.org/pdf/2503.12687v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.23989v1",
+                    "title": "Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security",
+                    "summary": "Agentic AI systems -- Large Language Models (LLMs) augmented with planning, tool use, memory, and long-horizon interactions -- can execute complex tasks autonomously, but their multi-step trajectories introduce new failure modes that challenge trustworthiness. This survey provides a focused examination of trustworthy agentic AI through two core dimensions that are critical for high-risk deployments: Safety and Robustness, and Privacy and System Security. For each dimension, we clarify key concepts, identify where risks emerge along the agent workflow, and summarize stage-targeted mitigation strategies. Other trustworthiness aspects (value alignment, transparency, fairness, and accountability) are discussed as relevant context rather than parallel chapters. To support consistent comparison and deployment decisions, we consolidate evaluation into a unified metrics-and-benchmarks hub, emphasizing both outcome and process signals (e.g., constraint violations, trace completeness, and adversarial success rates) and offering scenario-to-metric guidance for release gating. We conclude by outlining open challenges such as self-evolving agents, runtime monitoring and verification, privacy-preserving personalization, and the trust-utility trade-off, and present a case study of real-world security failures in open-source agentic systems. Our goal is to serve as a practical reference for researchers and practitioners building trustworthy agentic systems in high-stakes environments.",
+                    "authors": [
+                      "Jinhu Qi",
+                      "Muzhi Li",
+                      "Jiahong Liu",
+                      "Yuqin Shu",
+                      "Dianzhi Yu",
+                      "Shicheng Ma",
+                      "Wenqian Cui",
+                      "Yiyang Zhao",
+                      "Yiyi Chen",
+                      "Ruoxi Jiang",
+                      "Irwin King",
+                      "Zenglin Xu"
+                    ],
+                    "published": "2026-05-17T10:26:37Z",
+                    "updated": "2026-05-17T10:26:37Z",
+                    "url": "http://arxiv.org/abs/2605.23989v1",
+                    "pdf_url": "https://arxiv.org/pdf/2605.23989v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI",
+                      "cs.CL",
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.21825v1",
+                    "title": "Toward AI VIS Co-Scientists: A General and End-to-End Agent Harness for Solving Complex Data Visualization Tasks",
+                    "summary": "The ability to inspect, interpret, and communicate complex data is crucial for virtually any scientific endeavor, but often requires significant expertise outside the core domain ranging from data management and analysis to visualization design and implementation. We present an end-to-end agentic harness that, based on only the data and a high level description of the tasks, independently designs custom visual analysis applications (VIS apps). This represents an important step towards a general AI co-scientist envisioned by many as an autonomous system that can autonomously execute long horizon tasks based on high-level directions. Our proposed VIS co-scientist is an essential component of this broader AI co-scientist vision: a harness that can autonomously analyze data and design visualization solutions using a collection of agents and specialized skills that coordinate exploratory analysis, plan, configure the environment, implement, validate the interface, and most importantly evaluate the overall task completion. Each stage produces document and instruction artifacts that guide downstream work and enable iterative refinement. We validate this approach on IEEE SciVis Contests spanning multiple science and engineering fields. These contests serve as ideal proving grounds because they encode real-world complexity: ambiguous requirements, diverse data modalities, design trade-offs, and task-driven validation. Given only the data and target tasks, our system autonomously produces functional single-page VIS Apps with verified linked-view behavior, highly customized to domain experts' specified tasks and needs.",
+                    "authors": [
+                      "Haichao Miao",
+                      "Zhimin Li",
+                      "Kuangshi Ai",
+                      "Kaiyuan Tang",
+                      "Chaoli Wang",
+                      "Peer-Timo Bremer",
+                      "Shusen Liu"
+                    ],
+                    "published": "2026-05-20T23:49:28Z",
+                    "updated": "2026-05-20T23:49:28Z",
+                    "url": "http://arxiv.org/abs/2605.21825v1",
+                    "pdf_url": "https://arxiv.org/pdf/2605.21825v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI",
+                      "cs.HC"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.18747v1",
+                    "title": "Code as Agent Harness",
+                    "summary": "Recent large language models (LLMs) have demonstrated strong capabilities in understanding and generating code, from competitive programming to repository-level software engineering. In emerging agentic systems, code is no longer only a target output. It increasingly serves as an operational substrate for agent reasoning, acting, environment modeling, and execution-based verification. We frame this shift through the lens of agent harnesses and introduce code as agent harness: a unified view that centers code as the basis for agent infrastructure. To systematically study this perspective, we organize the survey around three connected layers. First, we study the harness interface, where code connects agents to reasoning, action, and environment modeling. Second, we examine harness mechanisms: planning, memory, and tool use for long-horizon execution, together with feedback-driven control and optimization that make harness reliable and adaptive. Third, we discuss scaling the harness from single-agent systems to multi-agent settings, where shared code artifacts support multi-agent coordination, review, and verification. Across these layers, we summarize representative methods and practical applications of code as agent harness, spanning coding assistants, GUI/OS automation, embodied agents, scientific discovery, personalization and recommendation, DevOps, and enterprise workflows. We further outline open challenges for harness engineering, including evaluation beyond final task success, verification under incomplete feedback, regression-free harness improvement, consistent shared state across multiple agents, human oversight for safety-critical actions, and extensions to multimodal environments. By centering code as the harness of agentic AI, this survey provides a unified roadmap toward executable, verifiable, and stateful AI agent systems.",
+                    "authors": [
+                      "Xuying Ning",
+                      "Katherine Tieu",
+                      "Dongqi Fu",
+                      "Tianxin Wei",
+                      "Zihao Li",
+                      "Yuanchen Bei",
+                      "Jiaru Zou",
+                      "Mengting Ai",
+                      "Zhining Liu",
+                      "Ting-Wei Li",
+                      "Lingjie Chen",
+                      "Yanjun Zhao",
+                      "Ke Yang",
+                      "Bingxuan Li",
+                      "Cheng Qian",
+                      "Gaotang Li",
+                      "Xiao Lin",
+                      "Zhichen Zeng",
+                      "Ruizhong Qiu",
+                      "Sirui Chen",
+                      "Yifan Sun",
+                      "Xiyuan Yang",
+                      "Ruida Wang",
+                      "Rui Pan",
+                      "Chenyuan Yang",
+                      "Dylan Zhang",
+                      "Liri Fang",
+                      "Zikun Cui",
+                      "Yang Cao",
+                      "Pan Chen",
+                      "Dorothy Sun",
+                      "Ren Chen",
+                      "Mahesh Srinivasan",
+                      "Nipun Mathur",
+                      "Yinglong Xia",
+                      "Hong Li",
+                      "Hong Yan",
+                      "Pan Lu",
+                      "Lingming Zhang",
+                      "Tong Zhang",
+                      "Hanghang Tong",
+                      "Jingrui He"
+                    ],
+                    "published": "2026-05-18T17:59:03Z",
+                    "updated": "2026-05-18T17:59:03Z",
+                    "url": "http://arxiv.org/abs/2605.18747v1",
+                    "pdf_url": "https://arxiv.org/pdf/2605.18747v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL",
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2603.05980v1",
+                    "title": "An Interactive Multi-Agent System for Evaluation of New Product Concepts",
+                    "summary": "Product concept evaluation is a critical stage that determines strategic resource allocation and project success in enterprises. However, traditional expert-led approaches face limitations such as subjective bias and high time and cost requirements. To support this process, this study proposes an automated approach utilizing a large language model (LLM)-based multi-agent system (MAS). Through a systematic analysis of previous research on product development and team collaboration, this study established two primary evaluation dimensions, namely technical feasibility and market feasibility. The proposed system consists of a team of eight virtual agents representing specialized domains such as R&D and marketing. These agents use retrieval-augmented generation (RAG) and real-time search tools to gather objective evidence and validate concepts through structured deliberations based on the established criteria. The agents were further fine-tuned using professional product review data to enhance their judgment accuracy. A case study involving professional display monitor concepts demonstrated that the system's evaluation rankings were consistent with those of senior industry experts. These results confirm the usability of the proposed multi-agent-based evaluation approach for supporting product development decisions.",
+                    "authors": [
+                      "Bin Xuan",
+                      "Ruo Ai",
+                      "Hakyeon Lee"
+                    ],
+                    "published": "2026-03-06T07:22:52Z",
+                    "updated": "2026-03-06T07:22:52Z",
+                    "url": "http://arxiv.org/abs/2603.05980v1",
+                    "pdf_url": "https://arxiv.org/pdf/2603.05980v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              },
+              "ok": true,
+              "ms": 466,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "model_ms": 1784,
+          "tool_calls": [
+            {
+              "name": "paper_text",
+              "args": {
+                "arxiv_url": "2503.12687v1"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "paper_text",
+              "args": {
+                "arxiv_url": "2503.12687v1"
+              },
+              "result": {
+                "tool": "get_arxiv_paper_text",
+                "arxiv_id": "2503.12687v1",
+                "url": "https://arxiv.org/abs/2503.12687v1",
+                "pdf_url": "https://arxiv.org/pdf/2503.12687v1.pdf",
+                "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.pdf",
+                "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.txt",
+                "page_count": 52,
+                "pages_read": 5,
+                "chars_returned": 8000,
+                "items": [
+                  {
+                    "title": "arXiv paper 2503.12687v1",
+                    "url": "https://arxiv.org/abs/2503.12687v1",
+                    "source": "arxiv.org",
+                    "summary": "AI Agents: Evolution, Architecture, and\nReal-World Applications\nNaveen Krishnan\nMarch 2025\n1 Introduction\nArtificial Intelligence (AI) has evolved dramatically over the past decade, tran-\nsitioning from specialized systems designed for narrow tasks to increasingly so-\nphisticated architectures capable of autonomous operation across diverse do-\nmains. Among these advancements, AI agents represent a particularly signifi-\ncant development, embodying a paradigm shift in how intelligent systems inter-\nact with their environments, make decisions, and achieve complex goals. Unlike\ntraditional AI systems that execute predefined algorithms within constraints,\nAI agents possess the capacity to autonomously perceive, reason, and act, of-\nten adapting their behavior based on environmental feedback and accumulated\nexperience.\nThe concept of an AI agent refers to a system or program that is capable of\nautonomously performing tasks on behalf of a user or another system by design-\ning its workflow and utilizing available tools. These agents can encompass a wide\nrange of functionalities beyond natural language processing, including decision\nmaking, problem solving, interacting with external environments, and executing\nactions. As Kapoor et al. (2024) note in their analysis of agent benchmarks,\nthe development of AI agents represents an exciting new research direction with\nsignificant implications for real-world applications across numerous industries.\nThe evolution of AI agents has been accelerated by recent breakthroughs\nin large language models (LLMs), which have provided a foundation for more\nsophisticated reasoning capabilities. Modern AI agents leverage these advanced\nlanguage models as core components, augmenting them with specialized modules\nfor memory, planning, tool use, and environmental interaction. This integration\nenables agents to perform complex tasks that would be challenging or impossible\nfor traditional AI systems, from reconciling financial statements to providing\nstep-by-step instructions for field technicians based on contextual understanding\nof product information.\n1\narXiv:2503.12687v1  [cs.AI]  16 Mar 2025\n\nThe distinction between AI agents and other AI systems lies primarily in\ntheir architecture and operational capabilities. While conventional AI systems\ntypically operate within predefined parameters and require explicit instructions\nfor each task, AI agents demonstrate greater autonomy in goal-directed behav-\nior. As described by Microsoft’s chief marketing officer for AI at Work, Jared\nSpataro, Agents are like layers on top of the language models that observe and\ncollect information, provide input to the model and together generate an ac-\ntion plan (Ray, 2024). This architectural approach allows agents to decompose\ncomplex problems into manageable subtasks, reason over available information,\nutilize appropriate tools, and learn from feedback while maintaining context\nacross interactions.\nThe taxonomy of AI agents has evolved to include various categories based\non their cognitive capabilities and operational mechanisms. A WS (2024) identi-\nfies several distinct types, including simple reflex agents that operate based on\npredefined rules, model-based agents that evaluate probable outcomes before de-\nciding, goal-based agents that compare different approaches to achieve desired\noutcomes, utility-based agents that maximize specific value metrics, learning\nagents that continuously adapt based on experience, and hierarchical agents\nthat coordinate across multiple levels of abstraction. Each type represents a\ndifferent approach to agent design, with corresponding strengths and limita-\ntions for particular use cases.\nThe current landscape of research and development of AI Agents is charac-\nterized by rapid innovation across academic institutions and industry leaders.\nOrganizations like IBM, Microsoft, A WS, and Anthropic are developing increas-\ningly sophisticated agent architectures, while research teams at institutions such\nas Princeton University are establishing new benchmarks and evaluation frame-\nworks. This convergence of academic and commercial interest has accelerated\nprogress in the field, although challenges remain in areas such as reasoning ca-\npabilities, tool integration, and evaluation methodologies.\nDespite significant advances, the development of AI agents faces several crit-\nical challenges. As highlighted by Kapoor et al. (2024), current agent bench-\nmarks often focus narrowly on accuracy without sufficient attention to other\nimportant metrics such as cost-effectiveness, reproducibility, and real-world ap-\nplicability. Additionally, the conflation of benchmarking needs between model\ndevelopers and downstream application developers has complicated efforts to\nidentify which agent architectures are best suited for particular use cases. These\nchallenges underscore the need for more sophisticated evaluation frameworks\nthat can capture the multidimensional nature of agent performance in diverse\ncontexts.\nThis paper aims to provide a comprehensive analysis of AI agents, examining\ntheir theoretical foundations, architectural components, evaluation methodolo-\ngies, and real-world applications. We begin by reviewing the literature on agent\n2\n\nsystems, tracing the evolution of key concepts and frameworks that have shaped\ncurrent approaches. We then explore the core components of modern agent\narchitectures, including perception mechanisms, knowledge representation, rea-\nsoning modules, and action selection. Next, we examine current evaluation prac-\ntices and propose a more holistic framework for assessing agent performance.\nWe then analyze real-world applications across enterprise contexts, personal as-\nsistance, and specialized domains, highlighting both successes and limitations.\nFinally, we discuss ongoing challenges in the field and identify promising direc-\ntions for future research.\nBy synthesizing insights from both academic research and industry imple-\nmentations, this paper contributes to the growing literature on AI agents in sev-\neral ways. First, it provides a unified conceptual framework for understanding\ndiverse agent architectures and their capabilities. Second, it critically examines\ncurrent evaluation methodologies and proposes improvements that better align\nwith real-world requirements. Third, it offers a detailed analysis of successful\nagent applications across multiple domains, extracting generalizable principles\nfor effective deployment. Finally, it identifies key research challenges and oppor-\ntunities that will shape the future development of agent systems. Through these\ncontributions, our aim is to advance both theoretical understanding and prac-\ntical implementation of AI agents as they continue to transform how intelligent\nsystems operate in the world.\n2 Literature Review\n2.1 Theoretical Foundations of AI Agents\nThe concept of artificial intelligence agents has deep roots in computer sci-\nence, philosophy, and cognitive science. The theoretical underpinnings of agent-\nbased systems can be traced back to early work on distributed artificial intel-\nligence in the 1970s and 1980s. However, the modern conceptualization of AI\nagents emerged more distinctly in the 1990s, with seminal contributions from\nresearchers like Russell and Norvig (1995), who defined an agent as anything\nthat can be viewed as perceiving its environment through sensors and acting\nupon that environment through actuators. This definition established the fun-\ndamental perception-action loop that characterizes agent systems.\nWooldridge and Jennings (1995) further refined the concept by proposing\nthat intelligent agents should possess several key properties: autonomy (oper-\nating without direct human intervention), social ability (interacting with other\nagents and humans), reactivity (responding to environmental changes), and\nproactivity (exhibiting goal-directed behavior). These properties have remained\n3\n\ncentral to agent theory, though their impleme"
+                  }
+                ]
+              },
+              "ok": true,
+              "ms": 885,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": "The selected paper is titled **\"AI Agents: Evolution, Architecture, and Real-World Applications\"** by Naveen Krishnan. It provides a comprehensive analysis of AI agents, discussing their evolution, architecture, and practical applications. The paper emphasizes the transition of AI from specialized systems to sophisticated agents capable of autonomous operation across various domains.\n\n### Key Points:\n- **Evolution of AI Agents**: The paper traces the development of AI agents from early rule-based systems to modern architectures that integrate large language models with modules for perception, planning, and tool use.\n- **Architectural Components**: It reviews the core components of AI agents, including perception mechanisms, knowledge representation, reasoning modules, and action selection.\n- **Evaluation Framework**: The author critiques current evaluation methodologies and proposes a holistic framework that considers task effectiveness, efficiency, robustness, and safety.\n- **Real-World Applications**: The paper analyzes applications in enterprise contexts, personal assistance, and specialized domains, highlighting both successes and limitations.\n\nFor more details, you can access the paper [here](https://arxiv.org/abs/2503.12687v1) or download the PDF [here](https://arxiv.org/pdf/2503.12687v1.pdf).",
+          "model_ms": 5775,
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "AI agent evaluation"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "AI agent evaluation",
+            "api_query": "all:AI AND all:agent AND all:evaluation",
+            "total_results": 4724,
+            "items": [
+              {
+                "arxiv_id": "2503.12687v1",
+                "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+                "summary": "This paper examines the evolution, architecture, and practical applications of AI agents from their early, rule-based incarnations to modern sophisticated systems that integrate large language models with dedicated modules for perception, planning, and tool use. Emphasizing both theoretical foundations and real-world deployments, the paper reviews key agent paradigms, discusses limitations of current evaluation benchmarks, and proposes a holistic evaluation framework that balances task effectiveness, efficiency, robustness, and safety. Applications across enterprise, personal assistance, and specialized domains are analyzed, with insights into future research directions for more resilient and adaptive AI agent systems.",
+                "authors": [
+                  "Naveen Krishnan"
+                ],
+                "published": "2025-03-16T23:07:48Z",
+                "updated": "2025-03-16T23:07:48Z",
+                "url": "http://arxiv.org/abs/2503.12687v1",
+                "pdf_url": "https://arxiv.org/pdf/2503.12687v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2605.23989v1",
+                "title": "Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security",
+                "summary": "Agentic AI systems -- Large Language Models (LLMs) augmented with planning, tool use, memory, and long-horizon interactions -- can execute complex tasks autonomously, but their multi-step trajectories introduce new failure modes that challenge trustworthiness. This survey provides a focused examination of trustworthy agentic AI through two core dimensions that are critical for high-risk deployments: Safety and Robustness, and Privacy and System Security. For each dimension, we clarify key concepts, identify where risks emerge along the agent workflow, and summarize stage-targeted mitigation strategies. Other trustworthiness aspects (value alignment, transparency, fairness, and accountability) are discussed as relevant context rather than parallel chapters. To support consistent comparison and deployment decisions, we consolidate evaluation into a unified metrics-and-benchmarks hub, emphasizing both outcome and process signals (e.g., constraint violations, trace completeness, and adversarial success rates) and offering scenario-to-metric guidance for release gating. We conclude by outlining open challenges such as self-evolving agents, runtime monitoring and verification, privacy-preserving personalization, and the trust-utility trade-off, and present a case study of real-world security failures in open-source agentic systems. Our goal is to serve as a practical reference for researchers and practitioners building trustworthy agentic systems in high-stakes environments.",
+                "authors": [
+                  "Jinhu Qi",
+                  "Muzhi Li",
+                  "Jiahong Liu",
+                  "Yuqin Shu",
+                  "Dianzhi Yu",
+                  "Shicheng Ma",
+                  "Wenqian Cui",
+                  "Yiyang Zhao",
+                  "Yiyi Chen",
+                  "Ruoxi Jiang",
+                  "Irwin King",
+                  "Zenglin Xu"
+                ],
+                "published": "2026-05-17T10:26:37Z",
+                "updated": "2026-05-17T10:26:37Z",
+                "url": "http://arxiv.org/abs/2605.23989v1",
+                "pdf_url": "https://arxiv.org/pdf/2605.23989v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.CL",
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2605.21825v1",
+                "title": "Toward AI VIS Co-Scientists: A General and End-to-End Agent Harness for Solving Complex Data Visualization Tasks",
+                "summary": "The ability to inspect, interpret, and communicate complex data is crucial for virtually any scientific endeavor, but often requires significant expertise outside the core domain ranging from data management and analysis to visualization design and implementation. We present an end-to-end agentic harness that, based on only the data and a high level description of the tasks, independently designs custom visual analysis applications (VIS apps). This represents an important step towards a general AI co-scientist envisioned by many as an autonomous system that can autonomously execute long horizon tasks based on high-level directions. Our proposed VIS co-scientist is an essential component of this broader AI co-scientist vision: a harness that can autonomously analyze data and design visualization solutions using a collection of agents and specialized skills that coordinate exploratory analysis, plan, configure the environment, implement, validate the interface, and most importantly evaluate the overall task completion. Each stage produces document and instruction artifacts that guide downstream work and enable iterative refinement. We validate this approach on IEEE SciVis Contests spanning multiple science and engineering fields. These contests serve as ideal proving grounds because they encode real-world complexity: ambiguous requirements, diverse data modalities, design trade-offs, and task-driven validation. Given only the data and target tasks, our system autonomously produces functional single-page VIS Apps with verified linked-view behavior, highly customized to domain experts' specified tasks and needs.",
+                "authors": [
+                  "Haichao Miao",
+                  "Zhimin Li",
+                  "Kuangshi Ai",
+                  "Kaiyuan Tang",
+                  "Chaoli Wang",
+                  "Peer-Timo Bremer",
+                  "Shusen Liu"
+                ],
+                "published": "2026-05-20T23:49:28Z",
+                "updated": "2026-05-20T23:49:28Z",
+                "url": "http://arxiv.org/abs/2605.21825v1",
+                "pdf_url": "https://arxiv.org/pdf/2605.21825v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.HC"
+                ]
+              },
+              {
+                "arxiv_id": "2605.18747v1",
+                "title": "Code as Agent Harness",
+                "summary": "Recent large language models (LLMs) have demonstrated strong capabilities in understanding and generating code, from competitive programming to repository-level software engineering. In emerging agentic systems, code is no longer only a target output. It increasingly serves as an operational substrate for agent reasoning, acting, environment modeling, and execution-based verification. We frame this shift through the lens of agent harnesses and introduce code as agent harness: a unified view that centers code as the basis for agent infrastructure. To systematically study this perspective, we organize the survey around three connected layers. First, we study the harness interface, where code connects agents to reasoning, action, and environment modeling. Second, we examine harness mechanisms: planning, memory, and tool use for long-horizon execution, together with feedback-driven control and optimization that make harness reliable and adaptive. Third, we discuss scaling the harness from single-agent systems to multi-agent settings, where shared code artifacts support multi-agent coordination, review, and verification. Across these layers, we summarize representative methods and practical applications of code as agent harness, spanning coding assistants, GUI/OS automation, embodied agents, scientific discovery, personalization and recommendation, DevOps, and enterprise workflows. We further outline open challenges for harness engineering, including evaluation beyond final task success, verification under incomplete feedback, regression-free harness improvement, consistent shared state across multiple agents, human oversight for safety-critical actions, and extensions to multimodal environments. By centering code as the harness of agentic AI, this survey provides a unified roadmap toward executable, verifiable, and stateful AI agent systems.",
+                "authors": [
+                  "Xuying Ning",
+                  "Katherine Tieu",
+                  "Dongqi Fu",
+                  "Tianxin Wei",
+                  "Zihao Li",
+                  "Yuanchen Bei",
+                  "Jiaru Zou",
+                  "Mengting Ai",
+                  "Zhining Liu",
+                  "Ting-Wei Li",
+                  "Lingjie Chen",
+                  "Yanjun Zhao",
+                  "Ke Yang",
+                  "Bingxuan Li",
+                  "Cheng Qian",
+                  "Gaotang Li",
+                  "Xiao Lin",
+                  "Zhichen Zeng",
+                  "Ruizhong Qiu",
+                  "Sirui Chen",
+                  "Yifan Sun",
+                  "Xiyuan Yang",
+                  "Ruida Wang",
+                  "Rui Pan",
+                  "Chenyuan Yang",
+                  "Dylan Zhang",
+                  "Liri Fang",
+                  "Zikun Cui",
+                  "Yang Cao",
+                  "Pan Chen",
+                  "Dorothy Sun",
+                  "Ren Chen",
+                  "Mahesh Srinivasan",
+                  "Nipun Mathur",
+                  "Yinglong Xia",
+                  "Hong Li",
+                  "Hong Yan",
+                  "Pan Lu",
+                  "Lingming Zhang",
+                  "Tong Zhang",
+                  "Hanghang Tong",
+                  "Jingrui He"
+                ],
+                "published": "2026-05-18T17:59:03Z",
+                "updated": "2026-05-18T17:59:03Z",
+                "url": "http://arxiv.org/abs/2605.18747v1",
+                "pdf_url": "https://arxiv.org/pdf/2605.18747v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2603.05980v1",
+                "title": "An Interactive Multi-Agent System for Evaluation of New Product Concepts",
+                "summary": "Product concept evaluation is a critical stage that determines strategic resource allocation and project success in enterprises. However, traditional expert-led approaches face limitations such as subjective bias and high time and cost requirements. To support this process, this study proposes an automated approach utilizing a large language model (LLM)-based multi-agent system (MAS). Through a systematic analysis of previous research on product development and team collaboration, this study established two primary evaluation dimensions, namely technical feasibility and market feasibility. The proposed system consists of a team of eight virtual agents representing specialized domains such as R&D and marketing. These agents use retrieval-augmented generation (RAG) and real-time search tools to gather objective evidence and validate concepts through structured deliberations based on the established criteria. The agents were further fine-tuned using professional product review data to enhance their judgment accuracy. A case study involving professional display monitor concepts demonstrated that the system's evaluation rankings were consistent with those of senior industry experts. These results confirm the usability of the proposed multi-agent-based evaluation approach for supporting product development decisions.",
+                "authors": [
+                  "Bin Xuan",
+                  "Ruo Ai",
+                  "Hakyeon Lee"
+                ],
+                "published": "2026-03-06T07:22:52Z",
+                "updated": "2026-03-06T07:22:52Z",
+                "url": "http://arxiv.org/abs/2603.05980v1",
+                "pdf_url": "https://arxiv.org/pdf/2603.05980v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          },
+          "ok": true,
+          "ms": 466,
+          "round": 1
+        },
+        {
+          "tool": "paper_text",
+          "args": {
+            "arxiv_url": "2503.12687v1"
+          },
+          "result": {
+            "tool": "get_arxiv_paper_text",
+            "arxiv_id": "2503.12687v1",
+            "url": "https://arxiv.org/abs/2503.12687v1",
+            "pdf_url": "https://arxiv.org/pdf/2503.12687v1.pdf",
+            "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.pdf",
+            "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2503.12687v1.txt",
+            "page_count": 52,
+            "pages_read": 5,
+            "chars_returned": 8000,
+            "items": [
+              {
+                "title": "arXiv paper 2503.12687v1",
+                "url": "https://arxiv.org/abs/2503.12687v1",
+                "source": "arxiv.org",
+                "summary": "AI Agents: Evolution, Architecture, and\nReal-World Applications\nNaveen Krishnan\nMarch 2025\n1 Introduction\nArtificial Intelligence (AI) has evolved dramatically over the past decade, tran-\nsitioning from specialized systems designed for narrow tasks to increasingly so-\nphisticated architectures capable of autonomous operation across diverse do-\nmains. Among these advancements, AI agents represent a particularly signifi-\ncant development, embodying a paradigm shift in how intelligent systems inter-\nact with their environments, make decisions, and achieve complex goals. Unlike\ntraditional AI systems that execute predefined algorithms within constraints,\nAI agents possess the capacity to autonomously perceive, reason, and act, of-\nten adapting their behavior based on environmental feedback and accumulated\nexperience.\nThe concept of an AI agent refers to a system or program that is capable of\nautonomously performing tasks on behalf of a user or another system by design-\ning its workflow and utilizing available tools. These agents can encompass a wide\nrange of functionalities beyond natural language processing, including decision\nmaking, problem solving, interacting with external environments, and executing\nactions. As Kapoor et al. (2024) note in their analysis of agent benchmarks,\nthe development of AI agents represents an exciting new research direction with\nsignificant implications for real-world applications across numerous industries.\nThe evolution of AI agents has been accelerated by recent breakthroughs\nin large language models (LLMs), which have provided a foundation for more\nsophisticated reasoning capabilities. Modern AI agents leverage these advanced\nlanguage models as core components, augmenting them with specialized modules\nfor memory, planning, tool use, and environmental interaction. This integration\nenables agents to perform complex tasks that would be challenging or impossible\nfor traditional AI systems, from reconciling financial statements to providing\nstep-by-step instructions for field technicians based on contextual understanding\nof product information.\n1\narXiv:2503.12687v1  [cs.AI]  16 Mar 2025\n\nThe distinction between AI agents and other AI systems lies primarily in\ntheir architecture and operational capabilities. While conventional AI systems\ntypically operate within predefined parameters and require explicit instructions\nfor each task, AI agents demonstrate greater autonomy in goal-directed behav-\nior. As described by Microsoft’s chief marketing officer for AI at Work, Jared\nSpataro, Agents are like layers on top of the language models that observe and\ncollect information, provide input to the model and together generate an ac-\ntion plan (Ray, 2024). This architectural approach allows agents to decompose\ncomplex problems into manageable subtasks, reason over available information,\nutilize appropriate tools, and learn from feedback while maintaining context\nacross interactions.\nThe taxonomy of AI agents has evolved to include various categories based\non their cognitive capabilities and operational mechanisms. A WS (2024) identi-\nfies several distinct types, including simple reflex agents that operate based on\npredefined rules, model-based agents that evaluate probable outcomes before de-\nciding, goal-based agents that compare different approaches to achieve desired\noutcomes, utility-based agents that maximize specific value metrics, learning\nagents that continuously adapt based on experience, and hierarchical agents\nthat coordinate across multiple levels of abstraction. Each type represents a\ndifferent approach to agent design, with corresponding strengths and limita-\ntions for particular use cases.\nThe current landscape of research and development of AI Agents is charac-\nterized by rapid innovation across academic institutions and industry leaders.\nOrganizations like IBM, Microsoft, A WS, and Anthropic are developing increas-\ningly sophisticated agent architectures, while research teams at institutions such\nas Princeton University are establishing new benchmarks and evaluation frame-\nworks. This convergence of academic and commercial interest has accelerated\nprogress in the field, although challenges remain in areas such as reasoning ca-\npabilities, tool integration, and evaluation methodologies.\nDespite significant advances, the development of AI agents faces several crit-\nical challenges. As highlighted by Kapoor et al. (2024), current agent bench-\nmarks often focus narrowly on accuracy without sufficient attention to other\nimportant metrics such as cost-effectiveness, reproducibility, and real-world ap-\nplicability. Additionally, the conflation of benchmarking needs between model\ndevelopers and downstream application developers has complicated efforts to\nidentify which agent architectures are best suited for particular use cases. These\nchallenges underscore the need for more sophisticated evaluation frameworks\nthat can capture the multidimensional nature of agent performance in diverse\ncontexts.\nThis paper aims to provide a comprehensive analysis of AI agents, examining\ntheir theoretical foundations, architectural components, evaluation methodolo-\ngies, and real-world applications. We begin by reviewing the literature on agent\n2\n\nsystems, tracing the evolution of key concepts and frameworks that have shaped\ncurrent approaches. We then explore the core components of modern agent\narchitectures, including perception mechanisms, knowledge representation, rea-\nsoning modules, and action selection. Next, we examine current evaluation prac-\ntices and propose a more holistic framework for assessing agent performance.\nWe then analyze real-world applications across enterprise contexts, personal as-\nsistance, and specialized domains, highlighting both successes and limitations.\nFinally, we discuss ongoing challenges in the field and identify promising direc-\ntions for future research.\nBy synthesizing insights from both academic research and industry imple-\nmentations, this paper contributes to the growing literature on AI agents in sev-\neral ways. First, it provides a unified conceptual framework for understanding\ndiverse agent architectures and their capabilities. Second, it critically examines\ncurrent evaluation methodologies and proposes improvements that better align\nwith real-world requirements. Third, it offers a detailed analysis of successful\nagent applications across multiple domains, extracting generalizable principles\nfor effective deployment. Finally, it identifies key research challenges and oppor-\ntunities that will shape the future development of agent systems. Through these\ncontributions, our aim is to advance both theoretical understanding and prac-\ntical implementation of AI agents as they continue to transform how intelligent\nsystems operate in the world.\n2 Literature Review\n2.1 Theoretical Foundations of AI Agents\nThe concept of artificial intelligence agents has deep roots in computer sci-\nence, philosophy, and cognitive science. The theoretical underpinnings of agent-\nbased systems can be traced back to early work on distributed artificial intel-\nligence in the 1970s and 1980s. However, the modern conceptualization of AI\nagents emerged more distinctly in the 1990s, with seminal contributions from\nresearchers like Russell and Norvig (1995), who defined an agent as anything\nthat can be viewed as perceiving its environment through sensors and acting\nupon that environment through actuators. This definition established the fun-\ndamental perception-action loop that characterizes agent systems.\nWooldridge and Jennings (1995) further refined the concept by proposing\nthat intelligent agents should possess several key properties: autonomy (oper-\nating without direct human intervention), social ability (interacting with other\nagents and humans), reactivity (responding to environmental changes), and\nproactivity (exhibiting goal-directed behavior). These properties have remained\n3\n\ncentral to agent theory, though their impleme"
+              }
+            ]
+          },
+          "ok": true,
+          "ms": 885,
+          "round": 2
+        }
+      ],
+      "ended_at": "2026-07-29T12:32:18",
+      "total_ms": 11731
+    },
+    {
+      "turn_index": 4,
+      "started_at": "2026-07-29T12:32:40",
+      "user": "Tóm tắt bài viết này hộ mình.",
+      "status": "answered",
+      "assistant_text": "Bạn vui lòng cung cấp URL của bài viết mà bạn muốn tóm tắt nhé!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Bạn vui lòng cung cấp URL của bài viết mà bạn muốn tóm tắt nhé!",
+          "model_ms": 2741,
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T12:32:43",
+      "total_ms": 2741
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "transcript_id": "v3_openrouter_ui_20260729T122606686956",
+  "version": "v3",
+  "artifact_version": "v3+pa13149aa456d+t2a4ffeb7ceda",
+  "prompt_hash": "a13149aa456d33e20002d6abc5b8e9992b5d187f6a8a7aeb4a48c124194fc45d",
+  "tools_hash": "2a4ffeb7cedabf11d0ff9834c30e25513278788e1f3f93f00c4bce929a83deb7",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "surface": "web_ui",
+  "created_at": "2026-07-29T12:26:06",
+  "updated_at": "2026-07-29T12:26:28",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T12:26:23",
+      "user": "Tim mot paper arXiv ve AI agent evaluation, doc paper phu hop nhat roi tom tat kem link.",
+      "status": "provider_error",
+      "assistant_text": null,
+      "rounds": [],
+      "tool_events": [],
+      "error": "UnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f527' in position 0: character maps to <undefined>",
+      "ended_at": "2026-07-29T12:26:28",
+      "total_ms": 5145
+    }
+  ]
+}

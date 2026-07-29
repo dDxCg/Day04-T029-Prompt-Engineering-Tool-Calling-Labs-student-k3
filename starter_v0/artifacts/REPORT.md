@@ -22,7 +22,17 @@ Hai pipeline chính:
 - News: `lookup → fetch → format → AI summary + source URL`.
 - Paper: `papers → paper_text → AI summary + arXiv URL`.
 
-**Link dùng thử:** Chưa có. Repo hiện chưa có `app.py` hoặc entrypoint UI; chỉ có CLI `chat.py`. Đây là deliverable còn thiếu, không được tính là đã hoàn thành.
+**UI:** `starter_v0/app.py` (Flask) phục vụ giao diện chat tại `prototype.html` và gọi thẳng `run_model_tool_loop` của `chat.py` — cùng system prompt, cùng `tools.yaml`, cùng vòng lặp tool như CLI và eval.
+
+```
+cd starter_v0
+python app.py --provider openrouter --version v3
+# http://127.0.0.1:8000
+```
+
+Mỗi lượt được ghi ngay vào `transcripts/<version>_<provider>_ui_<timestamp>.transcript.json`. UI hiển thị đúng bằng chứng bắt buộc: `transcript_id`, `artifact_version`, provider/model trên header; dưới mỗi câu trả lời là log tool thật (tên tool, args, vòng V*n*/4, thời gian mỗi tool, tool lỗi) cộng độ trễ tách model/tool.
+
+**Link dùng thử:** localhost khi demo trực tiếp; chưa deploy public URL.
 
 ## A2. Tool agent có
 
