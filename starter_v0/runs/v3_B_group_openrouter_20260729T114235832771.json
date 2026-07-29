@@ -1,0 +1,1072 @@
+{
+  "run_id": "v3_B_group_openrouter_20260729T114235832771",
+  "version": "v3",
+  "artifact_version": "v3+pa13149aa456d+t2a4ffeb7ceda",
+  "prompt_hash": "a13149aa456d33e20002d6abc5b8e9992b5d187f6a8a7aeb4a48c124194fc45d",
+  "tools_hash": "2a4ffeb7cedabf11d0ff9834c30e25513278788e1f3f93f00c4bce929a83deb7",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
+  "generated_at": "2026-07-29T11:42:35",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 6,
+    "case_accuracy": 0.6,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 0.6,
+    "multiturn_accuracy": 0.6,
+    "failure_counts": {
+      "wrong_arg_value": 2,
+      "wrong_tool": 2
+    },
+    "observed_mismatch_counts": {
+      "wrong_arg_value": 4
+    }
+  },
+  "results": [
+    {
+      "id": "G01_news_url_vs_lookup",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_news_url_vs_lookup",
+        "difficulty": "easy",
+        "what_it_tests": "Đã có link báo cụ thể (workflow A bước 1) → fetch, không phải lookup."
+      },
+      "input": "Tóm tắt giúp mình bài báo này: https://techcrunch.com/2026/07/ai-agents-news",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://techcrunch.com/2026/07/ai-agents-news"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://techcrunch.com/2026/07/ai-agents-news"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://techcrunch.com/2026/07/ai-agents-news"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://techcrunch.com/2026/07/ai-agents-news",
+            "items": [
+              {
+                "title": "Page not found | TechCrunch",
+                "url": "https://techcrunch.com/2026/07/ai-agents-news",
+                "source": "techcrunch.com",
+                "summary": "Checking your Browser…\n\nVerifying...\n\nStuck? [Troubleshoot](https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/av0/rch/g515y/0x4AAAAAAB5UiAgmkGtdUBSR/auto/fbE/new/normal?lang=auto#refresh)\n\nSuccess!\n\nVerification failed\n\n[Troubleshoot](https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/av0/rch/g515y/0x4AAAAAAB5UiAgmkGtdUBSR/auto/fbE/new/normal?lang=auto#refresh)\n\nVerification expired\n\n[Refresh](https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/av0/rch/g515y/0x4AAAAAAB5UiAgmkGtdUBSR/auto/fbE/new/normal?lang=auto#refresh)\n\nVerification expired\n\n[Refresh](https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/av0/rch/g515y/0x4AAAAAAB5UiAgmkGtdUBSR/auto/fbE/new/normal?lang=auto#refresh)\n\n[Troubleshoot](https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/av0/rch/g515y/0x4AAAAAAB5UiAgmkGtdUBSR/auto/fbE/new/normal?lang=auto#refresh)\n\n[Privacy](https://www.cloudflare.com/privacypolicy/) • [Help](https://challenges.cloudflare.com/cdn-cgi/challenge-platform/help)\n\n [Skip to content](https://techcrunch.com/2026/07/ai-agents-news#wp--skip-link--target)\n\n# 404\n\n## Page not found\n\nWe’re sorry, we seem to have lost this page\n\n\nSearch\n\n[Back to homepage](https://www.techcrunch.com/)\n\n## Latest News\n\n- In Brief\n\n\n\n### [Cyera agrees to acquire Oasis Security for $1B to safeguard proliferating AI agents](https://techcrunch.com/2026/07/28/cyera-agrees-to-acquire-oasis-security-for-1b-to-safeguard-proliferating-ai-agents/)\n\n\n\n\n\n  - [Marina Temkin](https://techcrunch.com/author/marina-temkin/)\n\n5 hours ago\n\n- ![render of LLM AI bot reading multiple books at once](https://techcrunch.com/wp-content/uploads/2026/03/s.jpg?w=536)\n\n\n\nIn Brief\n\n\n\n### [Bot-detection startup Spur nabs $200M from Insight](https://techcrunch.com/2026/07/28/bot-detection-startup-spur-nabs-200m-from-insight/)\n\n\n\n\n\n  - [Julie Bort](https://techcrunch.com/author/julie-bort/)\n\n7 hours ago\n\n- ![Concept illustration depicting messy litigation; gavel](https://techcrunch.com/wp-content/uploads/2023/07/gavel-messy-legal.jpg?w=668)\n\n\n\n[Startups](https://techcrunch.com/category/startups/)\n\n\n\n### [MCP startup Runlayer accuses Rippling of stealing its product idea](https://techcrunch.com/2026/07/28/mcp-startup-runlayer-accuses-rippling-of-stealing-its-product-idea/)\n\n\n\n\n\n  - [Julie Bort](https://techcrunch.com/author/julie-bort/)\n\n8 hours ago\n\n- ![Sam Altman, CEO of OpenAI, sitting in front of American flag](https://techcrunch.com/wp-content/uploads/2025/07/GettyImages-2226496284.jpg?w=536)\n\n\n\n[AI](https://techcrunch.com/category/artificial-intelligence/)\n\n\n\n### [Sam Altman is ready to decelerate](https://techcrunch.com/2026/07/28/sam-altman-is-ready-to-decelerate/)\n\n\n\n\n\n  - [Tim Fernholz](https://techcrunch.com/author/tim-fernholz/)\n\n8 hours ago\n\n- ![](https://techcrunch.com/wp-content/uploads/2026/07/Case-Product-Hero.jpg?w=563)\n\n\n\n[Hardware](https://techcrunch.com/category/hardware/)\n\n\n\n### [Ozlo’s Sleepbuds 2 build on Bose’s sleep earbud legacy](https://techcrunch.com/2026/07/28/ozlos-sleepbuds-2-build-on-boses-sleep-earbud-legacy/)\n\n\n\n\n\n  - [Sarah Perez](https://techcrunch.com/author/sarah-perez/)\n\n10 hours ago\n\n- ![](https://techcrunch.com/wp-content/uploads/2026/07/Katalyst-LINK.avif?w=613)\n\n\n\n[Space](https://techcrunch.com/category/space/)\n\n\n\n### [The robot NASA hired to lift a orbital telescope tumbled out of control](https://techcrunch.com/2026/07/28/the-robot-nasa-hired-to-lift-a-orbital-telescope-is-tumbling-out-of-control/)\n\n\n\n\n\n  - [Tim Fernholz](https://techcrunch.com/author/tim-fernholz/)\n\n10 hours ago\n\n- ![Aerial view of Waymo's self-driving car fleet storage facility in San Francisco.](https://techcrunch.com/wp-content/uploads/2026/03/waymo-fleet-getty.jpg?w=562)\n\n\n\n[Transportation](https://techcrunch.com/category/transportation/)\n\n\n\n### [Waymo, robotaxi operators face fresh scrutiny over emergency response failures](https://techcrunch.com/2026/07/"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_arxiv_search_vs_lookup",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_arxiv_search_vs_lookup",
+        "difficulty": "medium",
+        "what_it_tests": "Yêu cầu tìm paper trên arXiv (workflow B bước 1) → papers, không phải lookup (web search chung)."
+      },
+      "input": "Tìm paper mới nhất về RLHF trên arXiv giúp mình",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "RLHF"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "RLHF",
+              "max_results": 5,
+              "sort_by": "lastUpdatedDate"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "RLHF",
+            "max_results": 5,
+            "sort_by": "lastUpdatedDate"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "RLHF",
+            "api_query": "all:RLHF",
+            "total_results": 1367,
+            "items": [
+              {
+                "arxiv_id": "2607.21498v2",
+                "title": "Artificial Epanorthosis: Why large language models overuse a classical rhetorical figure, and how to mitigate it",
+                "summary": "A rhetorical figure that Cicero and Quintilian catalogued two thousand years ago reappears, systematically, in the text of large language models: epanorthosis, the self-correction of the specimen «This is not a course. It is a journey of transformation». This essay argues that the overuse is a trained disposition, driven mainly by a training distribution rich in promotional prose and by preference tuning (RLHF) that rewards confident, emphatic phrasing; the left-to-right nature of generation is an amplifier rather than the root cause. Building on evidence that models diverge from human rhetorical style, and on Fontanier's classification of epanorthosis as a figure of thought, it sets out a programme that scores the figure against genre-specific human baselines through an Epanorthosis Index (density relative to the human rate). A first measurement, on three sizes of one instruction-tuned model family, finds mis-calibration by register in both directions: the models overshoot in oratory (about twofold, near threefold in Italian, concentrated in the larger tiers) and undershoot in informal question-and-answer writing, while matching humans in argument, journalism, and encyclopedic prose. Three constructive contributions follow: a survey of mitigation techniques centred on lightweight LoRA adapters; a demonstration, in Italian, that a one-line instruction cuts the figure by half to nearly three-quarters and that a supervised-fine-tuning adapter removes it almost entirely, with a scaling coefficient that dials the reduction back onto the human rate; and the argument that the target is calibration to the human rate for each genre, not elimination. It closes on the stakes: the real risk is that we begin to write like the machines.",
+                "authors": [
+                  "Federico Boggia"
+                ],
+                "published": "2026-07-23T16:47:39Z",
+                "updated": "2026-07-28T14:30:09Z",
+                "url": "http://arxiv.org/abs/2607.21498v2",
+                "pdf_url": "https://arxiv.org/pdf/2607.21498v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2508.05775v3",
+                "title": "Guardians and Offenders: A Survey on Harmful Content Generation and Safety Mitigation of LLM",
+                "summary": "Large Language Models (LLMs) have revolutionized content creation across digital platforms, offering unprecedented capabilities in natural language generation and understanding. Meanwhile, they pose risks by inadvertently producing toxic, offensive, or biased content. This dual role of LLMs, both as powerful tools for text generation and as potential sources of harmful language, presents a pressing sociotechnical challenge. In this survey, we systematically review recent studies encompassing unintentional toxicity, adversarial jailbreak attacks, and comprehensive mitigation strategies. We explore LLMs' dual role as both generators of harm and enablers of safety through detection, classification, content moderation, and prevention. We propose a unified taxonomy of LLM-related harms and defenses, analyze emerging multimodal and LLM-assisted jailbreak strategies, and assess mitigation efforts, including reinforcement learning with human feedback (RLHF), prompt engineering, and safety alignment. Our review highlights the evolving landscape of LLM safety and identifies limitations in current evaluation methodologies. Ultimately, our review outlines future research directions to guide the development of robust and ethically aligned language technologies.",
+                "authors": [
+                  "Chi Zhang",
+                  "Changjia Zhu",
+                  "Junjie Xiong",
+                  "Xiaoran Xu",
+                  "Lingyao Li",
+                  "Yao Liu",
+                  "Zhuo Lu"
+                ],
+                "published": "2025-08-07T18:42:16Z",
+                "updated": "2026-07-27T20:50:40Z",
+                "url": "http://arxiv.org/abs/2508.05775v3",
+                "pdf_url": "https://arxiv.org/pdf/2508.05775v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.CY"
+                ]
+              },
+              {
+                "arxiv_id": "2606.24937v2",
+                "title": "The Hitchhiker's Guide to Agentic AI: From Foundations to Systems",
+                "summary": "The Hitchhiker's Guide to Agentic AI is a comprehensive practitioner's reference for building autonomous AI systems. The book covers the full stack from first principles to production deployment, organized around a central thesis: building great agentic systems requires understanding every layer of the pipeline, not just one. The book opens with the LLM substrate -- transformer architecture, GPU systems, training and fine-tuning (SFT, LoRA, MoE), model compression, and inference optimization -- treated as essential foundations rather than the primary focus. It then develops the alignment and reasoning layer: reinforcement learning from human feedback (RLHF), PPO, DPO and its variants, GRPO, reward modeling, and RL for large reasoning models including chain-of-thought and test-time scaling. The second half is devoted to agentic AI proper. Topics include agentic training and trajectory-based RL, retrieval-augmented generation (RAG and Agentic RAG), memory systems (in-context, external, episodic, and semantic), agent harness design and context management, loop engineering (inference-time RL, generate-verify-retry optimization, and adaptive budget control), and a taxonomy of agent design patterns. Inter-agent coordination is covered in depth: the Model Context Protocol (MCP), agent skills and tool use, the Agent-to-Agent (A2A) communication protocol, and multi-agent architectures spanning centralized, decentralized, and hierarchical topologies. The book concludes with agent development frameworks, agentic UI design, evaluation methodology for agentic tasks, and production deployment. Each chapter pairs rigorous theoretical foundations with implementation guidance, code examples, and references to the primary literature.",
+                "authors": [
+                  "Haggai Roitman"
+                ],
+                "published": "2026-06-22T17:48:54Z",
+                "updated": "2026-07-27T15:17:17Z",
+                "url": "http://arxiv.org/abs/2606.24937v2",
+                "pdf_url": "https://arxiv.org/pdf/2606.24937v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.CL",
+                  "cs.IR",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2606.29758v2",
+                "title": "PS-PPO: Prefix-Sampling PPO for Critic-Free RLHF",
+                "summary": "Reinforcement Learning from Human Feedback (RLHF) for Large Language Models increasingly relies on critic-free methods as a practical alternative to actor--critic training. Despite their simplicity, existing critic-free approaches propagate a trajectory-level learning signal uniformly across all tokens in a trajectory. This requires full-trajectory policy updates for every rollout, leading to substantial optimization cost for long reasoning traces, even though intermediate prefixes often contain enough information to largely determine the final outcome. We propose Prefix-Sampling Proximal Policy Optimization (PS-PPO), a compute-efficient critic-free method for RLHF that exploits this temporal redundancy. PS-PPO introduces a prompt-conditioned cutoff distribution and samples a cutoff timestep for each trajectory. During the update pass, PS-PPO backpropagates only through the sampled prefix of each trajectory and applies an importance-weighting correction so that the resulting truncated gradient estimator remains unbiased with respect to the full-trajectory objective. Experiments on mathematical reasoning and RLHF benchmarks show that PS-PPO achieves large reductions in training compute and peak GPU memory, while maintaining accuracy comparable to strong critic-free baselines.",
+                "authors": [
+                  "Doo Hwan Hwang",
+                  "Kee-Eung Kim"
+                ],
+                "published": "2026-06-29T04:04:32Z",
+                "updated": "2026-07-27T10:44:50Z",
+                "url": "http://arxiv.org/abs/2606.29758v2",
+                "pdf_url": "https://arxiv.org/pdf/2606.29758v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2607.22083v2",
+                "title": "Nanbeige4.2-3B: Unlocking Agentic Capabilities in a Compact Model",
+                "summary": "We present Nanbeige4.2-3B, a compact general agentic model with 3B non-embedding parameters. It delivers strong performance across code-agent, office-agent, and complex tool-use tasks while maintaining highly competitive reasoning capabilities in mathematics, coding, and science. Nanbeige4.2-3B is pretrained from scratch on 28T tokens with a Looped Transformer that reuses the layer stack to increase capacity without adding parameters. For SFT data and trajectory construction, we expand the diversity of executable environments, task assets, and agentic scaffolds through real-world deployment and large-scale synthesis. Our RL pipeline applies mixed-mode RLHF over Think and Non-Think responses to improve overall model quality and reduce failure cases, length-controlled reasoning RL to balance accuracy and reasoning efficiency, and agentic RL with outcome and process rewards to stabilize long-horizon training. Extensive evaluations show that Nanbeige4.2-3B outperforms larger models, including Qwen3.5-9B and Gemma4-12B, across diverse agentic benchmarks while remaining competitive on reasoning and alignment tasks. Performance with OpenClaw further supports its use as a compact local personal assistant.",
+                "authors": [
+                  "Nanbeige Lab",
+                  ":",
+                  "Chen Yang",
+                  "Chengrui Huang",
+                  "Fufeng Lan",
+                  "Hanhui Chen",
+                  "Hao Zhou",
+                  "Huatong Song",
+                  "Jiaqi Cao",
+                  "Jiaying Zhu",
+                  "Jinlin Niu",
+                  "Kai Wang",
+                  "Lisheng Huang",
+                  "Qiliang Liang",
+                  "Ran Le",
+                  "Ruixiang Feng",
+                  "Shuang Sun",
+                  "Tao Gu",
+                  "Tao Zhang",
+                  "Tianyu Luo",
+                  "Yang Song",
+                  "Yun Xing",
+                  "Yuntao Wen",
+                  "Ziyao Xu",
+                  "Zongchao Chen",
+                  "Zongqiang Li"
+                ],
+                "published": "2026-07-24T08:33:26Z",
+                "updated": "2026-07-27T02:18:38Z",
+                "url": "http://arxiv.org/abs/2607.22083v2",
+                "pdf_url": "https://arxiv.org/pdf/2607.22083v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.CL"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_paper_text_max_pages_arg",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "arg_paper_text_max_pages",
+        "difficulty": "medium",
+        "what_it_tests": "'chỉ cần 2 trang đầu' → max_pages=2 thay vì dùng mặc định."
+      },
+      "input": "Lấy nội dung bài này giúp mình, chỉ cần 2 trang đầu thôi: https://arxiv.org/abs/2305.14314",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "https://arxiv.org/abs/2305.14314",
+              "max_pages": 2
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": true,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "2305.14314",
+              "max_pages": 2
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_arg_value",
+        "failures": [
+          "arxiv_url: expected 'https://arxiv.org/abs/2305.14314', got '2305.14314'"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "paper_text",
+          "args": {
+            "arxiv_url": "2305.14314",
+            "max_pages": 2
+          },
+          "result": {
+            "tool": "get_arxiv_paper_text",
+            "arxiv_id": "2305.14314",
+            "url": "https://arxiv.org/abs/2305.14314",
+            "pdf_url": "https://arxiv.org/pdf/2305.14314.pdf",
+            "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2305.14314.pdf",
+            "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2305.14314.txt",
+            "page_count": 26,
+            "pages_read": 2,
+            "chars_returned": 7871,
+            "items": [
+              {
+                "title": "arXiv paper 2305.14314",
+                "url": "https://arxiv.org/abs/2305.14314",
+                "source": "arxiv.org",
+                "summary": "QL ORA: Efficient Finetuning of Quantized LLMs\nTim Dettmers∗ Artidoro Pagnoni∗ Ari Holtzman\nLuke Zettlemoyer\nUniversity of Washington\n{dettmers,artidoro,ahai,lsz}@cs.washington.edu\nAbstract\nWe present QL ORA, an efficient finetuning approach that reduces memory us-\nage enough to finetune a 65B parameter model on a single 48GB GPU while\npreserving full 16-bit finetuning task performance. QL ORA backpropagates gradi-\nents through a frozen, 4-bit quantized pretrained language model into Low Rank\nAdapters (LoRA). Our best model family, which we name Guanaco, outperforms\nall previous openly released models on the Vicuna benchmark, reaching 99.3%\nof the performance level of ChatGPT while only requiring 24 hours of finetuning\non a single GPU. QL ORA introduces a number of innovations to save memory\nwithout sacrificing performance: (a) 4-bit NormalFloat (NF4), a new data type that\nis information theoretically optimal for normally distributed weights (b) Double\nQuantization to reduce the average memory footprint by quantizing the quantization\nconstants, and (c) Paged Optimizers to manage memory spikes. We use QL ORA\nto finetune more than 1,000 models, providing a detailed analysis of instruction\nfollowing and chatbot performance across 8 instruction datasets, multiple model\ntypes (LLaMA, T5), and model scales that would be infeasible to run with regular\nfinetuning (e.g. 33B and 65B parameter models). Our results show that QLoRA\nfinetuning on a small high-quality dataset leads to state-of-the-art results, even\nwhen using smaller models than the previous SoTA. We provide a detailed analysis\nof chatbot performance based on both human and GPT-4 evaluations showing that\nGPT-4 evaluations are a cheap and reasonable alternative to human evaluation. Fur-\nthermore, we find that current chatbot benchmarks are not trustworthy to accurately\nevaluate the performance levels of chatbots. A lemon-picked analysis demonstrates\nwhere Guanaco fails compared to ChatGPT. We release all of our models and code,\nincluding CUDA kernels for 4-bit training.2\n1 Introduction\nFinetuning large language models (LLMs) is a highly effective way to improve their performance,\n[40, 62, 43, 61, 59, 37] and to add desirable or remove undesirable behaviors [43, 2, 4]. However,\nfinetuning very large models is prohibitively expensive; regular 16-bit finetuning of a LLaMA 65B\nparameter model [ 57] requires more than 780 GB of GPU memory. While recent quantization\nmethods can reduce the memory footprint of LLMs [14, 13, 18, 66], such techniques only work for\ninference and break down during training [65].\nWe demonstrate for the first time that it is possible to finetune a quantized 4-bit model without any\nperformance degradation. Our method, QL ORA, uses a novel high-precision technique to quantize\na pretrained model to 4-bit, then adds a small set of learnable Low-rank Adapter weights [ 28]\n∗Equal contribution.\n2https://github.com/artidoro/qlora and https://github.com/TimDettmers/bitsandbytes\nPreprint. Under review.\narXiv:2305.14314v1  [cs.LG]  23 May 2023\n\nTable 1: Elo ratings for a competition between\nmodels, averaged for 10,000 random initial order-\nings. The winner of a match is determined by\nGPT-4 which declares which response is better for\na given prompt of the the Vicuna benchmark. 95%\nconfidence intervals are shown ( ±). After GPT-\n4, Guanaco 33B and 65B win the most matches,\nwhile Guanaco 13B scores better than Bard.\nModel Size Elo\nGPT-4 - 1348 ± 1\nGuanaco 65B 41 GB 1022 ± 1\nGuanaco 33B 21 GB 992 ± 1\nVicuna 13B 26 GB 974 ± 1\nChatGPT - 966 ± 1\nGuanaco 13B 10 GB 916 ± 1\nBard - 902 ± 1\nGuanaco 7B 6 GB 879 ± 1\nthat are tuned by backpropagating gradients through\nthe quantized weights.\nQLORA reduces the average memory requirements\nof finetuning a 65B parameter model from >780GB\nof GPU memory to <48GB without degrading the\nruntime or predictive performance compared to a 16-\nbit fully finetuned baseline. This marks a significant\nshift in accessibility of LLM finetuning: now the\nlargest publicly available models to date finetunable\non a single GPU. Using QLORA, we train the Gua-\nnaco family of models, with the second best model\nreaching 97.8% of the performance level of ChatGPT\non the Vicuna [10] benchmark, while being trainable\nin less than 12 hours on a single consumer GPU;\nusing a single professional GPU over 24 hours we\nachieve 99.3% with our largest model, essentially\nclosing the gap to ChatGPT on the Vicuna bench-\nmark. When deployed, our smallest Guanaco model\n(7B parameters) requires just 5 GB of memory and outperforms a 26 GB Alpaca model by more than\n20 percentage points on the Vicuna benchmark (Table 6).\nQL ORA introduces multiple innovations designed to reduce memory use without sacrificing per-\nformance: (1) 4-bit NormalFloat, an information theoretically optimal quantization data type for\nnormally distributed data that yields better empirical results than 4-bit Integers and 4-bit Floats.\n(2) Double Quantization, a method that quantizes the quantization constants, saving an average\nof about 0.37 bits per parameter (approximately 3 GB for a 65B model). (3) Paged Optimizers,\nusing NVIDIA unified memory to avoid the gradient checkpointing memory spikes that occur when\nprocessing a mini-batch with a long sequence length. We combine these contributions into a better\ntuned LoRA approach that includes adapters at every network layer and thereby avoids almost all of\nthe accuracy tradeoffs seen in prior work.\nQLORA’s efficiency enables us to perform an in-depth study of instruction finetuning and chatbot\nperformance on model scales that would be impossible using regular finetuning due to memory\noverhead. Therefore, we train more than 1,000 models across several instruction tuning datasets,\nmodel architectures, and sizes between 80M to 65B parameters. In addition to showing that QL ORA\nrecovers 16-bit performance (§4) and training a state-of-the-art chatbot, Guanaco, (§5), we also\nanalyze trends in the trained models. First, we find that data quality is far more important than\ndataset size, e.g., a 9k sample dataset (OASST1) outperformed a 450k sample dataset (FLAN v2,\nsubsampled) on chatbot performance, even when both are meant to support instruction following\ngeneralization. Second, we show that strong Massive Multitask Language Understanding (MMLU)\nbenchmark performance does not imply strong Vicuna chatbot benchmark performance and vice\nversa—in other words, dataset suitability matters more than size for a given task.\nFurthermore, we also provide a extensive analysis of chatbot performance that uses both human\nraters and GPT-4 for evaluation. We use tournament-style benchmarking where models compete\nagainst each other in matches to produce the best response for a given prompt. The winner of a\nmatch is judged by either GPT-4 or human annotators. The tournament results are aggregated into\nElo scores [16, 17] which determine the ranking of chatbot performance. We find that GPT-4 and\nhuman evaluations largely agree on the rank of model performance in the tournaments, but we also\nfind there are instances of strong disagreement. As such, we highlight that model-based evaluation\nwhile providing a cheap alternative to human-annotation also has its uncertainties.\nWe augment our chatbot benchmark results with a qualitative analysis ofGuanaco models. Our analy-\nsis highlights success and failure cases that were not captured by the quantitative benchmarks.\nWe release all model generations with human and GPT-4 annotations to facilitate further study. We\nopen-source our codebase and CUDA kernels and integrate our methods into the Hugging Face\ntransformers stack [64], making them easily accessible to all. We release a collection of adapters\nfor 7/13/33/65B size models, trained on 8 different instruction following datasets, for a total of 32\ndifferent open sourced, finetuned models.\n2"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_lookup_max_results_arg",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "arg_lookup_max_results",
+        "difficulty": "medium",
+        "what_it_tests": "'3 nguồn tin' → max_results=3, cùng với topic=news, timeframe=day từ 'hôm nay'."
+      },
+      "input": "Tìm giúp mình 3 nguồn tin mới nhất về chip AI hôm nay",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "max_results": 3,
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "chip AI",
+              "topic": "news",
+              "timeframe": "day",
+              "max_results": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "chip AI",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 3
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "chip AI",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "AI sell-off intensifies as investors ditch chip stocks - The Guardian",
+                "url": "https://www.theguardian.com/business/2026/jul/28/ai-sell-off-chip-stocks-sk-hynix-samsung",
+                "source": "theguardian.com",
+                "summary": "# AI sell-off intensifies as investors ditch chip stocks. Samsung and SK Hynix fall by more than 10% amid renewed fears over AI spending and Chinese competition. The sell-off in AI stocks has intensified, driving South Korea’s stock market down to its lowest level in three months. Investors continued to ditch chip stocks on Tuesday, amid rising concerns about the huge amount of borrowing among AI companies to fund their datacentre expansion plans. Analysts attributed the sell-off to renewed worries over AI investment spending, and competition from cheaper Chinese companies, after a report by the Information that China has begun mass production of homegrown deep ultraviolet(DUV) chip-making tools. “We believe the market was likely spooked by the progress of China’s chip-making equipment capabilities, and was worried that this progress would threaten the competitive position of global chip making and chip equipment leaders,” said Jing Jie Yu, an equity analyst at Morningstar, adding that the sell-off was “largely a kneejerk reaction and overdone”.",
+                "score": 0.64478505
+              },
+              {
+                "title": "Nvidia Slides as AI Spending Fears Hit Chip Stocks - Yahoo Finance",
+                "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-slides-ai-spending-fears-122828811.html",
+                "source": "finance.yahoo.com",
+                "summary": "3. Most active penny stocks. 2. Best 0% APR cards. 3. Best balance transfer cards. 2. Best high-yield savings accounts. 3. Best money market accounts. 4. Best free checking accounts. 3. How to get approved. # Nvidia Slides as AI Spending Fears Hit Chip Stocks. Nvidia (NVDA, Financials), the semiconductor company best known for artificial intelligence chips, fell 5% Monday as investors questioned the funding structure behind the AI infrastructure boom. GuruFocus has detected 3 Warning Signs with NVDA. The decline followed a report that Nvidia was discussing about $250 billion in financing guarantees for an OpenAI data center. Separate talks reportedly involved financing up to $350 billion in OpenAI chip purchases. China's progress in chip equipment and the strong market debut of memory producer CXMT added to fears that established semiconductor leaders could face tougher competition. The market reaction comes before earnings from Apple, Meta, Microsoft and Amazon, which could offer clearer signals on future AI infrastructure spending.",
+                "score": 0.5405607
+              },
+              {
+                "title": "Micron, SK Hynix stocks fall as chip sell-off deepens - Yahoo Finance",
+                "url": "https://finance.yahoo.com/markets/article/micron-sk-hynix-stocks-fall-as-chip-sell-off-deepens-125622548.html",
+                "source": "finance.yahoo.com",
+                "summary": "2. Best 0% APR cards. 2. Best high-yield savings accounts. 3. Best money market accounts. **What happened:**Semiconductor stocks accelerated losses on Tuesday, with the PHLX Semiconductor Index (^SOX) falling more than 5% as investors continued to unwind positions in one of the market's hottest AI-driven sectors this year. AI chip heavyweight Nvidia (NVDA) stock fell roughly 1%, adding to a 5% loss on Monday, while AMD (AMD) fell more than 8%. On Monday, Nvidia lost its position as the world's most valuable company to Apple after a report said the AI chip heavyweight was in talks to backstop $250 billion in funding for OpenAI (OPAI.PVT) tied to a major data center project. **What else you need to know:** Semiconductor stocks have been at the center of the AI trade this year, helping propel the sector to a record high in June. *Ines Ferre is a senior business reporter for Yahoo Finance. **Read the latest financial and business news from Yahoo Finance**.",
+                "score": 0.49729064
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G05_arxiv_pdf_link_vs_fetch",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_arxiv_pdf_vs_fetch",
+        "difficulty": "medium",
+        "what_it_tests": "Link PDF arXiv trực tiếp (workflow B) → paper_text để lấy toàn văn PDF, không phải fetch (đọc trang web thường)."
+      },
+      "input": "Tóm tắt giúp mình paper này: https://arxiv.org/pdf/2305.14314.pdf",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "https://arxiv.org/pdf/2305.14314.pdf"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": true,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "2305.14314"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_tool",
+        "failures": [
+          "arxiv_url: expected 'https://arxiv.org/pdf/2305.14314.pdf', got '2305.14314'"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "paper_text",
+          "args": {
+            "arxiv_url": "2305.14314"
+          },
+          "result": {
+            "tool": "get_arxiv_paper_text",
+            "arxiv_id": "2305.14314",
+            "url": "https://arxiv.org/abs/2305.14314",
+            "pdf_url": "https://arxiv.org/pdf/2305.14314.pdf",
+            "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2305.14314.pdf",
+            "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2305.14314.txt",
+            "page_count": 26,
+            "pages_read": 5,
+            "chars_returned": 8000,
+            "items": [
+              {
+                "title": "arXiv paper 2305.14314",
+                "url": "https://arxiv.org/abs/2305.14314",
+                "source": "arxiv.org",
+                "summary": "QL ORA: Efficient Finetuning of Quantized LLMs\nTim Dettmers∗ Artidoro Pagnoni∗ Ari Holtzman\nLuke Zettlemoyer\nUniversity of Washington\n{dettmers,artidoro,ahai,lsz}@cs.washington.edu\nAbstract\nWe present QL ORA, an efficient finetuning approach that reduces memory us-\nage enough to finetune a 65B parameter model on a single 48GB GPU while\npreserving full 16-bit finetuning task performance. QL ORA backpropagates gradi-\nents through a frozen, 4-bit quantized pretrained language model into Low Rank\nAdapters (LoRA). Our best model family, which we name Guanaco, outperforms\nall previous openly released models on the Vicuna benchmark, reaching 99.3%\nof the performance level of ChatGPT while only requiring 24 hours of finetuning\non a single GPU. QL ORA introduces a number of innovations to save memory\nwithout sacrificing performance: (a) 4-bit NormalFloat (NF4), a new data type that\nis information theoretically optimal for normally distributed weights (b) Double\nQuantization to reduce the average memory footprint by quantizing the quantization\nconstants, and (c) Paged Optimizers to manage memory spikes. We use QL ORA\nto finetune more than 1,000 models, providing a detailed analysis of instruction\nfollowing and chatbot performance across 8 instruction datasets, multiple model\ntypes (LLaMA, T5), and model scales that would be infeasible to run with regular\nfinetuning (e.g. 33B and 65B parameter models). Our results show that QLoRA\nfinetuning on a small high-quality dataset leads to state-of-the-art results, even\nwhen using smaller models than the previous SoTA. We provide a detailed analysis\nof chatbot performance based on both human and GPT-4 evaluations showing that\nGPT-4 evaluations are a cheap and reasonable alternative to human evaluation. Fur-\nthermore, we find that current chatbot benchmarks are not trustworthy to accurately\nevaluate the performance levels of chatbots. A lemon-picked analysis demonstrates\nwhere Guanaco fails compared to ChatGPT. We release all of our models and code,\nincluding CUDA kernels for 4-bit training.2\n1 Introduction\nFinetuning large language models (LLMs) is a highly effective way to improve their performance,\n[40, 62, 43, 61, 59, 37] and to add desirable or remove undesirable behaviors [43, 2, 4]. However,\nfinetuning very large models is prohibitively expensive; regular 16-bit finetuning of a LLaMA 65B\nparameter model [ 57] requires more than 780 GB of GPU memory. While recent quantization\nmethods can reduce the memory footprint of LLMs [14, 13, 18, 66], such techniques only work for\ninference and break down during training [65].\nWe demonstrate for the first time that it is possible to finetune a quantized 4-bit model without any\nperformance degradation. Our method, QL ORA, uses a novel high-precision technique to quantize\na pretrained model to 4-bit, then adds a small set of learnable Low-rank Adapter weights [ 28]\n∗Equal contribution.\n2https://github.com/artidoro/qlora and https://github.com/TimDettmers/bitsandbytes\nPreprint. Under review.\narXiv:2305.14314v1  [cs.LG]  23 May 2023\n\nTable 1: Elo ratings for a competition between\nmodels, averaged for 10,000 random initial order-\nings. The winner of a match is determined by\nGPT-4 which declares which response is better for\na given prompt of the the Vicuna benchmark. 95%\nconfidence intervals are shown ( ±). After GPT-\n4, Guanaco 33B and 65B win the most matches,\nwhile Guanaco 13B scores better than Bard.\nModel Size Elo\nGPT-4 - 1348 ± 1\nGuanaco 65B 41 GB 1022 ± 1\nGuanaco 33B 21 GB 992 ± 1\nVicuna 13B 26 GB 974 ± 1\nChatGPT - 966 ± 1\nGuanaco 13B 10 GB 916 ± 1\nBard - 902 ± 1\nGuanaco 7B 6 GB 879 ± 1\nthat are tuned by backpropagating gradients through\nthe quantized weights.\nQLORA reduces the average memory requirements\nof finetuning a 65B parameter model from >780GB\nof GPU memory to <48GB without degrading the\nruntime or predictive performance compared to a 16-\nbit fully finetuned baseline. This marks a significant\nshift in accessibility of LLM finetuning: now the\nlargest publicly available models to date finetunable\non a single GPU. Using QLORA, we train the Gua-\nnaco family of models, with the second best model\nreaching 97.8% of the performance level of ChatGPT\non the Vicuna [10] benchmark, while being trainable\nin less than 12 hours on a single consumer GPU;\nusing a single professional GPU over 24 hours we\nachieve 99.3% with our largest model, essentially\nclosing the gap to ChatGPT on the Vicuna bench-\nmark. When deployed, our smallest Guanaco model\n(7B parameters) requires just 5 GB of memory and outperforms a 26 GB Alpaca model by more than\n20 percentage points on the Vicuna benchmark (Table 6).\nQL ORA introduces multiple innovations designed to reduce memory use without sacrificing per-\nformance: (1) 4-bit NormalFloat, an information theoretically optimal quantization data type for\nnormally distributed data that yields better empirical results than 4-bit Integers and 4-bit Floats.\n(2) Double Quantization, a method that quantizes the quantization constants, saving an average\nof about 0.37 bits per parameter (approximately 3 GB for a 65B model). (3) Paged Optimizers,\nusing NVIDIA unified memory to avoid the gradient checkpointing memory spikes that occur when\nprocessing a mini-batch with a long sequence length. We combine these contributions into a better\ntuned LoRA approach that includes adapters at every network layer and thereby avoids almost all of\nthe accuracy tradeoffs seen in prior work.\nQLORA’s efficiency enables us to perform an in-depth study of instruction finetuning and chatbot\nperformance on model scales that would be impossible using regular finetuning due to memory\noverhead. Therefore, we train more than 1,000 models across several instruction tuning datasets,\nmodel architectures, and sizes between 80M to 65B parameters. In addition to showing that QL ORA\nrecovers 16-bit performance (§4) and training a state-of-the-art chatbot, Guanaco, (§5), we also\nanalyze trends in the trained models. First, we find that data quality is far more important than\ndataset size, e.g., a 9k sample dataset (OASST1) outperformed a 450k sample dataset (FLAN v2,\nsubsampled) on chatbot performance, even when both are meant to support instruction following\ngeneralization. Second, we show that strong Massive Multitask Language Understanding (MMLU)\nbenchmark performance does not imply strong Vicuna chatbot benchmark performance and vice\nversa—in other words, dataset suitability matters more than size for a given task.\nFurthermore, we also provide a extensive analysis of chatbot performance that uses both human\nraters and GPT-4 for evaluation. We use tournament-style benchmarking where models compete\nagainst each other in matches to produce the best response for a given prompt. The winner of a\nmatch is judged by either GPT-4 or human annotators. The tournament results are aggregated into\nElo scores [16, 17] which determine the ranking of chatbot performance. We find that GPT-4 and\nhuman evaluations largely agree on the rank of model performance in the tournaments, but we also\nfind there are instances of strong disagreement. As such, we highlight that model-based evaluation\nwhile providing a cheap alternative to human-annotation also has its uncertainties.\nWe augment our chatbot benchmark results with a qualitative analysis ofGuanaco models. Our analy-\nsis highlights success and failure cases that were not captured by the quantitative benchmarks.\nWe release all model generations with human and GPT-4 annotations to facilitate further study. We\nopen-source our codebase and CUDA kernels and integrate our methods into the Hugging Face\ntransformers stack [64], making them easily accessible to all. We release a collection of adapters\nfor 7/13/33/65B size models, trained on 8 different instruction following datasets, for a total of 32\ndifferent open sourced, finetuned models.\n2\n\nFigure 1: Different finetuning methods and their memory requirements. QL ORA improves over LoRA by\nquantizing the transformer m"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M_G06_context_url_to_paper_text",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_context_url_to_paper_text",
+        "difficulty": "hard",
+        "what_it_tests": "2 turns: mang URL arxiv từ turn 1 sang, latest turn xin toàn văn → paper_text đúng url, không phải fetch (không phải trang web thường) hay papers (không phải tìm kiếm mới)."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Đây là paper mình đang quan tâm: https://arxiv.org/abs/2305.14314"
+        },
+        {
+          "role": "user",
+          "content": "Lấy toàn văn bài này giúp mình để tóm tắt"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "https://arxiv.org/abs/2305.14314"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": true,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "2305.14314"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_tool",
+        "failures": [
+          "arxiv_url: expected 'https://arxiv.org/abs/2305.14314', got '2305.14314'"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "paper_text",
+          "args": {
+            "arxiv_url": "2305.14314"
+          },
+          "result": {
+            "tool": "get_arxiv_paper_text",
+            "arxiv_id": "2305.14314",
+            "url": "https://arxiv.org/abs/2305.14314",
+            "pdf_url": "https://arxiv.org/pdf/2305.14314.pdf",
+            "pdf_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2305.14314.pdf",
+            "txt_path": "C:\\Users\\admin\\Documents\\courses\\ai-in-actions\\labs\\Day04_2A202601455_DoDucCuong\\starter_v0\\arxiv_papers\\2305.14314.txt",
+            "page_count": 26,
+            "pages_read": 5,
+            "chars_returned": 8000,
+            "items": [
+              {
+                "title": "arXiv paper 2305.14314",
+                "url": "https://arxiv.org/abs/2305.14314",
+                "source": "arxiv.org",
+                "summary": "QL ORA: Efficient Finetuning of Quantized LLMs\nTim Dettmers∗ Artidoro Pagnoni∗ Ari Holtzman\nLuke Zettlemoyer\nUniversity of Washington\n{dettmers,artidoro,ahai,lsz}@cs.washington.edu\nAbstract\nWe present QL ORA, an efficient finetuning approach that reduces memory us-\nage enough to finetune a 65B parameter model on a single 48GB GPU while\npreserving full 16-bit finetuning task performance. QL ORA backpropagates gradi-\nents through a frozen, 4-bit quantized pretrained language model into Low Rank\nAdapters (LoRA). Our best model family, which we name Guanaco, outperforms\nall previous openly released models on the Vicuna benchmark, reaching 99.3%\nof the performance level of ChatGPT while only requiring 24 hours of finetuning\non a single GPU. QL ORA introduces a number of innovations to save memory\nwithout sacrificing performance: (a) 4-bit NormalFloat (NF4), a new data type that\nis information theoretically optimal for normally distributed weights (b) Double\nQuantization to reduce the average memory footprint by quantizing the quantization\nconstants, and (c) Paged Optimizers to manage memory spikes. We use QL ORA\nto finetune more than 1,000 models, providing a detailed analysis of instruction\nfollowing and chatbot performance across 8 instruction datasets, multiple model\ntypes (LLaMA, T5), and model scales that would be infeasible to run with regular\nfinetuning (e.g. 33B and 65B parameter models). Our results show that QLoRA\nfinetuning on a small high-quality dataset leads to state-of-the-art results, even\nwhen using smaller models than the previous SoTA. We provide a detailed analysis\nof chatbot performance based on both human and GPT-4 evaluations showing that\nGPT-4 evaluations are a cheap and reasonable alternative to human evaluation. Fur-\nthermore, we find that current chatbot benchmarks are not trustworthy to accurately\nevaluate the performance levels of chatbots. A lemon-picked analysis demonstrates\nwhere Guanaco fails compared to ChatGPT. We release all of our models and code,\nincluding CUDA kernels for 4-bit training.2\n1 Introduction\nFinetuning large language models (LLMs) is a highly effective way to improve their performance,\n[40, 62, 43, 61, 59, 37] and to add desirable or remove undesirable behaviors [43, 2, 4]. However,\nfinetuning very large models is prohibitively expensive; regular 16-bit finetuning of a LLaMA 65B\nparameter model [ 57] requires more than 780 GB of GPU memory. While recent quantization\nmethods can reduce the memory footprint of LLMs [14, 13, 18, 66], such techniques only work for\ninference and break down during training [65].\nWe demonstrate for the first time that it is possible to finetune a quantized 4-bit model without any\nperformance degradation. Our method, QL ORA, uses a novel high-precision technique to quantize\na pretrained model to 4-bit, then adds a small set of learnable Low-rank Adapter weights [ 28]\n∗Equal contribution.\n2https://github.com/artidoro/qlora and https://github.com/TimDettmers/bitsandbytes\nPreprint. Under review.\narXiv:2305.14314v1  [cs.LG]  23 May 2023\n\nTable 1: Elo ratings for a competition between\nmodels, averaged for 10,000 random initial order-\nings. The winner of a match is determined by\nGPT-4 which declares which response is better for\na given prompt of the the Vicuna benchmark. 95%\nconfidence intervals are shown ( ±). After GPT-\n4, Guanaco 33B and 65B win the most matches,\nwhile Guanaco 13B scores better than Bard.\nModel Size Elo\nGPT-4 - 1348 ± 1\nGuanaco 65B 41 GB 1022 ± 1\nGuanaco 33B 21 GB 992 ± 1\nVicuna 13B 26 GB 974 ± 1\nChatGPT - 966 ± 1\nGuanaco 13B 10 GB 916 ± 1\nBard - 902 ± 1\nGuanaco 7B 6 GB 879 ± 1\nthat are tuned by backpropagating gradients through\nthe quantized weights.\nQLORA reduces the average memory requirements\nof finetuning a 65B parameter model from >780GB\nof GPU memory to <48GB without degrading the\nruntime or predictive performance compared to a 16-\nbit fully finetuned baseline. This marks a significant\nshift in accessibility of LLM finetuning: now the\nlargest publicly available models to date finetunable\non a single GPU. Using QLORA, we train the Gua-\nnaco family of models, with the second best model\nreaching 97.8% of the performance level of ChatGPT\non the Vicuna [10] benchmark, while being trainable\nin less than 12 hours on a single consumer GPU;\nusing a single professional GPU over 24 hours we\nachieve 99.3% with our largest model, essentially\nclosing the gap to ChatGPT on the Vicuna bench-\nmark. When deployed, our smallest Guanaco model\n(7B parameters) requires just 5 GB of memory and outperforms a 26 GB Alpaca model by more than\n20 percentage points on the Vicuna benchmark (Table 6).\nQL ORA introduces multiple innovations designed to reduce memory use without sacrificing per-\nformance: (1) 4-bit NormalFloat, an information theoretically optimal quantization data type for\nnormally distributed data that yields better empirical results than 4-bit Integers and 4-bit Floats.\n(2) Double Quantization, a method that quantizes the quantization constants, saving an average\nof about 0.37 bits per parameter (approximately 3 GB for a 65B model). (3) Paged Optimizers,\nusing NVIDIA unified memory to avoid the gradient checkpointing memory spikes that occur when\nprocessing a mini-batch with a long sequence length. We combine these contributions into a better\ntuned LoRA approach that includes adapters at every network layer and thereby avoids almost all of\nthe accuracy tradeoffs seen in prior work.\nQLORA’s efficiency enables us to perform an in-depth study of instruction finetuning and chatbot\nperformance on model scales that would be impossible using regular finetuning due to memory\noverhead. Therefore, we train more than 1,000 models across several instruction tuning datasets,\nmodel architectures, and sizes between 80M to 65B parameters. In addition to showing that QL ORA\nrecovers 16-bit performance (§4) and training a state-of-the-art chatbot, Guanaco, (§5), we also\nanalyze trends in the trained models. First, we find that data quality is far more important than\ndataset size, e.g., a 9k sample dataset (OASST1) outperformed a 450k sample dataset (FLAN v2,\nsubsampled) on chatbot performance, even when both are meant to support instruction following\ngeneralization. Second, we show that strong Massive Multitask Language Understanding (MMLU)\nbenchmark performance does not imply strong Vicuna chatbot benchmark performance and vice\nversa—in other words, dataset suitability matters more than size for a given task.\nFurthermore, we also provide a extensive analysis of chatbot performance that uses both human\nraters and GPT-4 for evaluation. We use tournament-style benchmarking where models compete\nagainst each other in matches to produce the best response for a given prompt. The winner of a\nmatch is judged by either GPT-4 or human annotators. The tournament results are aggregated into\nElo scores [16, 17] which determine the ranking of chatbot performance. We find that GPT-4 and\nhuman evaluations largely agree on the rank of model performance in the tournaments, but we also\nfind there are instances of strong disagreement. As such, we highlight that model-based evaluation\nwhile providing a cheap alternative to human-annotation also has its uncertainties.\nWe augment our chatbot benchmark results with a qualitative analysis ofGuanaco models. Our analy-\nsis highlights success and failure cases that were not captured by the quantitative benchmarks.\nWe release all model generations with human and GPT-4 annotations to facilitate further study. We\nopen-source our codebase and CUDA kernels and integrate our methods into the Hugging Face\ntransformers stack [64], making them easily accessible to all. We release a collection of adapters\nfor 7/13/33/65B size models, trained on 8 different instruction following datasets, for a total of 32\ndifferent open sourced, finetuned models.\n2\n\nFigure 1: Different finetuning methods and their memory requirements. QL ORA improves over LoRA by\nquantizing the transformer m"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M_G07_timeframe_correction",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_timeframe_correction",
+        "difficulty": "hard",
+        "what_it_tests": "2 turns: latest turn sửa 'tuần này' → 'hôm nay', phải cập nhật timeframe=day, không giữ week cũ."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin tức AI tuần này"
+        },
+        {
+          "role": "user",
+          "content": "Không, mình muốn tin hôm nay thôi"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "5U AI scales up new digital workforce platform - American Journal of Transportation",
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                "source": "ajot.com",
+                "summary": "“We are not building another chatbot that answers questions and disappears, we are building AI Workers that understand freight operations, carry out the work, and capture the reasoning behind every decision, so teams can scale their knowledge as well as their capacity.”. 5U AI works inside existing freight systems and uses multi-agent AI trained for logistics workflows, including the complex exceptions and manual decisions that make forwarding operations difficult to automate with generic AI tools or legacy automation. The company is already live with forwarders and carriers across Europe, including with TCI International Logistics, where its AI Workers are being used across air and ocean freight operations. 5U AI is growing its team as part of the scale-up, with plans to hire across product, engineering, operations, commercial, and customer functions. “AI is one of the most exciting developments logistics has seen for a generation, but its value will depend on people who understand the industry and want to build practical tools that solve real operational problems,” said Abik.",
+                "score": 0.2506701
+              },
+              {
+                "title": "Senate confirms Jay Clayton as new intelligence czar - The Washington Post",
+                "url": "https://www.washingtonpost.com/national-security/2026/07/28/senate-confirms-jay-clayton-new-intelligence-czar/",
+                "source": "washingtonpost.com",
+                "summary": "# Senate confirms Jay Clayton as new intelligence czar. The Senate confirmed Jay Clayton as director of national intelligence, ending the acting tenure of Bill Pulte, a housing official and Trump loyalist. Jay Clayton appears before the Senate Intelligence Committee earlier this month during a hearing on his nomination to serve as director of national intelligence. The Senate confirmed Jay Clayton as the director of national intelligence Tuesday, ending the tenure of Bill Pulte, a housing official and Trump loyalist, who held the role for more than a month. The 51-to-47 vote was more partisan than expected after Trump nominated Clayton in June. AI & Tech Brief: Reflection AI arrives in Washington. AI & Tech Brief: Anthropic’s army of AI integrators. AI & Tech Brief: The AI gatekeepers. AI & Tech Brief: The techno-optimist’s case. AI & Tech Brief: GOP Chair Eyes AI Query Red Flags. AI & Tech Brief: Dem caucuses to meet on AI.",
+                "score": 0.23725812
+              },
+              {
+                "title": "Moburst develops AI engine optimization capabilities for established companies - TechCrunch",
+                "url": "https://techcrunch.com/press-release/moburst-develops-ai-engine-optimization-capabilities-for-established-companies/",
+                "source": "techcrunch.com",
+                "summary": "Mobile growth agency Moburst has built out a dedicated AI Engine Optimization practice aimed at established companies with existing app portfolios, betting that the category still lacks agencies with real depth rather than a rebranded service page. AI Engine Optimization, more commonly abbreviated AEO for Answer Engine Optimization, is the practice of structuring a brand’s content and web presence so AI systems such as ChatGPT, Perplexity, and Google’s AI Overviews can confidently cite it when answering a user’s question directly, rather than showing a ranked list of links. For established companies vetting an AEO partner, the practical test is whether the agency can point to specific app-store-side work, not just web content changes, and whether it can describe a concrete process for reconciling inconsistent brand descriptions across many independent sources rather than treating that as someone else’s problem.",
+                "score": 0.22859572
+              },
+              {
+                "title": "1,100 AI workers sign letter asking US to support tools that 'pace the frontier of automated AI development' - Business Insider",
+                "url": "https://www.businessinsider.com/ai-open-letter-automated-development-2026-7",
+                "source": "businessinsider.com",
+                "summary": "# Over 1,100 AI workers sign letter asking US to support tools that 'pace the frontier of automated AI development'. Senior officials at some of the nation's leading AI companies say it's time for the federal government to find a way to put the brakes on AI development if it's needed. \"We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development,\" reads an open letter signed by more than 1,100 AI workers from companies including OpenAI, Anthropic, Google, and Meta. The letter zeroes in on \"automated AI development,\" which refers to when AI will be capable of developing itself, something the industry calls \"Recursive Self-Improvement.\" Anthropic has shared that its Claude models are quickly approaching that threshold. Look out for an alert in your inbox the next time a new story is published!",
+                "score": 0.22638187
+              },
+              {
+                "title": "HKT unveils self-developed AI platform HKT.AI One-stop hub for global AI resources, advancing \"AI for All\" in Hong Kong - Voice of Alexandria",
+                "url": "https://www.voiceofalexandria.com/news/national_business_news/hkt-unveils-self-developed-ai-platform-hkt-ai-one-stop-hub-for-global-ai-resources/article_ffd47d45-4254-5797-8fcb-8e30369bcf71.html",
+                "source": "voiceofalexandria.com",
+                "summary": "# HKT unveils self-developed AI platform HKT.AI One-stop hub for global AI resources, advancing \"AI for All\" in Hong Kong. HONG KONG SAR - Media OutReach Newswire - 28 July 2026 - HKT announces the launch of HKT.AI, a one-stop, integrated AI platform that enables businesses and individual customers to access a broad suite of prominent global AI resources through a single and intuitive interface. The platform aims to accelerate the mass adoption of AI in Hong Kong, especially in empowering SMEs in their digital transformation, and advance the vision of \"AI for All.\". HKT.AI aggregates a wide range of Chinese Mainland-based and global AI resources, enabling businesses and individuals to seamlessly access and switch across specialised applications and tools on a single platform to meet diverse work and everyday needs.",
+                "score": 0.2164091
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M_G08_switch_lookup_to_papers",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_switch_lookup_to_papers",
+        "difficulty": "hard",
+        "what_it_tests": "2 turns: explicitly đổi từ tin tức (lookup) sang paper nghiên cứu arXiv → papers, không giữ lookup của turn trước."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin tức mới về mô hình ngôn ngữ lớn hôm nay"
+        },
+        {
+          "role": "user",
+          "content": "Thôi đổi ý, tìm giúp mình paper nghiên cứu về chủ đề này trên arXiv luôn"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {}
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "mô hình ngôn ngữ lớn",
+              "max_results": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "mô hình ngôn ngữ lớn",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "mô hình ngôn ngữ lớn",
+            "api_query": "all:nh AND all:ng AND all:ng",
+            "total_results": 10,
+            "items": [
+              {
+                "arxiv_id": "1303.5170v1",
+                "title": "The Correlation between Dispersion Measure and X-ray Column Density from Radio Pulsars",
+                "summary": "Pulsars are remarkable objects that emit across the entire electromagnetic spectrum, providing a powerful probe of the interstellar medium. In this study, we investigate the relation between dispersion measure (DM) and X-ray absorption column density NH using 68 radio pulsars detected at X-ray energies with the Chandra X-ray Observatory or XMM-Newton. We find a best-fit empirical linear relation of NH (10^20 cm^-2)= 0.30+0.13-0.09 DM (pc cm^-3), which corresponds to an average ionization of 10+4-3%, confirming the ratio of one free electron per ten neutral hydrogen atoms commonly assumed in the literature. We also compare different NH estimates and note that some NH values obtained from X-ray observations are higher than the total Galactic HI column density along the same line of sight, while the optical extinction generally gives the best NH predictions.",
+                "authors": [
+                  "C. He",
+                  "C. -Y. Ng",
+                  "V. M. Kaspi"
+                ],
+                "published": "2013-03-21T05:28:00Z",
+                "updated": "2013-03-21T05:28:00Z",
+                "url": "http://arxiv.org/abs/1303.5170v1",
+                "pdf_url": "https://arxiv.org/pdf/1303.5170v1",
+                "source": "arxiv.org",
+                "primary_category": "astro-ph.HE",
+                "categories": [
+                  "astro-ph.HE"
+                ]
+              },
+              {
+                "arxiv_id": "2203.05536v3",
+                "title": "Non-zero $θ_{13}$, CP-violation and Neutrinoless Double Beta Decay for Neutrino Mixing in the $A_4\\times Z_2\\times Z_3$ Flavor Symmetry Model",
+                "summary": "We study the modification of the Altarelli-Feruglio $A_4$ flavor symmetry model by adding three singlet flavons $ξ'$, $ξ''$ and $ρ$ and the model is augmented with extra $Z_2\\times Z_2^ \\prime$ symmetry to prevent the unwanted terms in our study. The addition of these three flavons lead to two higher order corrections in the form of two perturbation parameters $ε$ and $ε^\\prime$. These corrections yield the deviation from exact tri-bimaximal (TBM) neutrino mixing pattern by producing a non-zero $θ_{13}$ and other neutrino oscillation parameters which are consistent with the latest experimental data. In both the corrections, the neutrino masses are generated via Weinberg operator. The analysis of the perturbation parameters $ε$ and $ε^\\prime$, shows that normal hierarchy (NH) and inverted hierarchy (IH) for $ε$ does not change much. However, as the values of $ε^\\prime$ increases, $θ_{23}$ occupies the lower octant for NH case. We further investigate the neutrinoless double beta decay parmeter $m_{ββ}$ using the parameter space of the model for both normal and inverted hierarchies of neutrino masses.",
+                "authors": [
+                  "Animesh Barman",
+                  "Ng. K. Francis",
+                  "Bikash Thapa",
+                  "Ankur Nath"
+                ],
+                "published": "2022-03-10T18:40:56Z",
+                "updated": "2023-02-26T08:41:01Z",
+                "url": "http://arxiv.org/abs/2203.05536v3",
+                "pdf_url": "https://arxiv.org/pdf/2203.05536v3",
+                "source": "arxiv.org",
+                "primary_category": "hep-ph",
+                "categories": [
+                  "hep-ph"
+                ]
+              },
+              {
+                "arxiv_id": "1206.3420v1",
+                "title": "Validity of quasi-degenerate neutrino mass models and their predictions on baryogenesis",
+                "summary": "Quasi-degenerate neutrino mass models (QDN) which can explain the current data on neutrino masses and mixings,are studied. In the first part, we study the effect of CP-phases on QDN mass matrix obeying $μ-τ$ symmetry in normal hierarchical (QD-NH) and inverted hierarchical (QD-IH) patterns.The numerical predictions are consistent with observed data on solar mixing angle, absolute neutrino mass parameter consistent with neutrinoless double beta decay mass parameter and sum of three absolute neutrino masses from cosmological bound.The neutrino mass matrix is parameterized using only two unknown parameters. The second part deals with the estimation of observed baryon asymmetry of the universe. The prediction is nearly consistent with observation with flavoured thermal leptogenesis scenario. QD-NH model appears to be more favourable than those of QD-IH models.The present analysis shows that the three absolute neutrino masses may exhibit quasi-degenerate pattern in nature. They are far from discrimination at the moment.",
+                "authors": [
+                  "Ng. K. Francis",
+                  "N. Nimai Singh"
+                ],
+                "published": "2012-06-15T10:48:03Z",
+                "updated": "2012-06-15T10:48:03Z",
+                "url": "http://arxiv.org/abs/1206.3420v1",
+                "pdf_url": "https://arxiv.org/pdf/1206.3420v1",
+                "source": "arxiv.org",
+                "primary_category": "hep-ph",
+                "categories": [
+                  "hep-ph"
+                ]
+              },
+              {
+                "arxiv_id": "2311.11611v4",
+                "title": "Phenomenological Implications of $\\boldsymbol{Δ(54)}$ Flavor Symmetry with Triple Inverse Seesaw",
+                "summary": "We present an extension of the $Δ(54)$ flavor symmetry model by incorporating two Standard Model Higgs fields. We generated the neutrino mass matrices with the Triple Inverse Seesaw mechanism. Our numerical analysis reveals deviations from tribimaximal neutrino mixing resulting in a nonzero reactor angle ($θ_{13}$). The atmospheric oscillation parameter ($θ_{23}$) occupies the upper octant. The model predicts Normal Hierarchy (NH) for neutrino masses. The best-fit value is obtained with minimum $χ^2$ analysis. The prediction of the modified model on CP-violating parameters, effective Majorana mass, and Neutrinoless double beta decay phenomenological investigations are found to be in congruous with the current neutrino oscillation data.",
+                "authors": [
+                  "Hrishi Bora",
+                  "Ng. K. Francis"
+                ],
+                "published": "2023-11-20T08:55:43Z",
+                "updated": "2025-01-08T19:20:06Z",
+                "url": "http://arxiv.org/abs/2311.11611v4",
+                "pdf_url": "https://arxiv.org/pdf/2311.11611v4",
+                "source": "arxiv.org",
+                "primary_category": "hep-ph",
+                "categories": [
+                  "hep-ph"
+                ]
+              },
+              {
+                "arxiv_id": "2107.02074v1",
+                "title": "Resonant leptogenesis and TM$_1$ mixing in minimal Type-I seesaw model with S$_4$ symmetry",
+                "summary": "We present an S$_4$ flavour symmetric model within a minimal seesaw framework resulting in mass matrices that leads to TM$_1$ mixing. Minimal seesaw is realized by adding two right-handed neutrinos to the Standard Model. The model predicts Normal Hierarchy (NH) for neutrino masses. Using the constrained six-dimensional parameter space, we have evaluated the effective Majorana neutrino mass, which is the parameter of interest in neutrinoless double beta decay experiments. The possibility of explaining baryogenesis via resonant leptogenesis is also examined within the model. A non-zero, resonantly enhanced CP asymmetry generated from the decay of right-handed neutrinos at the TeV scale is studied, considering flavour effects. The evolution of lepton asymmetry is discussed by solving the set of Boltzmann equations numerically and obtain the value of baryon asymmetry to be $\\lvert η_B \\rvert = 6.3 \\times 10^{-10}$.",
+                "authors": [
+                  "Bikash Thapa",
+                  "Ng. K. Francis"
+                ],
+                "published": "2021-07-05T15:13:31Z",
+                "updated": "2021-07-05T15:13:31Z",
+                "url": "http://arxiv.org/abs/2107.02074v1",
+                "pdf_url": "https://arxiv.org/pdf/2107.02074v1",
+                "source": "arxiv.org",
+                "primary_category": "hep-ph",
+                "categories": [
+                  "hep-ph"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ]
+    },
+    {
+      "id": "M_G09_meta_capability_question",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_meta_capability",
+        "difficulty": "easy",
+        "what_it_tests": "2 turns: câu hỏi meta về khả năng của agent (không phải yêu cầu tóm tắt paper cụ thể) → trả lời thẳng, không gọi paper_text hay tool nào."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Mình đang đọc một paper về diffusion models"
+        },
+        {
+          "role": "user",
+          "content": "Bạn tóm tắt được bao nhiêu trang mỗi lần vậy?"
+        }
+      ],
+      "expect": {
+        "no_tool": true,
+        "behavior": "answer_without_tool"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Mình có thể tóm tắt tối đa 5 trang mỗi lần. Nếu bạn cần tóm tắt một paper cụ thể, hãy cho mình biết arXiv ID hoặc URL của nó!",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "M_G10_sort_by_correction",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_papers_sort_by_correction",
+        "difficulty": "hard",
+        "what_it_tests": "2 turns: 'mới đăng gần đây nhất' → sort_by=submittedDate thay vì mặc định relevance."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm giúp mình paper về diffusion models"
+        },
+        {
+          "role": "user",
+          "content": "Sắp xếp theo bài mới đăng gần đây nhất nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "sort_by": "submittedDate"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": true,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "diffusion models",
+              "max_results": 5,
+              "sort_by": "lastUpdatedDate"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_arg_value",
+        "failures": [
+          "sort_by: expected 'submittedDate', got 'lastUpdatedDate'"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "diffusion models",
+            "max_results": 5,
+            "sort_by": "lastUpdatedDate"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "diffusion models",
+            "api_query": "all:diffusion AND all:models",
+            "total_results": 59381,
+            "items": [
+              {
+                "arxiv_id": "2607.26055v1",
+                "title": "$π\\mathbf{R}^2$: Reactive Real-time Flow Policies",
+                "summary": "Generalist manipulation policies increasingly take the form of action-chunking flow policies built on large pretrained backbones. Such chunks run open-loop, so the policy cannot react to sensory input arriving mid-execution, sacrificing \\emph{reactivity}. Replanning more often would restore it, but the perception-to-action pipeline (a large backbone plus multiple denoising steps) is too slow: this \\emph{latency} forbids frequent replanning and leaves committed actions stale, making such policies ill-suited for dynamic, closed-loop control. We present $π\\mathbf{R}^2$, which makes these policies reactive and real-time while retaining large backbones, expressive multi-modal policies, and multi-action prediction. Built on the per-position noise schedule of diffusion forcing, $π\\mathbf{R}^2$ contributes two ideas. First, it splits conditioning into a fast channel (proprioception, fresh every tick) and an asynchronously updated slow channel (vision-language features), so the policy reacts to proprioception within a chunk while tolerating stale vision. Second, a latency-adaptive flow schedule treats in-flight actions as inpainting conditioning and emits actions in one denoising step per call, letting one trained model adapt to varying hardware latency. Requiring minimal modification to existing architectures, $π\\mathbf{R}^2$ can be finetuned from a pretrained policy: applied to GR00T-N1.7 on a real xArm6+XHand platform, it replans closed-loop roughly $4\\times$ faster than the base policy (~$25$Hz on an A5000 GPU), acting on a fresh observation every $40$ms. Across simulation and real-world manipulation tasks, $π\\mathbf{R}^2$ improves the success rate by up to $23\\%$ in simulation and $30\\%$ in the real world over the strongest baseline. Project page: https://pi-r2-flow.github.io/",
+                "authors": [
+                  "Sungjae Park",
+                  "Shubham Tulsiani"
+                ],
+                "published": "2026-07-28T17:59:31Z",
+                "updated": "2026-07-28T17:59:31Z",
+                "url": "http://arxiv.org/abs/2607.26055v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.26055v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.RO",
+                "categories": [
+                  "cs.RO",
+                  "cs.AI",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2607.26047v1",
+                "title": "S2A2: Audio-Visual Imitation Learning for Manipulation Tasks Using Acoustic Spatial Information",
+                "summary": "Acoustic information provides rich cues about object location, material properties, and changes caused by contact or motion. This paper introduces a new set of acoustic-aware manipulation tasks for imitation learning, in which robots must use auditory cues to determine manipulation targets. These tasks require sound source localization and identification for active exploration in robotic manipulation. Also, we propose a multimodal imitation learning framework, Spatial-Spectral Audio Action (S2A2), that integrates visual features with acoustic spatial and acoustic signal information for the acoustic-aware manipulation tasks. We implemented S2A2 models that integrates policies such as ACT, Diffusion Policy, VQ-BeT, and $π_0$, into our framework. Simulation experiments showed that the proposed method is the most effective for tasks requiring both position and timbre. Furthermore, real-robot experiments confirm the applicability of the proposed tasks and framework to real-world manipulation.",
+                "authors": [
+                  "Kaneyoshi Hiratsuka",
+                  "Benjamin Yen",
+                  "Ryosuke Kojima"
+                ],
+                "published": "2026-07-28T17:56:07Z",
+                "updated": "2026-07-28T17:56:07Z",
+                "url": "http://arxiv.org/abs/2607.26047v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.26047v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.RO",
+                "categories": [
+                  "cs.RO"
+                ]
+              },
+              {
+                "arxiv_id": "2607.26004v1",
+                "title": "Parallel Decoding Distillation for Fast Image and Video Generation",
+                "summary": "Generation in video diffusion or flow models is computationally expensive due to the slow and iterative sampling process. Current state-of-the-art (SOTA) acceleration methods heavily rely on variational score distillation (VSD) and adversarial losses to distill diffusion models into few-step generators. Albeit achieving high-quality video generation, these training losses are notoriously hard to optimize and suffer from mode collapse, leading to loss of video diversity and lack of motion. In this paper, we introduce Parallel Decoding Distillation (PDD), a simplified and scalable trajectory-based distillation method for fast inference of diffusion and flow matching models. Our architecture and training procedure are compatible with any pre-trained model and support sampling with a varying number of function evaluations (NFE). PDD accelerates generation by predicting multiple denoising steps per network evaluation. Conceptually, it learns a representation of the mean velocity without regressing its derivative using JVPs or finite-difference approximations. Our method achieves SOTA performance with 4-8 NFE on LTX-2.3 Text-to-Video/Audio, Wan 14B Text-to-Video, and Qwen-Image Text-to-Image. Moreover, PDD presents a significant improvement in generated video diversity.",
+                "authors": [
+                  "Neta Shaul",
+                  "Chao Liu",
+                  "Arash Vahdat",
+                  "Julius Berner"
+                ],
+                "published": "2026-07-28T17:20:00Z",
+                "updated": "2026-07-28T17:20:00Z",
+                "url": "http://arxiv.org/abs/2607.26004v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.26004v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2607.13656v2",
+                "title": "FreeLit: Paired-Free Indoor Relighting via Physics-Guided Diffusion",
+                "summary": "Image-based indoor scene relighting remains challenging due to the complex interplay between cluttered geometry and local illumination, requiring precise modeling of light position, color, and intensity. Existing data-driven methods implicitly learn this relationship via paired multi-illumination datasets. Nevertheless, this data is costly and fails to scale, which is essential for accurate light-source-level control. Conversely, inverse-rendering methods reduce the data dependency by incorporating physical priors; however, they lack the robustness of intrinsic estimation in challenging conditions. In this paper, we present FreeLit, a paired-free framework for controllable indoor relighting that explicitly manipulates light-source location, color, and intensity. Instead of relying on paired supervision, we construct a physics-guided illumination prior from intrinsic scene properties, generating a structured lightmap along with a pseudo-relit image to guide diffusion-based synthesis. To address instability in intrinsic estimation, especially in low-light scenes, we introduce a relighting-guided intrinsic stabilization strategy that enforces illumination-invariant reflectance through structure-aware distillation and consistency constraints. Furthermore, we propose controllability-oriented evaluation metrics to quantify alignment with user-specified illumination color and intensity. Experimental results demonstrate that FreeLit achieves stable, physically consistent, and controllable relighting, with improved robustness in low-light indoor scenes, without requiring paired supervision.",
+                "authors": [
+                  "Chi-En Yen",
+                  "Duy-Khanh Ngo",
+                  "Wen-Wei Tang",
+                  "Huu-Phu Do",
+                  "Wen-Hsiao Peng",
+                  "Ching-Chun Huang"
+                ],
+                "published": "2026-07-15T10:03:22Z",
+                "updated": "2026-07-28T16:53:17Z",
+                "url": "http://arxiv.org/abs/2607.13656v2",
+                "pdf_url": "https://arxiv.org/pdf/2607.13656v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV"
+                ]
+              },
+              {
+                "arxiv_id": "2607.25962v1",
+                "title": "LaP-Forensics: Latent-Pixel Consistency Guided Multimodal Reasoning for Deepfake Detection",
+                "summary": "Recent generative models can produce images with few obvious visual artifacts, weakening detectors and explanations that rely only on surface appearance. We present LaP-Forensics, a multimodal framework that augments RGB semantics with reconstruction-based forensic evidence. A frozen Stable Diffusion DDIM inversion-reconstruction model provides a fixed reconstruction reference, and its residual map measures local compatibility with that reference. Independent projectors encode the RGB image and residual map before a structured Where-What-Why model predicts a textual analysis and an artifact mask.Supervised fine-tuning is followed by Group Relative Policy Optimization (GRPO), whose reward combines mask overlap with output-structure and evidence-reference terms. These text-side terms encourage the model to refer to the consistency map but do not constitute a verifier of free-form textual truth. A separate image-level head fuses RGB and DDIM-residual class features. Experiments show cross-generator detection on UniversalFakeDetect and competitive artifact localization on the official SynthScars benchmark. Controlled cue-construction, inversion-horizon, component, reward-term, and counterfactual analyses support the utility of the residual stream under the evaluated settings, while free-form textual faithfulness and reliability under post-processing remain open limitations.",
+                "authors": [
+                  "Can Wang",
+                  "Yuhao Wang",
+                  "Yushe Cao",
+                  "Canran Xiao",
+                  "Fei Shen"
+                ],
+                "published": "2026-07-28T16:45:52Z",
+                "updated": "2026-07-28T16:45:52Z",
+                "url": "http://arxiv.org/abs/2607.25962v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.25962v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ]
+    }
+  ]
+}
