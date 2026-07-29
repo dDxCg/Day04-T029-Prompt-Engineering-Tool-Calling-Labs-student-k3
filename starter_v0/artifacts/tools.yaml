@@ -38,7 +38,7 @@ tools:
       required: [query]
 
   - name: lookup
-    description: "Tra cứu thông tin trên internet."
+    description: "Tra cứu thông tin/tin tức trên internet (qua Tavily). Bước 1 của pipeline tin tức: dùng để tìm bài viết phù hợp trước khi fetch nội dung đầy đủ."
     parameters:
       type: object
       properties:
@@ -49,7 +49,7 @@ tools:
       required: [query]
 
   - name: fetch
-    description: "Lấy nội dung từ một địa chỉ."
+    description: "Lấy nội dung đầy đủ từ một URL cụ thể (qua Firecrawl). Bước 2 của pipeline tin tức: dùng trên URL bài viết tốt nhất lấy được từ lookup, hoặc khi người dùng đã đưa sẵn một URL."
     parameters:
       type: object
       properties:
@@ -57,7 +57,7 @@ tools:
       required: [url]
 
   - name: format
-    description: "Trình bày dữ liệu đã có thành văn bản."
+    description: "Trình bày dữ liệu đã có (từ lookup/fetch/timeline/social_search/wiki_lookup) thành digest markdown, giữ url nguồn trong từng item. Bước 3 của pipeline tin tức, trước khi viết tóm tắt AI. Không tự fetch/tìm dữ liệu."
     parameters:
       type: object
       properties:
@@ -77,14 +77,23 @@ tools:
         headline: {type: string, default: "", description: "Tiêu đề"}
       required: [items, template]
 
-  # ---------------- Bonus tools ----------------
-  - name: send
-    description: "Gửi một đoạn văn bản đi."
+  - name: wiki_lookup
+    description: "Tóm tắt nền tảng từ Wikipedia cho một chủ đề/người/khái niệm cụ thể (định nghĩa, tiểu sử, sự kiện lịch sử). Không dùng cho tin tức thời sự mới nhất (dùng lookup) hoặc khi đã có URL cụ thể (dùng fetch)."
     parameters:
       type: object
       properties:
-        text: {type: string, default: "", description: "Nội dung"}
-        confirmed: {type: boolean, default: false, description: "Cờ xác nhận"}
+        query: {type: string, default: "", description: "Chủ đề/thực thể cần tra cứu"}
+        lang: {type: string, default: "en", description: "Mã ngôn ngữ Wikipedia, ví dụ en, vi"}
+      required: [query]
+
+  # ---------------- Bonus tools ----------------
+  - name: send
+    description: "Gửi một đoạn văn bản (tóm tắt AI kèm link nguồn bài viết/paper) lên Telegram. Hành động nhạy cảm: chỉ gọi với confirmed=true SAU KHI đã clarify(response_type=yes_no) và người dùng xác nhận đồng ý ở turn trước."
+    parameters:
+      type: object
+      properties:
+        text: {type: string, default: "", description: "Nội dung gửi đi — nên là tóm tắt AI kèm link nguồn"}
+        confirmed: {type: boolean, default: false, description: "Cờ xác nhận; chỉ true sau khi người dùng đã đồng ý qua clarify yes_no"}
       required: [text]
 
   - name: policy
@@ -98,7 +107,7 @@ tools:
       required: [query]
 
   - name: papers
-    description: "Tìm bài báo khoa học."
+    description: "Tìm bài báo khoa học trên arXiv. Bước 1 của pipeline paper: dùng để tìm paper phù hợp trước khi đọc nội dung chi tiết bằng paper_text."
     parameters:
       type: object
       properties:
@@ -108,7 +117,7 @@ tools:
       required: [query]
 
   - name: paper_text
-    description: "Lấy nội dung text của một bài báo."
+    description: "Tải và trích text nội dung chi tiết của một paper arXiv cụ thể (theo arxiv_url/id). Bước 2 của pipeline paper: dùng trên paper tốt nhất lấy được từ papers, trước khi viết tóm tắt AI."
     parameters:
       type: object
       properties:
