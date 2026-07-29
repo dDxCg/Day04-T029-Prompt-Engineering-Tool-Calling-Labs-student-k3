@@ -17,6 +17,9 @@ starter/
 # Tool scratch output
 arxiv_papers/
 
+# Team-local only — notes, design prompts, scratch. Never pushed.
+_local/
+
 # OS / editor
 .DS_Store
 Thumbs.db
