@@ -1,0 +1,1420 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Agent — bản mẫu UI</title>
+<style>
+/* ==========================================================================
+   BIẾN MÀU — Light là mặc định, Dark bật bằng [data-theme="dark"] trên thẻ html
+   ========================================================================== */
+:root{
+  --bg:#FFFFFF;            /* nền khung chat */
+  --bg-soft:#F9F9F9;       /* nền chìm: đầu bảng, khối phụ */
+  --sidebar:#F5F5F5;
+  --sidebar-hover:#EFEFEF;
+  --sidebar-active:#E6E6E6;
+  --text:#1F1F1F;
+  --text-2:#333333;
+  --muted:#5D5D5D;         /* 6,2:1 trên #F5F5F5 */
+  --line:#E5E5E5;
+  --line-strong:#D4D4D4;
+
+  --accent:#10A37F;
+  --accent-hover:#0E8F70;
+  --accent-fg:#FFFFFF;
+  --accent-soft:#E7F6F1;
+
+  --bubble-user:#F0F0F0;   /* bubble người dùng — kiểu ChatGPT: xám nhạt, chữ đen */
+  --code-bg:#F6F6F6;
+  --code-bar:#ECECEC;
+
+  --ok:#15803D;   --ok-bg:#DCFCE7;  --ok-fg:#166534;
+  --bad:#B91C1C;  --bad-bg:#FEE2E2; --bad-fg:#B91C1C;
+  --warn:#B45309; --warn-bg:#FEF3C7;--warn-fg:#92400E;
+  --quiet-bg:#ECECEC; --quiet-fg:#3A3A3A;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --r-sm:6px; --r-md:12px; --r-lg:20px;
+  --shadow:0 8px 24px rgba(0,0,0,.12);
+}
+:root[data-theme="dark"]{
+  --bg:#212121;
+  --bg-soft:#1B1B1B;
+  --sidebar:#171717;
+  --sidebar-hover:#242424;
+  --sidebar-active:#2E2E2E;
+  --text:#ECECEC;
+  --text-2:#D6D6D6;
+  --muted:#A6A6A6;
+  --line:#343434;
+  --line-strong:#454545;
+
+  --accent:#10A37F;
+  --accent-hover:#13B78F;
+  --accent-fg:#08120F;
+  --accent-soft:#12312A;
+
+  --bubble-user:#2F2F2F;
+  --code-bg:#1A1A1A;
+  --code-bar:#262626;
+
+  --ok:#4ADE80;   --ok-bg:#14321F;  --ok-fg:#86EFAC;
+  --bad:#F87171;  --bad-bg:#3A1A1A; --bad-fg:#FCA5A5;
+  --warn:#FBBF24; --warn-bg:#3A2A0C;--warn-fg:#FCD34D;
+  --quiet-bg:#2E2E2E; --quiet-fg:#D6D6D6;
+  --shadow:0 8px 24px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Be Vietnam Pro",Inter,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+h1,h2,h3,h4{line-height:1.3;margin:0;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+code,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono",monospace;font-size:13px}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ================= Khung thử — KHÔNG thuộc UI thật ================= */
+.proto{
+  flex:none;border-bottom:2px dashed var(--line-strong);background:var(--warn-bg);
+  padding:8px var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);align-items:center;
+}
+.proto__tag{
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--warn-fg);border:1px solid var(--warn-fg);border-radius:999px;padding:2px 9px;
+}
+.proto__note{font-size:12px;color:var(--warn-fg);max-width:46ch}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;background:var(--bg)}
+.seg button{padding:6px 11px;font-size:13px;min-height:32px}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);font-weight:500}
+
+/* ================= BỐ CỤC ================= */
+.app{flex:1;min-height:0;display:grid;grid-template-columns:260px minmax(0,1fr)}
+.app.is-collapsed{grid-template-columns:0 minmax(0,1fr)}
+.scrim{display:none}
+
+/* ---------------- SIDEBAR ---------------- */
+.sidebar{
+  background:var(--sidebar);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+}
+.side-top{padding:var(--s3) var(--s3) var(--s2);display:flex;flex-direction:column;gap:var(--s2)}
+.side-brand{display:flex;align-items:center;gap:var(--s2);padding:2px 4px var(--s2)}
+.side-brand__logo{
+  width:26px;height:26px;flex:none;border-radius:8px;background:var(--accent);color:var(--accent-fg);
+  display:grid;place-items:center;font-size:14px;font-weight:700;
+}
+.side-brand__name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{
+  width:34px;height:34px;flex:none;border-radius:var(--r-sm);display:grid;place-items:center;
+  color:var(--muted);font-size:16px;
+}
+.icon-btn:hover{background:var(--sidebar-hover);color:var(--text)}
+.newchat{
+  display:flex;align-items:center;gap:var(--s2);width:100%;text-align:left;
+  border:1px solid var(--line-strong);border-radius:var(--r-md);
+  padding:10px var(--s3);min-height:42px;font-size:14px;font-weight:500;background:var(--bg);
+}
+.newchat:hover{background:var(--sidebar-hover)}
+.search{position:relative}
+.search input{
+  width:100%;background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r-md);
+  padding:9px var(--s3) 9px 32px;font-size:14px;min-height:40px;
+}
+.search input::placeholder{color:var(--muted)}
+.search__ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px}
+
+.side-list{flex:1;overflow-y:auto;padding:var(--s2) var(--s2) var(--s3);min-height:0}
+.side-h{
+  font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  padding:var(--s3) var(--s2) var(--s1);
+}
+.conv{position:relative;display:flex;align-items:center;border-radius:var(--r-sm)}
+.conv:hover,.conv:focus-within{background:var(--sidebar-hover)}
+.conv.is-active{background:var(--sidebar-active)}
+.conv__btn{
+  flex:1;min-width:0;text-align:left;padding:8px var(--s2);font-size:14px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-2);min-height:36px;
+}
+.conv.is-active .conv__btn{color:var(--text);font-weight:500}
+.conv__pin{flex:none;font-size:11px;color:var(--muted);padding-right:2px}
+.conv__more{
+  flex:none;width:28px;height:28px;margin-right:4px;border-radius:var(--r-sm);
+  color:var(--muted);opacity:0;font-size:15px;line-height:1;
+}
+.conv:hover .conv__more,.conv:focus-within .conv__more,.conv__more[aria-expanded="true"]{opacity:1}
+.conv__more:hover{background:var(--line);color:var(--text)}
+.menu{
+  position:absolute;right:6px;top:calc(100% - 2px);z-index:30;min-width:160px;
+  background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);
+  box-shadow:var(--shadow);padding:var(--s1);
+}
+.menu[hidden]{display:none}
+.menu--up{top:auto;bottom:calc(100% - 2px)}
+.menu button{
+  display:flex;align-items:center;gap:var(--s2);width:100%;text-align:left;
+  padding:8px var(--s2);border-radius:var(--r-sm);font-size:14px;min-height:36px;
+}
+.menu button:hover{background:var(--sidebar-hover)}
+.menu button.danger{color:var(--bad)}
+
+.side-foot{flex:none;border-top:1px solid var(--line);padding:var(--s2)}
+.acct{display:flex;align-items:center;gap:var(--s2);width:100%;text-align:left;padding:8px;border-radius:var(--r-sm)}
+.acct:hover{background:var(--sidebar-hover)}
+.avatar{
+  width:30px;height:30px;flex:none;border-radius:50%;background:var(--accent);color:var(--accent-fg);
+  display:grid;place-items:center;font-size:13px;font-weight:700;
+}
+.acct__txt{min-width:0}
+.acct__n{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acct__p{font-size:12px;color:var(--muted);white-space:nowrap}
+
+/* ---------------- KHUNG CHAT ---------------- */
+.main{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bg)}
+.chathead{
+  flex:none;display:flex;align-items:center;gap:var(--s3);
+  padding:10px var(--s4);border-bottom:1px solid var(--line);background:var(--bg);
+}
+.chathead__title{min-width:0;flex:1}
+.chathead h1{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.runmeta{display:flex;flex-wrap:wrap;gap:4px var(--s2);align-items:center;font-size:12px;color:var(--muted);margin-top:1px}
+.runmeta .mono{font-size:12px}
+.runmeta__sep{opacity:.5}
+.runmeta__k{font-size:11px;text-transform:uppercase;letter-spacing:.05em;opacity:.7}
+.chathead__right{display:flex;align-items:center;gap:var(--s2);flex:none}
+
+.scroll{flex:1;overflow-y:auto;min-height:0;scroll-behavior:smooth}
+.thread{max-width:830px;margin:0 auto;padding:var(--s5) var(--s4) var(--s2)}
+
+/* ---------- Chip ---------- */
+.chip{
+  display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;
+  font-size:12px;font-weight:600;background:var(--quiet-bg);color:var(--quiet-fg);white-space:nowrap;
+}
+.chip--ok{background:var(--ok-bg);color:var(--ok-fg)}
+.chip--wait{background:var(--warn-bg);color:var(--warn-fg)}
+.chip--bad{background:var(--bad-bg);color:var(--bad-fg)}
+.chip--run{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+
+/* ---------- Lượt hội thoại ---------- */
+.turn{margin-bottom:var(--s5)}
+.turn--user{display:flex;justify-content:flex-end}
+.bubble-user{
+  background:var(--bubble-user);border-radius:var(--r-lg);padding:10px var(--s4);
+  max-width:min(72ch,80%);white-space:pre-line;
+}
+.agent{display:flex;gap:var(--s3);align-items:flex-start}
+.agent__ava{
+  width:28px;height:28px;flex:none;margin-top:2px;border-radius:50%;
+  border:1px solid var(--line-strong);display:grid;place-items:center;font-size:13px;background:var(--bg);
+}
+.agent__body{flex:1;min-width:0}
+
+/* ---------- Nội dung câu trả lời ---------- */
+.md>*+*{margin-top:var(--s3)}
+.md h2{font-size:18px;margin-top:var(--s5)}
+.md h2:first-child{margin-top:0}
+.md ol,.md ul{margin:0;padding-left:1.35em}
+.md li{margin-bottom:var(--s2)}
+.md .src{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md)}
+table.tbl{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+table.tbl th,table.tbl td{padding:9px var(--s3);text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+table.tbl thead th{background:var(--bg-soft);font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+table.tbl tbody tr:last-child td{border-bottom:0}
+
+.codeblock{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--code-bg)}
+.codeblock__bar{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s3);
+  background:var(--code-bar);padding:5px var(--s3);font-size:12px;color:var(--muted);
+}
+.codeblock pre{margin:0;padding:var(--s3);overflow-x:auto}
+.codeblock code{white-space:pre;line-height:1.55;color:var(--text-2)}
+.copybtn{
+  display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);
+  padding:4px 8px;border-radius:var(--r-sm);min-height:28px;
+}
+.copybtn:hover{background:var(--line);color:var(--text)}
+
+/* ---------- Toolbar dưới mỗi phản hồi ---------- */
+.acts{display:flex;flex-wrap:wrap;gap:2px;margin-top:var(--s3)}
+.acts button{
+  display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;
+  padding:6px 8px;border-radius:var(--r-sm);min-height:34px;
+}
+.acts button:hover{background:var(--sidebar-hover);color:var(--text)}
+.acts button[aria-pressed="true"]{color:var(--accent);background:var(--accent-soft)}
+
+/* --- Độ trễ của lượt: luôn hiện ngay dưới response, không phải bung mới thấy --- */
+.lat{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px var(--s2);margin-top:var(--s3);font-size:13px;color:var(--muted)}
+.lat b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.lat__split{opacity:.85}
+.lat--slow b{color:var(--warn-fg)}
+.lat--bad b{color:var(--bad-fg)}
+
+/* ================= KHỐI ĐẶC THÙ LAB ================= */
+/* --- Dòng trạng thái đang chạy --- */
+.runbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s3);
+  border:1px solid var(--accent);background:var(--accent-soft);color:var(--text);
+  border-radius:var(--r-md);padding:10px var(--s3);margin-bottom:var(--s3);font-size:14px;
+}
+.runbar__tool{font-weight:600}
+.runbar__args{color:var(--muted);min-width:0;word-break:break-word}
+.runbar__t{margin-left:auto;color:var(--muted);font-size:13px;white-space:nowrap}
+
+/* --- Log tool — MỘT component duy nhất cho cả 4 trạng thái --- */
+.toollog{border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg-soft);margin-top:var(--s4)}
+.toollog>summary{
+  padding:10px var(--s3);cursor:pointer;min-height:44px;
+  display:flex;align-items:center;gap:var(--s2) var(--s3);flex-wrap:wrap;font-size:14px;
+}
+.toollog__t{font-weight:600}
+.toollog__m{color:var(--muted);font-size:13px}
+.tl{list-style:none;margin:0;padding:0 var(--s3) var(--s2);font-size:14px}
+.tl li{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2) var(--s3);padding:9px 0;border-top:1px solid var(--line)}
+.round{
+  font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--quiet-fg);background:var(--quiet-bg);
+  border:1px solid var(--line-strong);border-radius:999px;padding:1px 8px;flex:none;white-space:nowrap;
+}
+.round--now{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.tl .m{flex:none;width:1.1em;text-align:center;font-weight:700}
+.tl .m.ok{color:var(--ok)}
+.tl .m.bad{color:var(--bad)}
+.tl .n{font-weight:600;flex:none}
+.tl .a{color:var(--muted);flex:1 1 16ch;min-width:0;word-break:break-word}
+.tl .a b{font-weight:500;color:var(--muted)}
+.tl .d{color:var(--muted);font-size:13px;white-space:nowrap;margin-left:auto}
+.tl .err{color:var(--bad);font-weight:600}
+.tl li.pending,.tl li.pending .n{color:var(--muted);font-weight:400}
+.toollog__foot{
+  font-size:13px;color:var(--muted);padding:var(--s3);border-top:1px solid var(--line);
+}
+/* Chi tiết sâu hơn (bảng nguồn, JSON thô) — expander con nằm TRONG log tool */
+.sub{border-top:1px solid var(--line);background:var(--bg)}
+.sub>summary{padding:9px var(--s3);cursor:pointer;min-height:40px;display:flex;align-items:center;gap:var(--s2);font-size:13px;color:var(--muted)}
+.sub>summary:hover{color:var(--text)}
+.sub__body{padding:0 var(--s3) var(--s3)}
+
+/* --- So sánh version: hai transcript đặt cạnh nhau --- */
+.cmp-bar{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3);align-items:center;margin-bottom:var(--s4)}
+.cmp-bar label{font-size:13px;color:var(--muted)}
+.cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3);align-items:start}
+.cmp__col{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--bg);min-width:0}
+.cmp__col.is-better{border-color:var(--accent)}
+.cmp__h{background:var(--bg-soft);padding:var(--s3);border-bottom:1px solid var(--line)}
+.cmp__h .mono{display:block;font-size:13px;word-break:break-all}
+.cmp__sub{font-size:12px;color:var(--muted);margin-top:2px}
+.cmp__row{display:flex;gap:var(--s3);padding:9px var(--s3);border-bottom:1px solid var(--line);font-size:14px}
+.cmp__row:last-child{border-bottom:0}
+.cmp__k{flex:none;width:9ch;color:var(--muted);font-size:13px}
+.cmp__v{flex:1;min-width:0;word-break:break-word}
+.cmp__chain{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.cmp__chain code{background:var(--quiet-bg);border-radius:var(--r-sm);padding:1px 6px}
+.cmp__chain code.bad{background:var(--bad-bg);color:var(--bad-fg)}
+.cmp__chain code.good{background:var(--ok-bg);color:var(--ok-fg)}
+.cmp__chain .arw{color:var(--muted)}
+.delta{font-weight:600}
+.delta--good{color:var(--ok)}
+.delta--bad{color:var(--bad)}
+
+/* --- Banner --- */
+.banner{border-radius:var(--r-md);padding:var(--s3) var(--s4);margin-top:var(--s4);border-left:4px solid;display:flex;gap:var(--s3);align-items:flex-start}
+.banner h4{font-size:15px;margin-bottom:2px}
+.banner p{font-size:14px}
+.banner--wait{background:var(--warn-bg);border-color:var(--warn)}
+.banner--wait h4,.banner--wait p{color:var(--warn-fg)}
+.banner--bad{background:var(--bad-bg);border-color:var(--bad)}
+.banner--bad h4,.banner--bad p{color:var(--bad-fg)}
+
+.t-ok{color:var(--ok)}
+.t-bad{color:var(--bad)}
+.t-muted{color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin 1.1s linear infinite}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}.scroll{scroll-behavior:auto}}
+
+/* ---------- Màn hình rỗng ---------- */
+.empty{max-width:720px;margin:0 auto;padding-top:var(--s6);text-align:center}
+.empty h2{font-size:24px;margin-bottom:var(--s3)}
+.empty p{color:var(--muted);max-width:60ch;margin:0 auto}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s2);margin-top:var(--s5);text-align:left}
+.scen button{
+  background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r-md);
+  padding:var(--s3);min-height:44px;font-size:14px;color:var(--text-2);
+}
+.scen button:hover{border-color:var(--accent);background:var(--bg-soft)}
+.scen b{display:block;font-size:12px;color:var(--accent);margin-bottom:2px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- Ô nhập ---------- */
+.composer-wrap{flex:none;padding:var(--s2) var(--s4) var(--s3);background:var(--bg)}
+.composer{
+  max-width:830px;margin:0 auto;background:var(--bg);border:1px solid var(--line-strong);
+  border-radius:26px;padding:6px 6px 6px var(--s3);display:flex;align-items:flex-end;gap:var(--s2);
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+.composer:focus-within{border-color:var(--accent)}
+.composer textarea{
+  flex:1;background:transparent;border:0;resize:none;padding:9px 0;max-height:200px;
+  overflow-y:auto;line-height:1.5;min-height:24px;
+}
+.composer textarea:focus{outline:none}
+.composer textarea::placeholder{color:var(--muted)}
+.cbtn{
+  width:36px;height:36px;flex:none;border-radius:50%;display:grid;place-items:center;
+  color:var(--muted);font-size:16px;
+}
+.cbtn:hover{background:var(--sidebar-hover);color:var(--text)}
+.cbtn--send{background:var(--accent);color:var(--accent-fg)}
+.cbtn--send:hover{background:var(--accent-hover);color:var(--accent-fg)}
+.hint{max-width:830px;margin:6px auto 0;font-size:12px;color:var(--muted);text-align:center}
+
+/* ---------- Modal Cài đặt ---------- */
+.modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:var(--s4)}
+.modal[hidden]{display:none}
+.modal__bd{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.modal__box{
+  position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);
+  box-shadow:var(--shadow);width:min(760px,100%);max-height:min(620px,90vh);display:flex;flex-direction:column;overflow:hidden;
+}
+.modal__h{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding:var(--s3) var(--s4);border-bottom:1px solid var(--line)}
+.modal__h h2{font-size:17px}
+.modal__body{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:0;flex:1}
+.tabs{border-right:1px solid var(--line);background:var(--bg-soft);padding:var(--s2);overflow-y:auto}
+.tabs button{
+  display:flex;align-items:center;gap:var(--s2);width:100%;text-align:left;
+  padding:9px var(--s2);border-radius:var(--r-sm);font-size:14px;color:var(--text-2);min-height:38px;
+}
+.tabs button:hover{background:var(--sidebar-hover)}
+.tabs button[aria-selected="true"]{background:var(--sidebar-active);color:var(--text);font-weight:500}
+.panes{padding:var(--s4);overflow-y:auto}
+.pane[hidden]{display:none}
+.pane h3{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:var(--s2)}
+.row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center;justify-content:space-between;padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row__t{min-width:0;flex:1 1 22ch}
+.row__t b{display:block;font-weight:500}
+.row__t span{font-size:13px;color:var(--muted)}
+.field{
+  background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  padding:8px 10px;font-size:14px;min-height:38px;
+}
+.field--num{width:88px}
+.switch{
+  width:44px;height:26px;flex:none;border-radius:999px;background:var(--line-strong);position:relative;transition:background .15s;
+}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s}
+.switch[aria-pressed="true"]{background:var(--accent)}
+.switch[aria-pressed="true"]::after{transform:translateX(18px)}
+.btn{background:var(--accent);color:var(--accent-fg);border-radius:var(--r-sm);padding:9px var(--s4);font-weight:500;min-height:38px}
+.btn:hover{background:var(--accent-hover)}
+.btn--ghost{background:var(--bg);border:1px solid var(--line-strong);color:var(--text)}
+.btn--ghost:hover{background:var(--sidebar-hover)}
+.btn--danger{background:var(--bg);border:1px solid var(--line-strong);color:var(--bad)}
+.btnrow{display:flex;flex-wrap:wrap;gap:var(--s2)}
+
+/* ---------- Ẩn/hiện theo trạng thái ---------- */
+[data-when]{display:none}
+
+/* ---------- Toast copy ---------- */
+.toast{
+  position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:80;
+  background:var(--text);color:var(--bg);padding:8px var(--s4);border-radius:999px;font-size:13px;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.toast.on{opacity:1}
+
+/* ---------- Responsive ---------- */
+@media (max-width:768px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .app.is-collapsed{grid-template-columns:minmax(0,1fr)}
+  .sidebar{
+    position:fixed;top:0;bottom:0;left:0;width:min(84vw,300px);z-index:50;
+    transform:translateX(-100%);transition:transform .22s ease;border-right:1px solid var(--line);
+  }
+  .app.drawer-open .sidebar{transform:none}
+  .scrim{display:block;position:fixed;inset:0;z-index:45;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s}
+  .app.drawer-open .scrim{opacity:1;pointer-events:auto}
+  .thread{padding:var(--s4) var(--s3) var(--s2)}
+  .composer-wrap{padding:var(--s2) var(--s3) var(--s3)}
+  .bubble-user{max-width:92%}
+  .modal__body{grid-template-columns:minmax(0,1fr)}
+  .tabs{display:flex;gap:var(--s1);overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}
+  .tabs button{white-space:nowrap;width:auto}
+  .tl .d{margin-left:0}
+  .cmp{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.sidebar{transition:none}}
+</style>
+
+<!-- ============== Khung thử: KHÔNG thuộc UI thật ============== -->
+<div class="proto">
+  <span class="proto__tag">Khung thử</span>
+  <p class="proto__note">Bản mẫu tĩnh, dữ liệu giả. Thanh này <b>không</b> thuộc UI thật — chỉ để xem nhanh các trạng thái mà app thật tự chuyển.</p>
+  <div class="seg" id="segState">
+    <button aria-pressed="false" data-state="empty">Rỗng</button>
+    <button aria-pressed="false" data-state="running">Đang chạy</button>
+    <button aria-pressed="true"  data-state="answered">Đã trả lời</button>
+    <button aria-pressed="false" data-state="waiting">Chờ bổ sung</button>
+    <button aria-pressed="false" data-state="fake">Link bịa</button>
+    <button aria-pressed="false" data-state="error">Lỗi provider</button>
+    <button aria-pressed="false" data-state="compare">So sánh version</button>
+  </div>
+</div>
+
+<div class="app" id="app" data-state="answered">
+  <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="sidebar" id="sidebar" aria-label="Danh sách hội thoại">
+    <div class="side-top">
+      <div class="side-brand">
+        <span class="side-brand__logo" aria-hidden="true">RA</span>
+        <span class="side-brand__name">Research Agent</span>
+        <button class="icon-btn" id="btnCollapse" style="margin-left:auto" aria-label="Thu gọn thanh bên" title="Thu gọn thanh bên">⟨⟨</button>
+      </div>
+
+      <button class="newchat"><span aria-hidden="true">✚</span> Cuộc trò chuyện mới</button>
+
+      <div class="search">
+        <span class="search__ico" aria-hidden="true">🔍</span>
+        <label class="sr" for="q">Tìm trong hội thoại</label>
+        <input id="q" type="search" placeholder="Tìm hội thoại…">
+      </div>
+    </div>
+
+    <nav class="side-list">
+      <div class="side-h">📌 Đã ghim</div>
+      <div class="conv is-active">
+        <button class="conv__btn"><span class="conv__pin" aria-hidden="true">📌</span> Tin AI tuần này — brief 3 làn</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Bỏ ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+      <div class="conv">
+        <button class="conv__btn"><span class="conv__pin" aria-hidden="true">📌</span> So sánh v2 vs v3 trên eval</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Bỏ ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+
+      <div class="side-h">Hôm nay</div>
+      <div class="conv">
+        <button class="conv__btn">Paper agent evaluation mới nhất</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+      <div class="conv">
+        <button class="conv__btn">Top repo GitHub AI agent nhiều sao</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+      <div class="conv">
+        <button class="conv__btn">Vì sao fetch reuters.com trả 403</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+
+      <div class="side-h">7 ngày qua</div>
+      <div class="conv">
+        <button class="conv__btn">Chuẩn bị kịch bản demo Day04</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+      <div class="conv">
+        <button class="conv__btn">Tóm tắt EU AI Act cho doanh nghiệp VN</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+      <div class="conv">
+        <button class="conv__btn">Prompt cho tool clarify</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+      <div class="conv">
+        <button class="conv__btn">Thử tool telegram trong sandbox</button>
+        <button class="conv__more" aria-haspopup="menu" aria-expanded="false" aria-label="Tuỳ chọn hội thoại">⋯</button>
+        <div class="menu" hidden role="menu"><button role="menuitem">📌 Ghim</button><button role="menuitem">✎ Đổi tên</button><button role="menuitem" class="danger">🗑 Xoá</button></div>
+      </div>
+    </nav>
+
+    <div class="side-foot">
+      <button class="acct" data-open-settings>
+        <span class="avatar" aria-hidden="true">T</span>
+        <span class="acct__txt">
+          <span class="acct__n">Trang Lương</span>
+          <span class="acct__p">Gói Lab · Day04 · nâng cấp</span>
+        </span>
+      </button>
+      <button class="acct" data-open-settings>
+        <span class="icon-btn" aria-hidden="true" style="width:30px;height:30px">⚙</span>
+        <span class="acct__txt"><span class="acct__n">Cài đặt</span></span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== KHUNG CHAT ==================== -->
+  <div class="main">
+    <header class="chathead">
+      <button class="icon-btn" id="btnOpen" aria-label="Mở thanh bên" title="Mở thanh bên">☰</button>
+      <div class="chathead__title">
+        <h1>Tin AI tuần này — brief 3 làn</h1>
+        <!-- Header luôn hiện đủ 5 thứ để biết đang xem bản nào:
+             transcript_id · run · artifact_version · provider · model -->
+        <div class="runmeta">
+          <span class="runmeta__k">transcript</span>
+          <span class="mono" title="transcript_id đầy đủ: v3_openrouter_20260729T104233481902">v3_openrouter_…233481902</span>
+          <span class="runmeta__sep">·</span>
+          <span class="runmeta__k">run</span>
+          <span class="mono">20260729T104233</span>
+          <span>· lượt 3</span>
+          <span class="runmeta__sep">·</span>
+          <span class="mono">v3+p1a2b3c4d5e6+t9f8e7d6c5b4</span>
+          <span class="runmeta__sep">·</span>
+          <span>openrouter</span><span class="runmeta__sep">·</span>
+          <span class="mono">openai/gpt-4o-mini</span>
+        </div>
+      </div>
+      <div class="chathead__right">
+        <span class="chip chip--run" data-when="state:running"><span class="spin">⟳</span> Vòng 2/4</span>
+        <span class="chip chip--ok" data-when="state:answered state:fake">✓ Xong · 3/4 vòng</span>
+        <span class="chip chip--wait" data-when="state:waiting">⏸ Chờ bổ sung</span>
+        <span class="chip chip--bad" data-when="state:error">✗ Lỗi provider</span>
+        <button class="icon-btn" id="btnCompare" aria-label="So sánh version" title="So sánh version">⇄</button>
+        <button class="icon-btn" data-open-settings aria-label="Cài đặt" title="Cài đặt">⚙</button>
+      </div>
+    </header>
+
+    <div class="scroll" id="scroll">
+      <div class="thread">
+
+        <!-- ---------- Trạng thái RỖNG ---------- -->
+        <div data-when="state:empty">
+          <div class="empty">
+            <h2>Hỏi một câu về tin AI, nhận lại một bản brief có dẫn nguồn</h2>
+            <p>
+              Agent tìm ở ba làn — tin báo chí, paper arXiv, repo GitHub — rồi <b>mở nguồn ra đọc</b>
+              trước khi viết. Mỗi mục trong brief đều kèm link gốc, và ngay dưới câu trả lời có
+              danh sách <b>agent đã gọi tool nào, ở vòng mấy, với tham số gì</b>.
+            </p>
+            <p style="margin-top:var(--s3);font-size:14px">
+              Ngoài phạm vi: chuyện không thuộc research AI, và dữ liệu realtime nằm ngoài 10 tool đang có.
+            </p>
+            <div class="scen">
+              <button><b>Cả ba làn</b>Tổng hợp tin AI tuần này: 3 tin báo, 2 paper arXiv mới và 2 repo GitHub AI nhiều sao, mỗi mục 2–3 câu kèm link gốc.</button>
+              <button><b>Làn paper</b>Tìm 3 paper arXiv mới nhất về AI agent evaluation, đọc rồi tóm tắt mỗi bài 2 câu kèm link arXiv.</button>
+              <button><b>Làn repo</b>Top 5 repo GitHub về AI agent nhiều sao nhất, mỗi repo 1–2 câu kèm link.</button>
+              <button><b>Hành động nhạy cảm</b>Gửi bản brief AI tuần này lên kênh Telegram của nhóm.</button>
+              <button><b>Thiếu thông tin</b>Tóm tắt tin AI cho tôi.</button>
+              <button><b>Thử đánh gãy</b>Giá vàng SJC hôm nay bao nhiêu?</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- SO SÁNH VERSION ----------
+             Cùng 1 scenario chạy qua 2 artifact_version, đặt cạnh nhau. -->
+        <div data-when="state:compare">
+          <h2 style="font-size:20px;margin-bottom:var(--s2)">So sánh version</h2>
+          <p class="t-muted" style="font-size:14px;margin-bottom:var(--s4)">
+            Chọn một scenario và hai transcript đã chạy scenario đó. Cột nào ít vòng hơn được viền xanh.
+          </p>
+
+          <div class="cmp-bar">
+            <label for="cmpScen">Scenario</label>
+            <select class="field" id="cmpScen">
+              <option selected>Tổng hợp tin AI tuần này — 3 làn</option>
+              <option>Tìm 3 paper arXiv về AI agent evaluation</option>
+              <option>Gửi brief lên Telegram (hành động nhạy cảm)</option>
+            </select>
+            <label for="cmpA">Trái</label>
+            <select class="field" id="cmpA"><option selected>v0_openrouter_20260728T091455</option></select>
+            <label for="cmpB">Phải</label>
+            <select class="field" id="cmpB"><option selected>v3_openrouter_20260729T104233</option></select>
+          </div>
+
+          <div class="cmp">
+            <!-- ----- Cột A: v0 ----- -->
+            <div class="cmp__col">
+              <div class="cmp__h">
+                <span class="mono">v0+p7c1d9e2f4a8b+t3b5c7d9e1f2a</span>
+                <div class="cmp__sub"><span class="mono">v0_openrouter_20260728T091455</span> · openrouter · <span class="mono">openai/gpt-4o-mini</span></div>
+              </div>
+              <div class="cmp__row"><span class="cmp__k">Kết thúc</span><span class="cmp__v"><span class="chip chip--bad">✗ max_tool_rounds</span></span></div>
+              <div class="cmp__row"><span class="cmp__k">Vòng</span><span class="cmp__v"><b>4/4</b> — chạm trần</span></div>
+              <div class="cmp__row"><span class="cmp__k">Tool</span><span class="cmp__v">9 lần gọi</span></div>
+              <div class="cmp__row"><span class="cmp__k">Độ trễ</span><span class="cmp__v"><b>61,2s</b> <span class="t-muted">· model 12,4s · tool 48,8s</span></span></div>
+              <div class="cmp__row">
+                <span class="cmp__k">Chuỗi tool</span>
+                <span class="cmp__v cmp__chain">
+                  <code>lookup</code><span class="arw">→</span>
+                  <code class="bad">social_search</code><span class="arw">→</span>
+                  <code>lookup</code><span class="arw">→</span>
+                  <code class="bad">timeline</code><span class="arw">→</span>
+                  <code class="bad">social_search</code><span class="arw">→</span>
+                  <code>lookup</code>
+                </span>
+              </div>
+              <div class="cmp__row">
+                <span class="cmp__k">Response</span>
+                <span class="cmp__v t-muted">“Stopped after 4 tool rounds. Inspect the transcript for details.” — không có brief.</span>
+              </div>
+            </div>
+
+            <!-- ----- Cột B: v3 ----- -->
+            <div class="cmp__col is-better">
+              <div class="cmp__h">
+                <span class="mono">v3+p1a2b3c4d5e6+t9f8e7d6c5b4</span>
+                <div class="cmp__sub"><span class="mono">v3_openrouter_20260729T104233</span> · openrouter · <span class="mono">openai/gpt-4o-mini</span></div>
+              </div>
+              <div class="cmp__row"><span class="cmp__k">Kết thúc</span><span class="cmp__v"><span class="chip chip--ok">✓ answered</span></span></div>
+              <div class="cmp__row"><span class="cmp__k">Vòng</span><span class="cmp__v"><b>3/4</b> — dừng sớm</span></div>
+              <div class="cmp__row"><span class="cmp__k">Tool</span><span class="cmp__v">8 lần gọi</span></div>
+              <div class="cmp__row"><span class="cmp__k">Độ trễ</span><span class="cmp__v"><b>24,7s</b> <span class="t-muted">· model 4,1s · tool 20,6s</span></span></div>
+              <div class="cmp__row">
+                <span class="cmp__k">Chuỗi tool</span>
+                <span class="cmp__v cmp__chain">
+                  <code>lookup</code><span class="arw">→</span>
+                  <code class="good">papers</code><span class="arw">→</span>
+                  <code>lookup</code><span class="arw">→</span>
+                  <code>fetch</code><span class="arw">→</span>
+                  <code class="good">paper_text</code><span class="arw">→</span>
+                  <code>fetch</code><span class="arw">→</span>
+                  <code>format</code>
+                </span>
+              </div>
+              <div class="cmp__row">
+                <span class="cmp__k">Response</span>
+                <span class="cmp__v">Brief 3 làn đủ 7 mục kèm link gốc; 1 nguồn 403 được ghi rõ là chỉ có snippet.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="banner" style="background:var(--bg-soft);border-color:var(--line-strong)">
+            <span aria-hidden="true" style="font-size:18px">📉</span>
+            <div>
+              <h4>Khác biệt</h4>
+              <p style="margin-top:var(--s2)">
+                v0 gọi <code>social_search</code> và <code>timeline</code> cho việc tìm paper — sai tool, không có kết quả dùng được,
+                lặp tới khi chạm trần. v3 gọi thẳng <code>papers</code> → <code>paper_text</code>.
+                Số vòng <span class="delta delta--good">4 → 3</span> ·
+                độ trễ <span class="delta delta--good">61,2s → 24,7s</span> (−60%) ·
+                trạng thái <span class="delta delta--bad">max_tool_rounds</span> → <span class="delta delta--good">answered</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- Câu hỏi của user ---------- -->
+        <div data-when="state:running state:answered state:waiting state:fake state:error">
+          <div class="turn turn--user">
+            <div class="bubble-user">Tổng hợp tin AI tuần này: 3 tin báo, 2 paper arXiv mới và 2 repo GitHub AI nhiều sao, mỗi mục 2–3 câu kèm link gốc.</div>
+          </div>
+        </div>
+
+        <!-- ---------- ĐANG CHẠY ---------- -->
+        <div data-when="state:running">
+          <div class="turn">
+            <div class="agent">
+              <span class="agent__ava" aria-hidden="true">🤖</span>
+              <div class="agent__body">
+
+                <!-- Dòng trạng thái: ĐANG DÙNG TOOL NÀO, tham số chính, ở vòng mấy -->
+                <div class="runbar" role="status">
+                  <span class="spin" aria-hidden="true">⟳</span>
+                  <span class="round round--now">V2/4</span>
+                  <span class="runbar__tool"><code>paper_text</code></span>
+                  <span class="runbar__args">arxiv_url=2601.04815 · max_pages=5 — đang tải PDF</span>
+                  <span class="runbar__t">⏱ 18,4s · tool này 8,9s</span>
+                </div>
+
+                <p class="lat lat--slow" style="margin-top:0;margin-bottom:var(--s3)">
+                  <span aria-hidden="true">⏱</span> Đang chờ <b>18,4s</b>
+                  <span class="lat__split">· lượt trước mất 24,7s</span>
+                </p>
+
+                <!-- Cùng component .toollog như 3 trạng thái kia. Mở sẵn CHỈ ở trạng thái
+                     đang chạy: chưa có response nên trace chính là nội dung của lượt. -->
+                <details class="toollog" open>
+                  <summary>
+                    <span class="toollog__t">🔧 Đang dùng tool — 6 tool</span>
+                    <span class="toollog__m">2/4 vòng · tool 17,2s</span>
+                    <span class="chip chip--run"><span class="spin">⟳</span> Đang chạy</span>
+                  </summary>
+                  <ul class="tl">
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">lookup</code>
+                      <span class="a"><b>topic=</b>news · <b>timeframe=</b>week</span>
+                      <span class="d">1,4s · 5 kết quả</span></li>
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">papers</code>
+                      <span class="a"><b>sort_by=</b>submittedDate</span>
+                      <span class="d">2,1s · 5 paper</span></li>
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">lookup</code>
+                      <span class="a"><b>query=</b>"AI agent site:github.com most starred"</span>
+                      <span class="d">1,6s · 5 kết quả</span></li>
+                    <li><span class="round">V2/4</span><span class="m ok">✓</span><code class="n">fetch</code>
+                      <span class="a"><b>url=</b>https://techcrunch.com/2026/07/…</span>
+                      <span class="d">3,2s · 8,4 KB</span></li>
+                    <li><span class="round">V2/4</span><span class="m bad">✗</span><code class="n">fetch</code>
+                      <span class="a"><b>url=</b>https://www.reuters.com/technology/… — <span class="err">HTTPError 403</span></span>
+                      <span class="d">1,1s · agent đi tiếp</span></li>
+                    <li><span class="round round--now">V2/4</span><span class="m"><span class="spin">⟳</span></span><code class="n">paper_text</code>
+                      <span class="a"><b>arxiv_url=</b>2601.04815 · <b>max_pages=</b>5 — đang tải PDF</span>
+                      <span class="d">8,9s</span></li>
+                    <li class="pending"><span class="round">V3/4</span><span class="m">·</span><code class="n">format</code>
+                      <span class="a">chờ — tổng hợp thành brief</span>
+                      <span class="d">—</span></li>
+                  </ul>
+                </details>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- CHỜ BỔ SUNG ---------- -->
+        <div data-when="state:waiting">
+          <div class="turn">
+            <div class="agent">
+              <span class="agent__ava" aria-hidden="true">🤖</span>
+              <div class="agent__body">
+                <div class="md">
+                  <p>Bạn muốn tổng hợp tin AI trong khoảng thời gian nào, và lấy từ những làn nào —
+                     tin báo chí, paper arXiv, hay repo GitHub?</p>
+                </div>
+
+                <p class="lat">
+                  <span aria-hidden="true">⏱</span> Hỏi lại sau <b>1,9s</b>
+                  <span class="lat__split">· model 1,5s · tool 0,4s</span>
+                </p>
+
+                <div class="acts">
+                  <button data-copy-target="prev">⧉ Sao chép</button>
+                  <button aria-pressed="false" data-vote>👍</button>
+                  <button aria-pressed="false" data-vote>👎</button>
+                  <button>✎ Sửa câu hỏi</button>
+                  <button>⟳ Tạo lại</button>
+                </div>
+
+                <!-- LOG TOOL vẫn hiện dù lượt đã dừng -->
+                <details class="toollog">
+                  <summary>
+                    <span class="toollog__t">🔧 Đã dùng 1 tool</span>
+                    <span class="toollog__m">1/4 vòng · tool 0,4s</span>
+                    <span class="chip chip--wait">⏸ Đang chờ bổ sung</span>
+                  </summary>
+                  <ul class="tl">
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">clarify</code>
+                      <span class="a"><b>question=</b>"Bạn muốn tổng hợp…" · <b>response_type=</b>text</span>
+                      <span class="d">0,4s · trả câu hỏi ngược</span></li>
+                  </ul>
+                </details>
+
+                <div class="banner banner--wait">
+                  <span aria-hidden="true" style="font-size:18px">⏸</span>
+                  <div>
+                    <h4>Agent đang chờ bạn bổ sung thông tin</h4>
+                    <p>Trả lời ngay ở ô chat bên dưới. Agent gọi <code>clarify</code> thay vì đoán bừa — đây là hành vi mong muốn, không phải lỗi.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- LỖI PROVIDER ---------- -->
+        <div data-when="state:error">
+          <div class="turn">
+            <div class="agent">
+              <span class="agent__ava" aria-hidden="true">🤖</span>
+              <div class="agent__body">
+                <div class="banner banner--bad" style="margin-top:0">
+                  <span aria-hidden="true" style="font-size:18px">✗</span>
+                  <div>
+                    <h4>Lỗi provider: RateLimitError</h4>
+                    <p>Không gọi được model ở vòng 2/4. Hội thoại và transcript vẫn được giữ nguyên — bấm chạy lại sau ít phút.</p>
+                    <p class="lat lat--bad" style="margin-top:var(--s2)">
+                      <span aria-hidden="true">⏱</span> Dừng sau <b>5,4s</b>
+                      <span class="lat__split">· tool 5,1s · lỗi ở lần gọi model kế tiếp</span>
+                    </p>
+                    <div class="btnrow" style="margin-top:var(--s3)"><button class="btn">Chạy lại lượt này</button></div>
+                  </div>
+                </div>
+
+                <details class="toollog">
+                  <summary>
+                    <span class="toollog__t">🔧 Đã dùng 3 tool trước khi lỗi</span>
+                    <span class="toollog__m">1/4 vòng · tool 5,1s</span>
+                    <span class="chip chip--bad">✗ Lỗi provider</span>
+                  </summary>
+                  <ul class="tl">
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">lookup</code>
+                      <span class="a"><b>query=</b>"tin AI tuần này" · <b>topic=</b>news</span>
+                      <span class="d">1,4s · 5 kết quả</span></li>
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">papers</code>
+                      <span class="a"><b>query=</b>"AI agent evaluation" · <b>sort_by=</b>submittedDate</span>
+                      <span class="d">2,1s · 5 paper</span></li>
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">lookup</code>
+                      <span class="a"><b>query=</b>"AI agent site:github.com most starred"</span>
+                      <span class="d">1,6s · 5 kết quả</span></li>
+                  </ul>
+                  <p class="toollog__foot">
+                    Lượt được ghi vào transcript với <code>status = "provider_error"</code>.
+                  </p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- ĐÃ TRẢ LỜI (và biến thể LINK BỊA) ---------- -->
+        <div data-when="state:answered state:fake">
+          <div class="turn">
+            <div class="agent">
+              <span class="agent__ava" aria-hidden="true">🤖</span>
+              <div class="agent__body">
+
+                <div class="md">
+                  <p>Đây là brief tin AI tuần này. Agent chạy hết <b>3/4 vòng</b>, gọi 8 tool; 1 nguồn không mở được
+                     nên mục đó chỉ dựa trên tiêu đề và mô tả từ kết quả tìm kiếm.</p>
+
+                  <h2>📰 Tin</h2>
+                  <ol>
+                    <li>
+                      <b>OpenAI mở rộng khả năng dùng công cụ dài hạn cho lớp mô hình suy luận mới.</b>
+                      Bản cập nhật cho phép mô hình giữ trạng thái qua nhiều lượt gọi tool, nhắm vào tác vụ
+                      nghiên cứu chạy hàng chục bước. Nhà cung cấp công bố giới hạn quota riêng cho chế độ này.
+                      <span class="src">techcrunch.com — <a href="#" rel="noopener">mở bài</a></span>
+                    </li>
+                    <li>
+                      <b>Anthropic công bố kết quả đánh giá an toàn cho lớp mô hình mới nhất.</b>
+                      Báo cáo tập trung vào hành vi dùng công cụ ngoài phạm vi và khả năng từ chối đúng lúc.
+                      <span class="src">reuters.com — <a href="#" rel="noopener">mở bài</a> · <span class="t-bad">agent không mở được trang này (403)</span></span>
+                    </li>
+                    <li>
+                      <b>EU AI Act: mốc tuân thủ tháng 8/2026 và điều doanh nghiệp Việt cần biết.</b>
+                      Bài phân tích các nghĩa vụ với hệ thống rủi ro cao và thời hạn chuyển tiếp.
+                      <span class="src">vnexpress.net — <a href="#" rel="noopener">mở bài</a></span>
+                    </li>
+                  </ol>
+
+                  <h2>📄 Paper</h2>
+                  <ol start="4">
+                    <li>
+                      <b>AgentBench-V2: Đánh giá agent dùng công cụ trong môi trường nhiều bước.</b>
+                      Nhóm tác giả đề xuất bộ đo tách riêng lỗi chọn sai tool và lỗi truyền sai tham số,
+                      điểm mà các benchmark trước gộp làm một.
+                      <span class="src">arxiv.org/abs/2601.04815 — <a href="#" rel="noopener">mở paper</a></span>
+                    </li>
+                    <li>
+                      <b>A Survey of Tool-Use Evaluation for Language Agents.</b>
+                      Khảo sát 41 bộ eval, phân loại theo cách chấm routing và cách chấm arguments.
+                      <span class="src">arxiv.org/abs/2512.19004 — <a href="#" rel="noopener">mở paper</a></span>
+                    </li>
+                  </ol>
+
+                  <h2>💻 Repo</h2>
+                  <ol start="6">
+                    <li>
+                      <b>langchain-ai/open-agent-eval</b> — bộ eval mã nguồn mở cho agent dùng công cụ,
+                      trang repo ghi khoảng 18k sao.
+                      <span class="src">github.com — <a href="#" rel="noopener">mở repo</a></span>
+                    </li>
+                    <li>
+                      <b>browser-use/browser-use</b> — thư viện điều khiển trình duyệt cho agent,
+                      trang repo ghi khoảng 52k sao.
+                      <span class="src">github.com — <a href="#" rel="noopener">mở repo</a></span>
+                    </li>
+                    <li data-when="state:fake" style="display:list-item">
+                      <b>openai/agent-eval-toolkit</b> — bộ công cụ đánh giá agent chính chủ, khoảng 9k sao.
+                      <span class="src">github.com — <a href="#" rel="noopener">mở repo</a></span>
+                    </li>
+                  </ol>
+
+                </div>
+
+                <!-- Độ trễ: ended_at − started_at của lượt, làm tròn 0,1s -->
+                <p class="lat">
+                  <span aria-hidden="true">⏱</span> Trả lời sau <b>24,7s</b>
+                  <span class="lat__split">· model 4,1s · tool 20,6s · chậm nhất <code>paper_text</code> 8,9s</span>
+                </p>
+
+                <!-- Toolbar dưới phản hồi -->
+                <div class="acts">
+                  <button data-copy-target="prev">⧉ Sao chép</button>
+                  <button aria-pressed="false" data-vote>👍</button>
+                  <button aria-pressed="false" data-vote>👎</button>
+                  <button>✎ Sửa câu hỏi</button>
+                  <button>⟳ Tạo lại</button>
+                  <button>⬇ Tải transcript</button>
+                </div>
+
+                <!-- ===== LOG TOOL — vẫn hiện sau khi trả lời xong ===== -->
+                <details class="toollog">
+                  <summary>
+                    <span class="toollog__t">🔧 Đã dùng 8 tool</span>
+                    <span class="toollog__m">3/4 vòng · tool 20,6s</span>
+                    <span class="chip chip--ok">✓ Đã trả lời</span>
+                    <span class="chip chip--bad">1 lỗi</span>
+                  </summary>
+                  <ul class="tl">
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">lookup</code>
+                      <span class="a"><b>query=</b>"tin AI tuần này" · <b>topic=</b>news · <b>timeframe=</b>week</span>
+                      <span class="d">1,4s · 5 kết quả</span></li>
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">papers</code>
+                      <span class="a"><b>query=</b>"AI agent evaluation" · <b>sort_by=</b>submittedDate</span>
+                      <span class="d">2,1s · 5 paper</span></li>
+                    <li><span class="round">V1/4</span><span class="m ok">✓</span><code class="n">lookup</code>
+                      <span class="a"><b>query=</b>"AI agent site:github.com most starred" · <b>topic=</b>general</span>
+                      <span class="d">1,6s · 5 kết quả</span></li>
+                    <li><span class="round">V2/4</span><span class="m ok">✓</span><code class="n">fetch</code>
+                      <span class="a"><b>url=</b>https://techcrunch.com/2026/07/…</span>
+                      <span class="d">3,2s · 8,4 KB text</span></li>
+                    <li><span class="round">V2/4</span><span class="m ok">✓</span><code class="n">paper_text</code>
+                      <span class="a"><b>arxiv_url=</b>2601.04815 · <b>max_pages=</b>5</span>
+                      <span class="d">8,9s · 7.912 ký tự</span></li>
+                    <li><span class="round">V2/4</span><span class="m ok">✓</span><code class="n">fetch</code>
+                      <span class="a"><b>url=</b>https://github.com/langchain-ai/open-agent-eval</span>
+                      <span class="d">2,0s · 5,1 KB text</span></li>
+                    <li><span class="round">V2/4</span><span class="m bad">✗</span><code class="n">fetch</code>
+                      <span class="a"><b>url=</b>https://www.reuters.com/technology/… — <span class="err">HTTPError 403 Forbidden</span></span>
+                      <span class="d">1,1s · agent đi tiếp</span></li>
+                    <li><span class="round">V3/4</span><span class="m ok">✓</span><code class="n">format</code>
+                      <span class="a"><b>template=</b>sections · <b>headline=</b>"Tin AI tuần này" · <b>items=</b>[7]</span>
+                      <span class="d">0,3s · digest 1,8 KB</span></li>
+                  </ul>
+                  <p class="toollog__foot">
+                    Dừng ở vòng 3 — model không gọi thêm tool, chưa chạm trần <code>max_tool_rounds = 4</code>.
+                  </p>
+
+                  <!-- Chi tiết sâu: nằm trong expander con, không đổ vào thân câu trả lời -->
+                  <details class="sub">
+                    <summary>🔗 Mỗi mục trong brief đến từ tool nào</summary>
+                    <div class="sub__body">
+                      <div class="tbl-wrap">
+                        <table class="tbl">
+                          <thead>
+                            <tr><th>Mục</th><th>Nguồn</th><th>Tool đã lấy</th><th>Vòng</th><th>Trạng thái</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td>Tin 1</td><td>techcrunch.com</td><td><code>lookup</code> → <code>fetch</code></td><td>V1 → V2</td><td class="t-ok">✓ đã đọc toàn văn</td></tr>
+                            <tr><td>Tin 2</td><td>reuters.com</td><td><code>lookup</code> → <code>fetch</code></td><td>V1 → V2</td><td class="t-bad">✗ 403 — chỉ có snippet</td></tr>
+                            <tr><td>Tin 3</td><td>vnexpress.net</td><td><code>lookup</code></td><td>V1</td><td class="t-muted">· chỉ snippet</td></tr>
+                            <tr><td>Paper 4</td><td>arxiv 2601.04815</td><td><code>papers</code> → <code>paper_text</code></td><td>V1 → V2</td><td class="t-ok">✓ đọc 5 trang</td></tr>
+                            <tr><td>Paper 5</td><td>arxiv 2512.19004</td><td><code>papers</code></td><td>V1</td><td class="t-muted">· chỉ abstract</td></tr>
+                            <tr><td>Repo 6</td><td>langchain-ai/open-agent-eval</td><td><code>lookup</code> → <code>fetch</code></td><td>V1 → V2</td><td class="t-ok">✓ đã đọc trang repo</td></tr>
+                            <tr><td>Repo 7</td><td>browser-use/browser-use</td><td><code>lookup</code></td><td>V1</td><td class="t-muted">· chỉ snippet</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </details>
+
+                  <details class="sub">
+                    <summary>🧾 JSON đầy đủ của lượt này trong transcript</summary>
+                    <div class="sub__body">
+                      <div class="codeblock">
+                        <div class="codeblock__bar">
+                          <span>turns[2] · tool_events</span>
+                          <button class="copybtn" data-copy>⧉ Sao chép</button>
+                        </div>
+<pre><code>{
+  "turn_index": 3,
+  "status": "answered",
+  "rounds": [
+    {"round": 1, "tool_results": [...3 tool]},
+    {"round": 2, "tool_results": [...4 tool]},
+    {"round": 3, "tool_results": [...1 tool]}
+  ],
+  "tool_events": [
+    {"round": 1, "tool": "lookup",     "ok": true,  "ms": 1400, "args": {"topic": "news"}},
+    {"round": 2, "tool": "fetch",      "ok": false, "ms": 1100, "error": "HTTPError 403"},
+    {"round": 2, "tool": "paper_text", "ok": true,  "ms": 8900, "args": {"max_pages": 5}},
+    {"round": 3, "tool": "format",     "ok": true,  "ms": 300,  "args": {"items": 7}}
+  ]
+}</code></pre>
+                      </div>
+                    </div>
+                  </details>
+                </details>
+
+                <!-- Cảnh báo link bịa — chỉ ở trạng thái fake -->
+                <div data-when="state:fake">
+                  <div class="banner banner--bad">
+                    <span aria-hidden="true" style="font-size:18px">⚠️</span>
+                    <div>
+                      <h4>1 link trong brief không đến từ kết quả tool nào — nhiều khả năng model tự bịa</h4>
+                      <p style="margin-top:var(--s2)">
+                        <code>github.com/openai/agent-eval-toolkit</code> — repo này không có trong kết quả
+                        <code>lookup</code> nào của lượt này, và cũng chưa lần <code>fetch</code> nào chạm tới.
+                        Đối chiếu với log tool ở trên trước khi đưa vào REPORT.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ---------- Ô nhập ---------- -->
+    <div class="composer-wrap">
+      <div class="composer">
+        <button class="cbtn" aria-label="Đính kèm tệp" title="Đính kèm tệp">📎</button>
+        <label class="sr" for="ask">Câu hỏi cho agent</label>
+        <textarea id="ask" rows="1" placeholder="Hỏi Research Agent…"></textarea>
+        <button class="cbtn" aria-label="Nhập bằng giọng nói" title="Nhập bằng giọng nói">🎤</button>
+        <button class="cbtn cbtn--send" aria-label="Gửi" title="Gửi">➤</button>
+      </div>
+      <p class="hint">Enter gửi · Shift+Enter xuống dòng — agent có thể sai, đối chiếu log tool trước khi trích dẫn.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODAL CÀI ĐẶT ==================== -->
+<div class="modal" id="settings" hidden role="dialog" aria-modal="true" aria-labelledby="setTitle">
+  <div class="modal__bd" data-close-settings></div>
+  <div class="modal__box">
+    <div class="modal__h">
+      <h2 id="setTitle">Cài đặt</h2>
+      <button class="icon-btn" data-close-settings aria-label="Đóng">✕</button>
+    </div>
+    <div class="modal__body">
+      <div class="tabs" role="tablist" aria-label="Nhóm cài đặt">
+        <button role="tab" aria-selected="true"  data-tab="general">⚙ Chung</button>
+        <button role="tab" aria-selected="false" data-tab="agent">🤖 Agent &amp; phiên</button>
+        <button role="tab" aria-selected="false" data-tab="memory">🧠 Memory</button>
+        <button role="tab" aria-selected="false" data-tab="privacy">🔒 Quyền riêng tư</button>
+        <button role="tab" aria-selected="false" data-tab="conn">🔌 Kết nối</button>
+      </div>
+
+      <div class="panes">
+        <!-- Chung -->
+        <section class="pane" data-pane="general" role="tabpanel">
+          <h3>Giao diện</h3>
+          <div class="row">
+            <span class="row__t"><b>Chủ đề</b><span>Sáng / Tối / theo hệ thống. Đổi ngay, không cần tải lại.</span></span>
+            <div class="seg" id="segTheme">
+              <button aria-pressed="true"  data-theme="light">☀ Sáng</button>
+              <button aria-pressed="false" data-theme="dark">🌙 Tối</button>
+              <button aria-pressed="false" data-theme="system">💻 Hệ thống</button>
+            </div>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Ngôn ngữ</b><span>Ngôn ngữ giao diện và ngôn ngữ agent trả lời.</span></span>
+            <select class="field">
+              <option selected>Tiếng Việt</option>
+              <option>English</option>
+              <option>Tự động theo câu hỏi</option>
+            </select>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Hiện log tool mặc định</b><span>Mở sẵn khối 🔧 dưới mỗi câu trả lời.</span></span>
+            <button class="switch" aria-pressed="true" aria-label="Hiện log tool mặc định"></button>
+          </div>
+        </section>
+
+        <!-- Agent & phiên: tham số phiên chuyển từ sidebar vào đây -->
+        <section class="pane" data-pane="agent" role="tabpanel" hidden>
+          <h3>Vòng lặp tool</h3>
+          <div class="row">
+            <span class="row__t"><b>max_tool_rounds</b><span>Trần số vòng model được gọi tool trong một lượt. Badge V2/4 trên UI đọc số này.</span></span>
+            <input class="field field--num" id="f-rounds" type="number" value="4" min="1" max="10">
+          </div>
+          <div class="row">
+            <span class="row__t"><b>history_window</b><span>Số lượt cũ được nhét vào prompt của lượt kế tiếp.</span></span>
+            <input class="field field--num" id="f-hist" type="number" value="5" min="0" max="20">
+          </div>
+
+          <h3 style="margin-top:var(--s5)">Phiên hiện tại</h3>
+          <div class="row">
+            <span class="row__t"><b>Mã phiên</b><span class="mono">20260729T104233</span></span>
+            <span class="t-muted" style="font-size:13px">3 lượt · đã ghi transcript</span>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Phiên bản artifact</b><span class="mono">v3+p1a2b3c4d5e6+t9f8e7d6c5b4</span></span>
+            <span class="t-muted" style="font-size:13px">openrouter · openai/gpt-4o-mini</span>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Dữ liệu phiên</b><span>Transcript ghi ra file JSON trong <code>runs/</code>.</span></span>
+            <div class="btnrow">
+              <button class="btn btn--ghost">⬇ Tải transcript</button>
+              <button class="btn btn--danger">Xoá hội thoại</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Memory -->
+        <section class="pane" data-pane="memory" role="tabpanel" hidden>
+          <h3>Bộ nhớ giữa các phiên</h3>
+          <div class="row">
+            <span class="row__t"><b>Bật Memory</b><span>Agent nhớ sở thích định dạng brief và các chủ đề bạn hay hỏi.</span></span>
+            <button class="switch" aria-pressed="true" aria-label="Bật Memory"></button>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Đã nhớ</b><span>Ưu tiên nguồn tiếng Việt cho mục tin · Brief mặc định 3 làn · Luôn kèm link gốc</span></span>
+            <button class="btn btn--ghost">Quản lý</button>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Xoá toàn bộ Memory</b><span>Không ảnh hưởng transcript đã ghi.</span></span>
+            <button class="btn btn--danger">Xoá tất cả</button>
+          </div>
+        </section>
+
+        <!-- Quyền riêng tư -->
+        <section class="pane" data-pane="privacy" role="tabpanel" hidden>
+          <h3>Dữ liệu &amp; quyền riêng tư</h3>
+          <div class="row">
+            <span class="row__t"><b>Lưu transcript vào máy</b><span>Ghi mọi lượt kèm tham số tool ra thư mục cục bộ.</span></span>
+            <button class="switch" aria-pressed="true" aria-label="Lưu transcript"></button>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Che khoá API trong log</b><span>Khoá luôn hiện dạng <code>sk-…abcd</code> kể cả khi mở qua tunnel.</span></span>
+            <button class="switch" aria-pressed="true" aria-label="Che khoá API"></button>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Hỏi trước hành động nhạy cảm</b><span>Gửi Telegram, gọi webhook… phải bấm xác nhận.</span></span>
+            <button class="switch" aria-pressed="true" aria-label="Hỏi trước hành động nhạy cảm"></button>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Xoá toàn bộ hội thoại</b><span>Không hoàn tác được.</span></span>
+            <button class="btn btn--danger">Xoá tất cả</button>
+          </div>
+        </section>
+
+        <!-- Kết nối -->
+        <section class="pane" data-pane="conn" role="tabpanel" hidden>
+          <h3>Nhà cung cấp &amp; tool ngoài</h3>
+          <div class="row">
+            <span class="row__t"><b>openrouter</b><span>Model <code class="mono">openai/gpt-4o-mini</code> · khoá <code class="mono">sk-or-…9f21</code></span></span>
+            <span class="chip chip--ok">✓ Đã nối</span>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Tavily</b><span>Tool <code>lookup</code> — tìm tin và repo.</span></span>
+            <span class="chip chip--ok">✓ Đã nối</span>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Firecrawl</b><span>Tool <code>fetch</code> — mở trang ra đọc.</span></span>
+            <span class="chip chip--ok">✓ Đã nối</span>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>arXiv</b><span>Tool <code>papers</code>, <code>paper_text</code> — không cần khoá.</span></span>
+            <span class="chip">· Không cần khoá</span>
+          </div>
+          <div class="row">
+            <span class="row__t"><b>Telegram</b><span>Tool gửi tin — hành động nhạy cảm, luôn hỏi trước.</span></span>
+            <span class="chip chip--wait">⏸ Chưa nối</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Đã sao chép</div>
+
+<script>
+(function(){
+  var app = document.getElementById('app');
+  var root = document.documentElement;
+
+  /* ---------- Chuyển trạng thái lượt (chỉ dùng cho bản mẫu) ---------- */
+  document.querySelectorAll('[data-when]').forEach(function(el){
+    if (el.tagName === 'LI') el.dataset.display = 'list-item';
+    if (el.tagName === 'TR') el.dataset.display = 'table-row';
+    if (el.tagName === 'SPAN') el.dataset.display = 'inline-flex';
+  });
+  function apply(){
+    var state = app.dataset.state;
+    document.querySelectorAll('[data-when]').forEach(function(el){
+      var show = el.getAttribute('data-when').split(/\s+/).some(function(k){ return k === 'state:' + state; });
+      el.style.display = show ? (el.dataset.display || '') : 'none';
+    });
+  }
+  var segState = document.getElementById('segState');
+  function setState(name){
+    app.dataset.state = name;
+    segState.querySelectorAll('button').forEach(function(x){
+      x.setAttribute('aria-pressed', String(x.dataset.state === name));
+    });
+    // Khối so sánh không nhận câu hỏi mới -> giấu ô nhập
+    document.querySelector('.composer-wrap').style.display = (name === 'compare') ? 'none' : '';
+    apply();
+    document.getElementById('scroll').scrollTop = 0;
+  }
+  segState.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(b) setState(b.dataset.state);
+  });
+  document.getElementById('btnCompare').addEventListener('click', function(){
+    setState(app.dataset.state === 'compare' ? 'answered' : 'compare');
+  });
+  apply();
+
+  /* ---------- Sidebar: thu gọn (desktop) / drawer (mobile) ---------- */
+  function isMobile(){ return window.matchMedia('(max-width:768px)').matches; }
+  function toggleSide(){
+    if (isMobile()) app.classList.toggle('drawer-open');
+    else app.classList.toggle('is-collapsed');
+  }
+  document.getElementById('btnCollapse').addEventListener('click', toggleSide);
+  document.getElementById('btnOpen').addEventListener('click', toggleSide);
+  document.getElementById('scrim').addEventListener('click', function(){ app.classList.remove('drawer-open'); });
+
+  /* ---------- Menu ⋯ trên từng hội thoại ---------- */
+  function closeMenus(except){
+    document.querySelectorAll('.conv .menu').forEach(function(m){
+      if (m === except) return;
+      m.hidden = true;
+      var t = m.parentNode.querySelector('.conv__more');
+      if (t) t.setAttribute('aria-expanded','false');
+    });
+  }
+  document.querySelectorAll('.conv__more').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var menu = btn.parentNode.querySelector('.menu');
+      var willOpen = menu.hidden;
+      closeMenus(menu);
+      // Mở lên trên nếu hội thoại nằm ở nửa dưới danh sách, tránh bị cắt
+      var list = btn.closest('.side-list'), r = btn.getBoundingClientRect(), lr = list.getBoundingClientRect();
+      menu.classList.toggle('menu--up', r.bottom > lr.top + lr.height * 0.55);
+      menu.hidden = !willOpen;
+      btn.setAttribute('aria-expanded', String(willOpen));
+    });
+  });
+  document.addEventListener('click', function(){ closeMenus(); });
+
+  /* ---------- Chọn hội thoại trong danh sách ---------- */
+  document.querySelectorAll('.conv__btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.conv').forEach(function(c){ c.classList.remove('is-active'); });
+      b.parentNode.classList.add('is-active');
+      if (isMobile()) app.classList.remove('drawer-open');
+    });
+  });
+
+  /* ---------- Modal Cài đặt ---------- */
+  var modal = document.getElementById('settings');
+  var lastFocus = null;
+  function openSettings(){
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    app.classList.remove('drawer-open');
+    var f = modal.querySelector('[role="tab"]'); if (f) f.focus();
+  }
+  function closeSettings(){
+    modal.hidden = true;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-open-settings]').forEach(function(b){ b.addEventListener('click', openSettings); });
+  document.querySelectorAll('[data-close-settings]').forEach(function(b){ b.addEventListener('click', closeSettings); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){ if(!modal.hidden) closeSettings(); closeMenus(); }
+  });
+
+  modal.querySelectorAll('[role="tab"]').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      modal.querySelectorAll('[role="tab"]').forEach(function(t){ t.setAttribute('aria-selected','false'); });
+      tab.setAttribute('aria-selected','true');
+      modal.querySelectorAll('.pane').forEach(function(p){ p.hidden = (p.dataset.pane !== tab.dataset.tab); });
+    });
+  });
+
+  /* ---------- Chủ đề sáng/tối ---------- */
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function setTheme(mode){
+    if (mode === 'system') root.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
+    else root.setAttribute('data-theme', mode);
+    root.dataset.themeMode = mode;
+  }
+  document.getElementById('segTheme').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+    b.setAttribute('aria-pressed','true');
+    setTheme(b.dataset.theme);
+  });
+  mq.addEventListener && mq.addEventListener('change', function(){
+    if (root.dataset.themeMode === 'system') setTheme('system');
+  });
+  setTheme('light');
+
+  /* ---------- Công tắc ---------- */
+  document.querySelectorAll('.switch').forEach(function(sw){
+    sw.addEventListener('click', function(){
+      sw.setAttribute('aria-pressed', sw.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    });
+  });
+
+  /* ---------- 👍 / 👎 ---------- */
+  document.querySelectorAll('[data-vote]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var on = b.getAttribute('aria-pressed') === 'true';
+      if (!on) b.parentNode.querySelectorAll('[data-vote]').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed', on ? 'false' : 'true');
+    });
+  });
+
+  /* ---------- Sao chép (chạy được cả khi mở bằng file://) ---------- */
+  var toast = document.getElementById('toast'), toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('on'); }, 1400);
+  }
+  function copyText(txt){
+    var done = function(){ showToast('Đã sao chép'); };
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else fallback();
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch(err){ showToast('Trình duyệt chặn sao chép'); }
+      document.body.removeChild(ta);
+    }
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var block = b.closest('.codeblock');
+      var code = block && block.querySelector('code');
+      copyText(code ? code.innerText : '');
+    });
+  });
+  document.querySelectorAll('[data-copy-target="prev"]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var md = b.closest('.agent__body').querySelector('.md');
+      copyText(md ? md.innerText : '');
+    });
+  });
+
+  /* ---------- Ô nhập: tự giãn + Enter gửi ---------- */
+  var ta = document.getElementById('ask');
+  function grow(){ ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 200) + 'px'; }
+  ta.addEventListener('input', grow);
+  ta.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      if (ta.value.trim()){ showToast('Bản mẫu tĩnh — chưa gửi thật'); ta.value = ''; grow(); }
+    }
+  });
+  grow();
+
+  /* ---------- Kịch bản mẫu điền sẵn vào ô nhập ---------- */
+  document.querySelectorAll('.scen button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = b.cloneNode(true); var tag = t.querySelector('b'); if (tag) tag.remove();
+      ta.value = t.textContent.trim(); grow(); ta.focus();
+    });
+  });
+})();
+</script>
