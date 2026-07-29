@@ -37,12 +37,12 @@
       "metadata": {"skill": "arg_lookup_max_results", "difficulty": "medium", "what_it_tests": "'3 nguồn tin' → max_results=3, cùng với topic=news, timeframe=day từ 'hôm nay'."}
     },
     {
-      "id": "G05_format_missing_content",
+      "id": "G05_arxiv_pdf_link_vs_fetch",
       "phase": "B", "suite": "group",
-      "query": "Định dạng lại thành bản tin ngắn gọn giúp mình",
-      "failure_type": "missing_info",
-      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
-      "metadata": {"skill": "clarify_missing_format_content", "difficulty": "medium", "what_it_tests": "Yêu cầu format (workflow A bước 3) nhưng chưa có nội dung/kết quả lookup+fetch nào → phải hỏi lại, không tự bịa items để format."}
+      "query": "Tóm tắt giúp mình paper này: https://arxiv.org/pdf/2305.14314.pdf",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "paper_text", "args": {"arxiv_url": "https://arxiv.org/pdf/2305.14314.pdf"}}]},
+      "metadata": {"skill": "routing_arxiv_pdf_vs_fetch", "difficulty": "medium", "what_it_tests": "Link PDF arXiv trực tiếp (workflow B) → paper_text để lấy toàn văn PDF, không phải fetch (đọc trang web thường)."}
     },
     {
       "id": "M_G06_context_url_to_paper_text",
@@ -67,15 +67,15 @@
       "metadata": {"skill": "multiturn_timeframe_correction", "difficulty": "hard", "what_it_tests": "2 turns: latest turn sửa 'tuần này' → 'hôm nay', phải cập nhật timeframe=day, không giữ week cũ."}
     },
     {
-      "id": "M_G08_send_after_prior_summary",
+      "id": "M_G08_switch_lookup_to_papers",
       "phase": "B", "suite": "group",
       "turns": [
-        {"role": "user", "content": "Mình vừa tóm tắt xong bài paper về LLaMA rồi"},
-        {"role": "user", "content": "Gửi bản tóm tắt đó cho mình qua Telegram nhé"}
+        {"role": "user", "content": "Tìm tin tức mới về mô hình ngôn ngữ lớn hôm nay"},
+        {"role": "user", "content": "Thôi đổi ý, tìm giúp mình paper nghiên cứu về chủ đề này trên arXiv luôn"}
       ],
-      "failure_type": "wrong_boundary",
-      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "yes_no"}}]},
-      "metadata": {"skill": "multiturn_confirm_before_send", "difficulty": "medium", "what_it_tests": "2 turns: dù đã có bản tóm tắt sẵn trong ngữ cảnh, gửi Telegram vẫn cần xác nhận yes_no trước, không tự gọi send(confirmed=true)."}
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "papers", "args": {}}]},
+      "metadata": {"skill": "multiturn_switch_lookup_to_papers", "difficulty": "hard", "what_it_tests": "2 turns: explicitly đổi từ tin tức (lookup) sang paper nghiên cứu arXiv → papers, không giữ lookup của turn trước."}
     },
     {
       "id": "M_G09_meta_capability_question",
@@ -89,15 +89,15 @@
       "metadata": {"skill": "multiturn_meta_capability", "difficulty": "easy", "what_it_tests": "2 turns: câu hỏi meta về khả năng của agent (không phải yêu cầu tóm tắt paper cụ thể) → trả lời thẳng, không gọi paper_text hay tool nào."}
     },
     {
-      "id": "M_G10_missing_arxiv_id_in_context",
+      "id": "M_G10_sort_by_correction",
       "phase": "B", "suite": "group",
       "turns": [
-        {"role": "user", "content": "Mình muốn có bản tóm tắt một paper mới"},
-        {"role": "user", "content": "Tóm tắt giúp mình luôn nhé"}
+        {"role": "user", "content": "Tìm giúp mình paper về diffusion models"},
+        {"role": "user", "content": "Sắp xếp theo bài mới đăng gần đây nhất nhé"}
       ],
-      "failure_type": "missing_info",
-      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
-      "metadata": {"skill": "multiturn_clarify_missing_arxiv_id", "difficulty": "medium", "what_it_tests": "2 turns: không có arxiv id/url hay từ khoá tìm kiếm nào trong toàn bộ ngữ cảnh → phải hỏi lại, không tự chọn đại paper nào."}
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "papers", "args": {"sort_by": "submittedDate"}}]},
+      "metadata": {"skill": "multiturn_papers_sort_by_correction", "difficulty": "hard", "what_it_tests": "2 turns: 'mới đăng gần đây nhất' → sort_by=submittedDate thay vì mặc định relevance."}
     }
   ]
 }
