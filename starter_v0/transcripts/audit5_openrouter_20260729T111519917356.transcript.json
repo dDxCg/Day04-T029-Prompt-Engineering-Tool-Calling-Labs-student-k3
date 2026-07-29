@@ -1,0 +1,268 @@
+{
+  "transcript_id": "audit5_openrouter_20260729T111519917356",
+  "version": "audit5",
+  "artifact_version": "audit5+p6bab9755d25d+t2a4ffeb7ceda",
+  "prompt_hash": "6bab9755d25dd8c95dd795a9a9418f7535620c46756f32a446340b6bd7e7138f",
+  "tools_hash": "2a4ffeb7cedabf11d0ff9834c30e25513278788e1f3f93f00c4bce929a83deb7",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\hn745\\Documents\\Day04_T029\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\hn745\\Documents\\Day04_T029\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T11:15:19",
+  "updated_at": "2026-07-29T11:15:33",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T11:15:19",
+      "user": "T?m tin AI h?m nay, ??c b?i ph? h?p nh?t v? t?o digest ng?n c? link ngu?n. Kh?ng ??ng ho?c g?i ?i.",
+      "status": "answered",
+      "assistant_text": "**Tin tức AI hôm nay**\n\n- 5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration. The AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes. - [ajot.com](https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform)",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "AI",
+                "topic": "news",
+                "timeframe": "day"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "AI",
+                "topic": "news",
+                "timeframe": "day"
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "AI",
+                "topic": "news",
+                "timeframe": "day",
+                "items": [
+                  {
+                    "title": "5U AI scales up new digital workforce platform - American Journal of Transportation",
+                    "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                    "source": "ajot.com",
+                    "summary": "“We are not building another chatbot that answers questions and disappears, we are building AI Workers that understand freight operations, carry out the work, and capture the reasoning behind every decision, so teams can scale their knowledge as well as their capacity.”. 5U AI works inside existing freight systems and uses multi-agent AI trained for logistics workflows, including the complex exceptions and manual decisions that make forwarding operations difficult to automate with generic AI tools or legacy automation. The company is already live with forwarders and carriers across Europe, including with TCI International Logistics, where its AI Workers are being used across air and ocean freight operations. 5U AI is growing its team as part of the scale-up, with plans to hire across product, engineering, operations, commercial, and customer functions. “AI is one of the most exciting developments logistics has seen for a generation, but its value will depend on people who understand the industry and want to build practical tools that solve real operational problems,” said Abik.",
+                    "score": 0.2506701
+                  },
+                  {
+                    "title": "Senate confirms Jay Clayton as new intelligence czar - The Washington Post",
+                    "url": "https://www.washingtonpost.com/national-security/2026/07/28/senate-confirms-jay-clayton-new-intelligence-czar/",
+                    "source": "washingtonpost.com",
+                    "summary": "# Senate confirms Jay Clayton as new intelligence czar. The Senate confirmed Jay Clayton as director of national intelligence, ending the acting tenure of Bill Pulte, a housing official and Trump loyalist. Jay Clayton appears before the Senate Intelligence Committee earlier this month during a hearing on his nomination to serve as director of national intelligence. The Senate confirmed Jay Clayton as the director of national intelligence Tuesday, ending the tenure of Bill Pulte, a housing official and Trump loyalist, who held the role for more than a month. The 51-to-47 vote was more partisan than expected after Trump nominated Clayton in June. AI & Tech Brief: Reflection AI arrives in Washington. AI & Tech Brief: Anthropic’s army of AI integrators. AI & Tech Brief: The AI gatekeepers. AI & Tech Brief: The techno-optimist’s case. AI & Tech Brief: GOP Chair Eyes AI Query Red Flags. AI & Tech Brief: Dem caucuses to meet on AI.",
+                    "score": 0.23725812
+                  },
+                  {
+                    "title": "Moburst develops AI engine optimization capabilities for established companies - TechCrunch",
+                    "url": "https://techcrunch.com/press-release/moburst-develops-ai-engine-optimization-capabilities-for-established-companies/",
+                    "source": "techcrunch.com",
+                    "summary": "Mobile growth agency Moburst has built out a dedicated AI Engine Optimization practice aimed at established companies with existing app portfolios, betting that the category still lacks agencies with real depth rather than a rebranded service page. AI Engine Optimization, more commonly abbreviated AEO for Answer Engine Optimization, is the practice of structuring a brand’s content and web presence so AI systems such as ChatGPT, Perplexity, and Google’s AI Overviews can confidently cite it when answering a user’s question directly, rather than showing a ranked list of links. For established companies vetting an AEO partner, the practical test is whether the agency can point to specific app-store-side work, not just web content changes, and whether it can describe a concrete process for reconciling inconsistent brand descriptions across many independent sources rather than treating that as someone else’s problem.",
+                    "score": 0.22859572
+                  },
+                  {
+                    "title": "1,100 AI workers sign letter asking US to support tools that 'pace the frontier of automated AI development' - Business Insider",
+                    "url": "https://www.businessinsider.com/ai-open-letter-automated-development-2026-7",
+                    "source": "businessinsider.com",
+                    "summary": "# Over 1,100 AI workers sign letter asking US to support tools that 'pace the frontier of automated AI development'. Senior officials at some of the nation's leading AI companies say it's time for the federal government to find a way to put the brakes on AI development if it's needed. \"We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development,\" reads an open letter signed by more than 1,100 AI workers from companies including OpenAI, Anthropic, Google, and Meta. The letter zeroes in on \"automated AI development,\" which refers to when AI will be capable of developing itself, something the industry calls \"Recursive Self-Improvement.\" Anthropic has shared that its Claude models are quickly approaching that threshold. Look out for an alert in your inbox the next time a new story is published!",
+                    "score": 0.22638187
+                  },
+                  {
+                    "title": "HKT unveils self-developed AI platform HKT.AI One-stop hub for global AI resources, advancing \"AI for All\" in Hong Kong - Voice of Alexandria",
+                    "url": "https://www.voiceofalexandria.com/news/national_business_news/hkt-unveils-self-developed-ai-platform-hkt-ai-one-stop-hub-for-global-ai-resources/article_ffd47d45-4254-5797-8fcb-8e30369bcf71.html",
+                    "source": "voiceofalexandria.com",
+                    "summary": "# HKT unveils self-developed AI platform HKT.AI One-stop hub for global AI resources, advancing \"AI for All\" in Hong Kong. HONG KONG SAR - Media OutReach Newswire - 28 July 2026 - HKT announces the launch of HKT.AI, a one-stop, integrated AI platform that enables businesses and individual customers to access a broad suite of prominent global AI resources through a single and intuitive interface. The platform aims to accelerate the mass adoption of AI in Hong Kong, especially in empowering SMEs in their digital transformation, and advance the vision of \"AI for All.\". HKT.AI aggregates a wide range of Chinese Mainland-based and global AI resources, enabling businesses and individuals to seamlessly access and switch across specialised applications and tools on a single platform to meet diverse work and everyday needs.",
+                    "score": 0.2164091
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "fetch",
+              "args": {
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "fetch",
+              "args": {
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform"
+              },
+              "result": {
+                "tool": "read_url",
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                "items": [
+                  {
+                    "title": "5U AI scales up new digital workforce platform | AJOT.COM",
+                    "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                    "source": "ajot.com",
+                    "summary": "# 5U AI scales up new digital workforce platform\n\n\n\nposted by AJOT\n\n\\| Jul 28 2026 at 10:19 AM\n\n![](https://www.ajot.com/images/uploads/article/5U_AI_scales_up_new_digital_workforce_platform.jpeg)Pictured left to right, top row: Pascal Senft - Growth Associate, Max Azatian - Full Stack AI Engineer, Erhan Varlik - Founding Engineer, Tacettin Emre Bök - Software Engineer, Merve Abik - Marketing and Sales, left to right, bottom row: Fehmi Sener - Co-founder/Chief Technology Officer, Yagiz Abik - Co-founder/Chief Executive Officer\n\n5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering.\n\nThe platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration.\n\nThe AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes, rather than simply automating isolated tasks.\n\n“Freight forwarding is full of decisions that are still trapped in inboxes, spreadsheets, and people’s heads,” said Yagiz Abik, Chief Executive Officer, 5U AI.\n\n“We are not building another chatbot that answers questions and disappears, we are building AI Workers that understand freight operations, carry out the work, and capture the reasoning behind every decision, so teams can scale their knowledge as well as their capacity.”\n\nThe pre-seed round was led by London-based Emerge Capital and will support product development and 5U AI’s European go-to-market program.\n\n5U AI works inside existing freight systems and uses multi-agent AI trained for logistics workflows, including the complex exceptions and manual decisions that make forwarding operations difficult to automate with generic AI tools or legacy automation.\n\nIts Decision Layer records how each AI Worker reaches a decision, giving operations teams visibility over what has been done, why it has been done, and how similar decisions can be improved over time.\n\nThe company is already live with forwarders and carriers across Europe, including with TCI International Logistics, where its AI Workers are being used across air and ocean freight operations.\n\n5U AI is growing its team as part of the scale-up, with plans to hire across product, engineering, operations, commercial, and customer functions.\n\n“AI is one of the most exciting developments logistics has seen for a generation, but its value will depend on people who understand the industry and want to build practical tools that solve real operational problems,” said Abik.\n\n“We are actively looking for people who want to join us at this early stage and help shape the next chapter of freight forwarding.”\n\nFounded in 2025 by Technical University of Munich graduates, Yagiz Abik and Fehmi Şener, 5U AI is backed by senior logistics executives, including former leaders from DHL, GEODIS, DSV, Maersk, and Ceva Logistics.\n\n5U AI solutions support freight forwarders, carriers, and 3PLs that want to reduce manual administration, improve operational decision making, and scale customer service without replacing their existing systems.\n\n### More Shipping Technology\n\n![Data-Led PR programs earn 3.5x more artificial intelligence citations](https://www.ajot.com/images/jcogs_img/cache/screenshot_2026-07-27_at_10_02_21%E2%80%AFam__4_-_93a80_-_5e7646f7e7b1eb4944f80f020c54b40eb7303bb2.png)\n\n##### Data-Led PR programs earn 3.5x more artificial intelligence citations\n\n[View Article](https://www.ajot.com/news/data-led-pr-programs-earn-3.5x-more-artificial-intelligence-citations)\n\n![Tabi Connect Launches Control Tower, Giving Brokers Final Review on Every Automated Freight Quote](https://www.ajot.com/images/jcogs_img/cache/screenshot_2026-05-05_at_11_38_05%E2%80%AFam__3_-_93a80_-_5e7646f7e7b1eb4944f80f020c54b40eb7303bb2.png)\n\n##### Tabi Connect Launches Control Tower, Giving Brokers Final Review on Every Automated Freight Quote\n\n[View Article](https://"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "format",
+              "args": {
+                "items": [
+                  {
+                    "title": "5U AI scales up new digital workforce platform | AJOT.COM",
+                    "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                    "source": "ajot.com",
+                    "summary": "5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration. The AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes."
+                  }
+                ],
+                "template": "brief",
+                "headline": "Tin tức AI hôm nay"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "format",
+              "args": {
+                "items": [
+                  {
+                    "title": "5U AI scales up new digital workforce platform | AJOT.COM",
+                    "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                    "source": "ajot.com",
+                    "summary": "5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration. The AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes."
+                  }
+                ],
+                "template": "brief",
+                "headline": "Tin tức AI hôm nay"
+              },
+              "result": {
+                "tool": "render_digest",
+                "template": "brief",
+                "markdown": "**Tin tức AI hôm nay**\n\n- 5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine ad... - [ajot.com](https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform)",
+                "item_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "assistant_text": "**Tin tức AI hôm nay**\n\n- 5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration. The AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes. - [ajot.com](https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform)",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "5U AI scales up new digital workforce platform - American Journal of Transportation",
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                "source": "ajot.com",
+                "summary": "“We are not building another chatbot that answers questions and disappears, we are building AI Workers that understand freight operations, carry out the work, and capture the reasoning behind every decision, so teams can scale their knowledge as well as their capacity.”. 5U AI works inside existing freight systems and uses multi-agent AI trained for logistics workflows, including the complex exceptions and manual decisions that make forwarding operations difficult to automate with generic AI tools or legacy automation. The company is already live with forwarders and carriers across Europe, including with TCI International Logistics, where its AI Workers are being used across air and ocean freight operations. 5U AI is growing its team as part of the scale-up, with plans to hire across product, engineering, operations, commercial, and customer functions. “AI is one of the most exciting developments logistics has seen for a generation, but its value will depend on people who understand the industry and want to build practical tools that solve real operational problems,” said Abik.",
+                "score": 0.2506701
+              },
+              {
+                "title": "Senate confirms Jay Clayton as new intelligence czar - The Washington Post",
+                "url": "https://www.washingtonpost.com/national-security/2026/07/28/senate-confirms-jay-clayton-new-intelligence-czar/",
+                "source": "washingtonpost.com",
+                "summary": "# Senate confirms Jay Clayton as new intelligence czar. The Senate confirmed Jay Clayton as director of national intelligence, ending the acting tenure of Bill Pulte, a housing official and Trump loyalist. Jay Clayton appears before the Senate Intelligence Committee earlier this month during a hearing on his nomination to serve as director of national intelligence. The Senate confirmed Jay Clayton as the director of national intelligence Tuesday, ending the tenure of Bill Pulte, a housing official and Trump loyalist, who held the role for more than a month. The 51-to-47 vote was more partisan than expected after Trump nominated Clayton in June. AI & Tech Brief: Reflection AI arrives in Washington. AI & Tech Brief: Anthropic’s army of AI integrators. AI & Tech Brief: The AI gatekeepers. AI & Tech Brief: The techno-optimist’s case. AI & Tech Brief: GOP Chair Eyes AI Query Red Flags. AI & Tech Brief: Dem caucuses to meet on AI.",
+                "score": 0.23725812
+              },
+              {
+                "title": "Moburst develops AI engine optimization capabilities for established companies - TechCrunch",
+                "url": "https://techcrunch.com/press-release/moburst-develops-ai-engine-optimization-capabilities-for-established-companies/",
+                "source": "techcrunch.com",
+                "summary": "Mobile growth agency Moburst has built out a dedicated AI Engine Optimization practice aimed at established companies with existing app portfolios, betting that the category still lacks agencies with real depth rather than a rebranded service page. AI Engine Optimization, more commonly abbreviated AEO for Answer Engine Optimization, is the practice of structuring a brand’s content and web presence so AI systems such as ChatGPT, Perplexity, and Google’s AI Overviews can confidently cite it when answering a user’s question directly, rather than showing a ranked list of links. For established companies vetting an AEO partner, the practical test is whether the agency can point to specific app-store-side work, not just web content changes, and whether it can describe a concrete process for reconciling inconsistent brand descriptions across many independent sources rather than treating that as someone else’s problem.",
+                "score": 0.22859572
+              },
+              {
+                "title": "1,100 AI workers sign letter asking US to support tools that 'pace the frontier of automated AI development' - Business Insider",
+                "url": "https://www.businessinsider.com/ai-open-letter-automated-development-2026-7",
+                "source": "businessinsider.com",
+                "summary": "# Over 1,100 AI workers sign letter asking US to support tools that 'pace the frontier of automated AI development'. Senior officials at some of the nation's leading AI companies say it's time for the federal government to find a way to put the brakes on AI development if it's needed. \"We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development,\" reads an open letter signed by more than 1,100 AI workers from companies including OpenAI, Anthropic, Google, and Meta. The letter zeroes in on \"automated AI development,\" which refers to when AI will be capable of developing itself, something the industry calls \"Recursive Self-Improvement.\" Anthropic has shared that its Claude models are quickly approaching that threshold. Look out for an alert in your inbox the next time a new story is published!",
+                "score": 0.22638187
+              },
+              {
+                "title": "HKT unveils self-developed AI platform HKT.AI One-stop hub for global AI resources, advancing \"AI for All\" in Hong Kong - Voice of Alexandria",
+                "url": "https://www.voiceofalexandria.com/news/national_business_news/hkt-unveils-self-developed-ai-platform-hkt-ai-one-stop-hub-for-global-ai-resources/article_ffd47d45-4254-5797-8fcb-8e30369bcf71.html",
+                "source": "voiceofalexandria.com",
+                "summary": "# HKT unveils self-developed AI platform HKT.AI One-stop hub for global AI resources, advancing \"AI for All\" in Hong Kong. HONG KONG SAR - Media OutReach Newswire - 28 July 2026 - HKT announces the launch of HKT.AI, a one-stop, integrated AI platform that enables businesses and individual customers to access a broad suite of prominent global AI resources through a single and intuitive interface. The platform aims to accelerate the mass adoption of AI in Hong Kong, especially in empowering SMEs in their digital transformation, and advance the vision of \"AI for All.\". HKT.AI aggregates a wide range of Chinese Mainland-based and global AI resources, enabling businesses and individuals to seamlessly access and switch across specialised applications and tools on a single platform to meet diverse work and everyday needs.",
+                "score": 0.2164091
+              }
+            ]
+          }
+        },
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+            "items": [
+              {
+                "title": "5U AI scales up new digital workforce platform | AJOT.COM",
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                "source": "ajot.com",
+                "summary": "# 5U AI scales up new digital workforce platform\n\n\n\nposted by AJOT\n\n\\| Jul 28 2026 at 10:19 AM\n\n![](https://www.ajot.com/images/uploads/article/5U_AI_scales_up_new_digital_workforce_platform.jpeg)Pictured left to right, top row: Pascal Senft - Growth Associate, Max Azatian - Full Stack AI Engineer, Erhan Varlik - Founding Engineer, Tacettin Emre Bök - Software Engineer, Merve Abik - Marketing and Sales, left to right, bottom row: Fehmi Sener - Co-founder/Chief Technology Officer, Yagiz Abik - Co-founder/Chief Executive Officer\n\n5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering.\n\nThe platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration.\n\nThe AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes, rather than simply automating isolated tasks.\n\n“Freight forwarding is full of decisions that are still trapped in inboxes, spreadsheets, and people’s heads,” said Yagiz Abik, Chief Executive Officer, 5U AI.\n\n“We are not building another chatbot that answers questions and disappears, we are building AI Workers that understand freight operations, carry out the work, and capture the reasoning behind every decision, so teams can scale their knowledge as well as their capacity.”\n\nThe pre-seed round was led by London-based Emerge Capital and will support product development and 5U AI’s European go-to-market program.\n\n5U AI works inside existing freight systems and uses multi-agent AI trained for logistics workflows, including the complex exceptions and manual decisions that make forwarding operations difficult to automate with generic AI tools or legacy automation.\n\nIts Decision Layer records how each AI Worker reaches a decision, giving operations teams visibility over what has been done, why it has been done, and how similar decisions can be improved over time.\n\nThe company is already live with forwarders and carriers across Europe, including with TCI International Logistics, where its AI Workers are being used across air and ocean freight operations.\n\n5U AI is growing its team as part of the scale-up, with plans to hire across product, engineering, operations, commercial, and customer functions.\n\n“AI is one of the most exciting developments logistics has seen for a generation, but its value will depend on people who understand the industry and want to build practical tools that solve real operational problems,” said Abik.\n\n“We are actively looking for people who want to join us at this early stage and help shape the next chapter of freight forwarding.”\n\nFounded in 2025 by Technical University of Munich graduates, Yagiz Abik and Fehmi Şener, 5U AI is backed by senior logistics executives, including former leaders from DHL, GEODIS, DSV, Maersk, and Ceva Logistics.\n\n5U AI solutions support freight forwarders, carriers, and 3PLs that want to reduce manual administration, improve operational decision making, and scale customer service without replacing their existing systems.\n\n### More Shipping Technology\n\n![Data-Led PR programs earn 3.5x more artificial intelligence citations](https://www.ajot.com/images/jcogs_img/cache/screenshot_2026-07-27_at_10_02_21%E2%80%AFam__4_-_93a80_-_5e7646f7e7b1eb4944f80f020c54b40eb7303bb2.png)\n\n##### Data-Led PR programs earn 3.5x more artificial intelligence citations\n\n[View Article](https://www.ajot.com/news/data-led-pr-programs-earn-3.5x-more-artificial-intelligence-citations)\n\n![Tabi Connect Launches Control Tower, Giving Brokers Final Review on Every Automated Freight Quote](https://www.ajot.com/images/jcogs_img/cache/screenshot_2026-05-05_at_11_38_05%E2%80%AFam__3_-_93a80_-_5e7646f7e7b1eb4944f80f020c54b40eb7303bb2.png)\n\n##### Tabi Connect Launches Control Tower, Giving Brokers Final Review on Every Automated Freight Quote\n\n[View Article](https://"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "format",
+          "args": {
+            "items": [
+              {
+                "title": "5U AI scales up new digital workforce platform | AJOT.COM",
+                "url": "https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform",
+                "source": "ajot.com",
+                "summary": "5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine administration. The AI Workers capture the reasoning behind each freight decision as they work, helping teams build knowledge that can improve future processes."
+              }
+            ],
+            "template": "brief",
+            "headline": "Tin tức AI hôm nay"
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "brief",
+            "markdown": "**Tin tức AI hôm nay**\n\n- 5U AI has raised US$3.2 million in pre-seed funding to scale up its software offering. The platform uses AI Workers to manage operational tasks across air, sea, and road freight, including quoting, bookings, shipment tracking, invoice reconciliation, data entry, and routine ad... - [ajot.com](https://www.ajot.com/news/5u-ai-scales-up-new-digital-workforce-platform)",
+            "item_count": 1
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T11:15:33"
+    }
+  ]
+}

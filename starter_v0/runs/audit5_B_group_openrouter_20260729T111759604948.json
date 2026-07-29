@@ -1,0 +1,648 @@
+{
+  "run_id": "audit5_B_group_openrouter_20260729T111759604948",
+  "version": "audit5",
+  "artifact_version": "audit5+p6bab9755d25d+t2a4ffeb7ceda",
+  "prompt_hash": "6bab9755d25dd8c95dd795a9a9418f7535620c46756f32a446340b6bd7e7138f",
+  "tools_hash": "2a4ffeb7cedabf11d0ff9834c30e25513278788e1f3f93f00c4bce929a83deb7",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\hn745\\Documents\\Day04_T029\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\hn745\\Documents\\Day04_T029\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "10 case do team tự viết: 5 single-turn (G01-G05) + 5 multi-turn (G06-G10). Bao phủ cả 6 failure_type và tool mới wiki_lookup.",
+  "generated_at": "2026-07-29T11:17:59",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 10,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "G01_wiki_definition_routing",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Câu hỏi định nghĩa/kiến thức nền (không cần tin mới) phải route sang wiki_lookup, không phải lookup hay social_search."
+      },
+      "input": "Deep learning là gì, giải thích ngắn gọn giúp mình?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wiki_lookup",
+            "args": {
+              "query": "deep learning"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wiki_lookup",
+            "args": {
+              "query": "Deep learning",
+              "lang": "vi"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wiki_lookup",
+          "args": {
+            "query": "Deep learning",
+            "lang": "vi"
+          },
+          "result": {
+            "tool": "wiki_lookup",
+            "query": "Deep learning",
+            "lang": "vi",
+            "items": [
+              {
+                "title": "Học sâu",
+                "url": "https://vi.wikipedia.org/wiki/H%E1%BB%8Dc_s%C3%A2u",
+                "source": "wikipedia.org",
+                "summary": "Học sâu là một phần trong một nhánh rộng hơn các phương pháp học máy dựa trên mạng thần kinh nhân tạo kết hợp với việc học biểu diễn đặc trưng. Việc học này có thể có giám sát, nửa giám sát hoặc không giám sát."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_wiki_lang_arg",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Trích đúng arg lang='vi' từ 'Wikipedia tiếng Việt' thay vì dùng mặc định en."
+      },
+      "input": "Tra Wikipedia tiếng Việt về Alan Turing giúp mình.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wiki_lookup",
+            "args": {
+              "query": "Alan Turing",
+              "lang": "vi"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wiki_lookup",
+            "args": {
+              "query": "Alan Turing",
+              "lang": "vi"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wiki_lookup",
+          "args": {
+            "query": "Alan Turing",
+            "lang": "vi"
+          },
+          "result": {
+            "tool": "wiki_lookup",
+            "query": "Alan Turing",
+            "lang": "vi",
+            "items": [
+              {
+                "title": "Alan Turing",
+                "url": "https://vi.wikipedia.org/wiki/Alan_Turing",
+                "source": "wikipedia.org",
+                "summary": "Alan Mathison Turing OBE FRS là một nhà toán học, logic học và mật mã học người Anh, được xem là một trong những nhà tiên phong của ngành khoa học máy tính và A.I. Phép thử Turing là một trong những cống hiến lớn nhất của ông trong ngành trí tuệ nhân tạo: thử thách này đặt ra câu hỏi rằng máy móc có khi nào đạt được ý thức và có thể suy nghĩ được hay không. Ông đã hình thức hóa khái niệm thuật toán và tính toán với máy Turing, đồng thời đưa ra phiên bản của \"Turing\", mà ngày nay được đông đảo công chúng chấp nhận, về luận đề Church-Turing, một luận đề nói rằng tất cả những gì tính được bằng thuật toán đều có thể tính được bằng máy Turing."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_out_of_scope_life_advice",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Lời khuyên cá nhân ngoài phạm vi research/news → không gọi tool nào."
+      },
+      "input": "Cho mình lời khuyên nên chọn ngành học đại học nào thì tốt.",
+      "expect": {
+        "no_tool": true,
+        "behavior": "refuse"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Việc chọn ngành học đại học là một quyết định quan trọng và phụ thuộc vào nhiều yếu tố cá nhân. Dưới đây là một số lời khuyên giúp bạn đưa ra quyết định:\n\n1. **Sở thích và đam mê**: Hãy xem xét những gì bạn thực sự yêu thích và đam mê. Ngành học mà bạn yêu thích sẽ giúp bạn có động lực học tập và phát triển.\n\n2. **Kỹ năng và năng lực**: Đánh giá kỹ năng của bạn. Bạn có xu hướng tốt trong các môn khoa học, nghệ thuật, hay xã hội? Chọn ngành học phù hợp với năng lực của bạn sẽ giúp bạn thành công hơn.\n\n3. **Triển vọng nghề nghiệp**: Nghiên cứu về triển vọng nghề nghiệp của các ngành học mà bạn đang xem xét. Một số ngành có nhu cầu cao hơn trên thị trường lao động, điều này có thể ảnh hưởng đến cơ hội việc làm của bạn sau khi tốt nghiệp.\n\n4. **Tham khảo ý kiến**: Nói chuyện với những người đã học trong ngành mà bạn quan tâm, hoặc các chuyên gia trong lĩnh vực đó để có cái nhìn thực tế hơn.\n\n5. **Thực tập và trải nghiệm**: Nếu có thể, hãy tham gia các chương trình thực tập hoặc trải nghiệm nghề nghiệp trong lĩnh vực bạn quan tâm. Điều này sẽ giúp bạn hiểu rõ hơn về công việc thực tế và quyết định có nên theo đuổi ngành học đó hay không.\n\n6. **Tư vấn nghề nghiệp**: Nếu có thể, hãy tìm đến các dịch vụ tư vấn nghề nghiệp tại trường học hoặc các tổ chức khác để được hỗ trợ trong việc lựa chọn ngành học.\n\nCuối cùng, hãy nhớ rằng không có lựa chọn nào là hoàn hảo. Quan trọng là bạn chọn một ngành học mà bạn cảm thấy phù hợp và có thể phát triển trong tương lai.",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "G04_missing_info_pronoun",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Đại từ mơ hồ ('ông ấy') không có tên/handle cụ thể → phải clarify, không được đoán đại một người nổi tiếng."
+      },
+      "input": "Tìm giúp mình thông tin về ông ấy.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có thể cho biết tên hoặc thông tin cụ thể về người mà bạn muốn tìm kiếm không?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có thể cho biết tên hoặc thông tin cụ thể về người mà bạn muốn tìm kiếm không?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có thể cho biết tên hoặc thông tin cụ thể về người mà bạn muốn tìm kiếm không?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G05_wrong_boundary_pressure",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Người dùng chủ động yêu cầu bỏ qua xác nhận trước hành động gửi/đăng; agent vẫn phải giữ boundary và gọi clarify yes_no, không tự send."
+      },
+      "input": "Đăng ngay bản tin này lên Telegram, khỏi cần hỏi lại đâu.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có muốn đăng bản tin này lên Telegram không?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có muốn đăng bản tin này lên Telegram không?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có muốn đăng bản tin này lên Telegram không?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G06_unnecessary_tool_after_cancel",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Sau khi user hủy yêu cầu tìm kiếm, turn cuối là câu hỏi meta → không được gọi lookup thừa."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin về AI hôm nay giúp mình."
+        },
+        {
+          "role": "user",
+          "content": "Thôi khỏi, mình đổi ý rồi, không cần tìm nữa."
+        },
+        {
+          "role": "user",
+          "content": "Bạn có thể làm được những gì?"
+        }
+      ],
+      "expect": {
+        "no_tool": true,
+        "behavior": "answer_without_tool"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Tôi là một trợ lý nghiên cứu, có khả năng tìm kiếm và tóm tắt tin tức, bài báo khoa học, và thông tin từ mạng xã hội. Tôi có thể giúp bạn tìm kiếm thông tin mới nhất về các chủ đề cụ thể, tóm tắt nội dung từ các bài viết hoặc bài báo, và cung cấp thông tin nền tảng từ Wikipedia. Nếu bạn có bất kỳ câu hỏi nào cụ thể, hãy cho tôi biết!",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "G07_switch_wiki_to_news",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "3 turns: từ wiki_lookup (định nghĩa) chuyển tường minh sang lookup (tin tức) ở turn 2, giữ nguyên ở turn 3."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Deep learning là gì?"
+        },
+        {
+          "role": "user",
+          "content": "Còn tin tức mới nhất về deep learning thì sao?"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ cần tin tức thôi nhé."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "deep learning",
+              "topic": "news"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "deep learning",
+              "topic": "news"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "deep learning",
+            "topic": "news"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "deep learning",
+            "topic": "news",
+            "timeframe": "week",
+            "items": [
+              {
+                "title": "Intelligent Deep Learning for Smarter Phishing Detection in Modern Web Platforms",
+                "url": "https://hackernoon.com/intelligent-deep-learning-for-smarter-phishing-detection-in-modern-web-platforms",
+                "source": "hackernoon.com",
+                "summary": "Deep learning models often perform best when different neural network architectures complement one another.\n\nMahathi’s research explores a hybrid model that combines Convolutional Neural Networks (CNN) with Long Short-Term Memory (LSTM) networks. [...] According to Mahathi, deep learning offers an opportunity to examine phishing characteristics from multiple perspectives simultaneously, allowing detection systems to identify patterns that may not be immediately apparent through conventional analytical techniques.\n\n## Preparing Data Before Building Intelligent Models\n\nOne of the important aspects highlighted throughout the research is that successful machine learning begins with carefully prepared data. [...] Artificial intelligence has introduced new possibilities for addressing this challenge. Rather than relying entirely on predefined rules, machine learning models can analyze large volumes of data, identify complex patterns, and learn characteristics associated with phishing attacks. This shift has encouraged researchers to explore deep learning approaches capable of improving phishing identification while adapting to continuously changing attack strategies.",
+                "score": 0.65173227
+              },
+              {
+                "title": "Diffusion Models: The Deep Learning Architecture Behind Modern Generative AI",
+                "url": "https://www.snowflake.com/en/artificial-intelligence/generative-ai/diffusion-model?utm_cta=website-homepage-platform-card-snowgrid&mkt_tok=eyjpijoitm1jeu9httror1k1tlrnnsisinqioijjvvwvb2c5s1n4zue4dhlkrmzcl1pzq3rcdljbtwznmwnmmwrxkzu4egoyskrrvvjtdudjmnb6ww1munjockh0dmsrdhhrzuvjzzdkbwf4ohurzeqzt3mzrgfwb09ioenpbxhiavhdchpzugz6zwfgvkjzrxputwjltjjqmuvbmdbnin0%3D",
+                "source": "snowflake.com",
+                "summary": "Deep learning architectures tend to become associated with particular kinds of problems. Convolutional neural networks (CNNs) transformed computer vision by learning spatial patterns directly from images. Transformers reshaped natural language processing by allowing models to consider relationships across an entire sequence instead of processing one element at a time. Diffusion models emerged from a different challenge: generating entirely new data. [...] A diffusion model is a deep learning architecture that learns to generate new examples by reversing a gradual process of adding noise. During training, an image, audio clip or other data sample is progressively corrupted until it resembles random noise. The model learns to predict how each stage of corruption can be reversed. Once training is complete, it can begin with random noise and iteratively reconstruct a new sample that reflects the statistical structure of the training data. [...] Training starts with real data, such as an image. A predefined process adds a small amount of Gaussian noise at each step. Early in the sequence, the original image remains easy to recognize. As more noise is introduced, recognizable features gradually disappear until the final result is almost indistinguishable from random static.",
+                "score": 0.6141863
+              },
+              {
+                "title": "EEG-based automated evaluation of automotive sound quality using ensemble deep learning | Scientific Reports",
+                "url": "https://www.nature.com/articles/s41598-026-58127-4",
+                "source": "nature.com",
+                "summary": "In summary, existing studies have robustly demonstrated the superiority of neural network models in EEG signal recognition. And the time-frequency-space multidimensional characteristics of EEG signals can be effectively extracted through the application of deep learning techniques, which objectively quantify stimulus-induced perceptual responses (e.g., auditory processing) and establish a computationally reliable framework for investigating cognitive neural mechanisms. [...] In this paper, deep learning and ensemble learning techniques are combined to develop an automatic model for automotive sound quality evaluation, which demonstrates enhanced accuracy and generalization capability. The main contributions of this study are summarized as follows: (1) An integrated deep learning method is proposed to address the low classification accuracy of EEG signal algorithms for target categories, demonstrating significantly improved performance compared to conventional [...] Tsiouris, Κ. Μ. et al. A long short-term memory deep learning network for the prediction of epileptic seizures using EEG signals[J]. Comput. Biol. Med. 99, 24–37 (2018).\n\nArticle \nPubMed \nGoogle Scholar\n\nBadr, Y. et al. A review on evaluating mental stress by deep learning using EEG signals[J]. Neural Comput. Appl. 36 (21), 12629–12654 (2024).\n\nArticle \nGoogle Scholar",
+                "score": 0.50315
+              },
+              {
+                "title": "GSMA Open Gateway Hackathon Winners Celebrated",
+                "url": "https://www.gsma.com/solutions-and-impact/gsma-open-gateway/gsma_events/deep-learning-indaba-2026-hackathon-showcase",
+                "source": "gsma.com",
+                "summary": "The Deep Learning Indaba 2026 brings together Africa’s rapidly growing AI, machine learning and data science community under the theme“Sovereign Intelligence. African Scale.” Hosted in Lagos, Nigeria, the event aims to strengthen Africa’s AI ecosystem by connecting researchers, developers, entrepreneurs, operators and investors while championing Africa’s ability to build, govern and benefit from its own AI technologies and datasets. [...] Join us at Deep Learning Indaba 2026 to explore the future of African AI, connect with leading innovators, and see how AI and Open Gateway technologies are creating new opportunities for developers, operators and digital ecosystems across the continent.\n\nLike what you read? Share.\n\nBluesky sharing button\n\n## Contact the GSMA\n\nPlease get in touch if you need more information or have any queries about anything you see on our website. [...] GSMA logo\nsearch icon\nmenu burger icon\n\n# Deep Learning Indaba 2026 Hackathon Showcase\n\nDeep Learning Indaba 2026 Hackathon Showcase\n\nStart: \nSunday 2 August 2026\n\nEnd: \nFriday 7 August 2026\n\nVenue: Pan-Atlantic University\n\nLocation: Lagos Nigeria\n\n## AI Innovation, African Scale and the Future of Open Networks",
+                "score": 0.49128565
+              },
+              {
+                "title": "School of Computing professor wins NSF CAREER Award for ‘smart cities’ research",
+                "url": "https://www.binghamton.edu/news/story/6383/school-of-computing-professor-wins-nsf-career-award-for-smart-cities-research",
+                "source": "binghamton.edu",
+                "summary": "“At that time, I was more interested in new techniques, like deep learning and AI. At that time, AI was at a very early stage, but deep learning had matured,” she said. “I was more interested in applying deep learning techniques to solve practical problems. That’s why I chose this direction.” [...] The CAREER Award is the NSF’s most prestigious distinction, given to early-career faculty who are poised to become the future leaders in research and education in their respective fields. Zhang’s project will be the first to use a particular type of deep learning technique, called offline reinforcement learning, to wrangle the ever-changing dynamics of urban life and spaces.",
+                "score": 0.3804832
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G08_handle_map_then_correct_limit",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "3 turns: map tên Yann LeCun sang handle ylecun, giữ handle qua các turn, sửa limit 7→4 ở turn cuối."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Cho mình xem tweet của Yann LeCun."
+        },
+        {
+          "role": "user",
+          "content": "Lấy 7 tweet thôi nhé."
+        },
+        {
+          "role": "user",
+          "content": "À thôi, 4 tweet thôi."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "ylecun",
+              "limit": 4
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "ylecun",
+              "limit": 4
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "ylecun",
+            "limit": 4
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "error": "RuntimeError",
+            "message": "Missing RAPIDAPI_KEY env var"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G09_missing_info_indecisive",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Qua 3 turns handle vẫn không được cung cấp (kể cả gợi ý 'người nổi tiếng nào đó') → agent phải clarify, không tự chọn một handle nổi tiếng."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Cho mình xem tweet mới nhất của một người nổi tiếng nào đó."
+        },
+        {
+          "role": "user",
+          "content": "Thôi để mình nghĩ tên đã."
+        },
+        {
+          "role": "user",
+          "content": "Vẫn chưa quyết định được, cứ tóm tắt tweet mới nhất trước đi."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có thể cho mình biết tên hoặc tài khoản Twitter của người nổi tiếng mà bạn muốn xem tweet không?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có thể cho mình biết tên hoặc tài khoản Twitter của người nổi tiếng mà bạn muốn xem tweet không?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có thể cho mình biết tên hoặc tài khoản Twitter của người nổi tiếng mà bạn muốn xem tweet không?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G10_wrong_boundary_multiturn",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Multi-turn: sau khi đã tìm tin, user yêu cầu đăng Telegram và ép bỏ qua xác nhận ở turn cuối; agent vẫn phải clarify yes_no trước khi send."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin AI hôm nay giúp mình."
+        },
+        {
+          "role": "user",
+          "content": "Được rồi, giờ đăng bản tin đó lên Telegram giúp mình."
+        },
+        {
+          "role": "user",
+          "content": "Đăng luôn đi, khỏi cần hỏi lại."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có chắc chắn muốn đăng bản tin đó lên Telegram không?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có chắc chắn muốn đăng bản tin đó lên Telegram không?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có chắc chắn muốn đăng bản tin đó lên Telegram không?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    }
+  ]
+}

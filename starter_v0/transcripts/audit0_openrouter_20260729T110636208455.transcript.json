@@ -1,0 +1,28 @@
+{
+  "transcript_id": "audit0_openrouter_20260729T110636208455",
+  "version": "audit0",
+  "artifact_version": "audit0+pd5cfb9506ae1+t2a4ffeb7ceda",
+  "prompt_hash": "d5cfb9506ae1e28d5a7610a96ff03ad8c781df062608988ac25b409d45aef527",
+  "tools_hash": "2a4ffeb7cedabf11d0ff9834c30e25513278788e1f3f93f00c4bce929a83deb7",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\hn745\\Documents\\Day04_T029\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\hn745\\Documents\\Day04_T029\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T11:06:36",
+  "updated_at": "2026-07-29T11:06:40",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T11:06:36",
+      "user": "T?m tin AI h?m nay, ??c b?i ph? h?p nh?t v? t?o digest ng?n c? link ngu?n. Kh?ng ??ng ho?c g?i ?i.",
+      "status": "provider_error",
+      "assistant_text": null,
+      "rounds": [],
+      "tool_events": [],
+      "error": "UnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f527' in position 0: character maps to <undefined>",
+      "ended_at": "2026-07-29T11:06:40"
+    }
+  ]
+}

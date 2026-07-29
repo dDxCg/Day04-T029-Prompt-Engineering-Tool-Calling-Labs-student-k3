@@ -6,10 +6,21 @@
 
 ## Team
 
-- Team:
-- Members:
-- Provider/model:
+- Team:T029
+- Members: Nguyen Thanh Hoan - 2A202601201
+- Do: Prompt_system
 
+- Team:T029
+- Members: Do Tuan Kiet - 2A202601335
+- Do: tools
+
+- Team:T029
+- Members: Đỗ Đức Cường -  2A202601455
+- Do: Eval
+
+- Team:T029
+- Members: Luong Thanh Trang - 2A202601363
+- Do: UI
 ---
 
 # PHẦN A — Giới thiệu agent
